@@ -4,388 +4,369 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>عطاری برگ سبز</title>
-    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <style>
         :root {
-            --primary-color: #6B8E23; /* زیتونی */
-            --secondary-color: #F5DEB3; /* کرم */
-            --text-color: #3d3d3d;
-            --background-color: #fdfaf4;
-            --disabled-color: #cccccc;
-            --border-color: #e0d7c5;
+            --primary-color: #28a745;
+            --secondary-color: #f8f9fa;
+            --text-color: #333;
+            --border-radius: 8px;
+            --shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
         }
 
         body {
-            font-family: 'Vazirmatn', sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
             margin: 0;
-            background-color: var(--background-color);
+            padding: 0;
+            background-color: #f4f7f6;
             color: var(--text-color);
-            background-image: url('https://www.transparenttextures.com/patterns/leaves.png');
-            background-repeat: repeat;
-            background-attachment: fixed;
-        }
-
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
         }
 
         .header {
-            text-align: center;
+            background-color: white;
             padding: 20px;
-            background-color: rgba(255, 255, 255, 0.8);
-            border-radius: 12px;
-            margin-bottom: 30px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-        }
-
-        .header img {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            border: 3px solid var(--primary-color);
-            margin-bottom: 10px;
+            text-align: center;
+            border-bottom: 1px solid #eee;
+            box-shadow: var(--shadow);
         }
 
         .header h1 {
             margin: 0;
             color: var(--primary-color);
-            font-size: 2em;
+            font-size: 2rem;
+            font-weight: 700;
         }
 
         .header p {
             margin: 5px 0 0;
-            font-size: 1.1em;
+            color: #666;
         }
 
-        /* صفحه دسته‌بندی‌ها */
-        #categories-view h2, #products-view h2 {
-            text-align: center;
-            margin-bottom: 20px;
-            color: var(--primary-color);
-            border-bottom: 2px solid var(--border-color);
-            padding-bottom: 10px;
+        .container {
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
-        .category-grid {
+        .categories-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-            gap: 15px;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            padding: 20px 0;
         }
 
         .category-tile {
-            background-color: #fff;
-            border: 1px solid var(--border-color);
-            border-radius: 10px;
+            position: relative;
+            color: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 180px;
             padding: 20px;
-            text-align: center;
-            font-size: 1.1em;
-            font-weight: bold;
-            cursor: pointer;
-            transition: transform 0.2s, box-shadow 0.2s;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .category-tile::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.2));
+            z-index: 1;
+            transition: background 0.3s ease;
         }
 
         .category-tile:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 6px 15px rgba(0,0,0,0.1);
-            color: var(--primary-color);
+            transform: scale(1.04);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
         }
 
-        /* صفحه محصولات */
-        #products-view {
-            display: none; /* در ابتدا مخفی است */
+        .category-tile:hover::before {
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.1));
         }
-        
-        .back-button {
-            display: inline-block;
-            margin-bottom: 20px;
-            padding: 8px 15px;
+
+        .tile-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+
+        .tile-content i {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            opacity: 0.9;
+        }
+
+        .tile-content h2 {
+            margin: 0;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .product-section {
+            display: none;
+            margin-top: 30px;
+            background-color: white;
+            padding: 25px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+        }
+
+        #back-to-categories {
             background-color: var(--primary-color);
             color: white;
             border: none;
-            border-radius: 5px;
+            padding: 12px 25px;
+            border-radius: var(--border-radius);
             cursor: pointer;
-            font-size: 1em;
+            font-size: 1rem;
+            margin-bottom: 20px;
+            transition: background-color 0.3s;
         }
-        
-        .back-button:hover {
-            opacity: 0.9;
+
+        #back-to-categories:hover {
+            background-color: #218838;
         }
 
         .product-list {
             list-style: none;
             padding: 0;
+            margin: 0;
         }
 
         .product-item {
             display: flex;
-            align-items: center;
             justify-content: space-between;
-            background-color: #fff;
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 10px;
-            border: 1px solid var(--border-color);
-            transition: background-color 0.3s;
-        }
-        
-        .product-item.out-of-stock {
-            background-color: #f5f5f5;
-            color: var(--disabled-color);
+            align-items: center;
+            padding: 15px 10px;
+            border-bottom: 1px solid #eee;
+            font-size: 1.1rem;
         }
 
-        .product-item input[type="checkbox"] {
-            width: 20px;
-            height: 20px;
-            cursor: pointer;
-        }
-        
-        .product-item.out-of-stock input[type="checkbox"] {
-            cursor: not-allowed;
-        }
-
-        .product-info {
-            display: flex;
-            flex-direction: column;
-            flex-grow: 1;
-            margin-right: 15px;
+        .product-item:last-child {
+            border-bottom: none;
         }
         
         .product-name {
-            font-weight: bold;
-        }
-        
-        .stock-status {
-            font-size: 0.8em;
-            padding: 2px 6px;
-            border-radius: 4px;
-            margin-top: 5px;
-            align-self: flex-start;
+            font-weight: 500;
         }
 
-        .stock-status.in-stock {
-            background-color: #e8f5e9;
-            color: #2e7d32;
+        .status-badge {
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.9rem;
+            font-weight: 500;
         }
 
-        .stock-status.out-of-stock {
-            background-color: #ffebee;
-            color: #c62828;
+        .status-available {
+            background-color: #eaf6ec;
+            color: #28a745;
         }
 
-        /* سبد خرید و دکمه ارسال */
-        .cart-footer {
+        .status-unavailable {
+            background-color: #fbeae5;
+            color: #dc3545;
+        }
+
+        .whatsapp-fab {
             position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background-color: rgba(255, 255, 255, 0.95);
-            padding: 15px 20px;
-            box-shadow: 0 -4px 12px rgba(0,0,0,0.1);
-            display: none; /* Initially hidden */
-            align-items: center;
-            justify-content: space-between;
-            border-top: 1px solid var(--border-color);
-        }
-
-        #send-order-btn {
-            background-color: #25D366; /* WhatsApp Green */
+            bottom: 25px;
+            left: 25px;
+            background-color: #25D366;
             color: white;
-            border: none;
-            padding: 12px 20px;
-            border-radius: 8px;
-            font-size: 1.1em;
-            font-weight: bold;
-            cursor: pointer;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            text-decoration: none;
+            transition: transform 0.3s ease;
         }
 
-        #cart-summary {
-            font-size: 1em;
-            font-weight: bold;
+        .whatsapp-fab:hover {
+            transform: scale(1.1);
+        }
+
+        #loading, #error {
+            text-align: center;
+            font-size: 1.2rem;
+            padding: 40px 0;
+            color: #777;
         }
     </style>
 </head>
 <body>
 
+    <header class="header">
+        <h1>عطاری برگ سبز</h1>
+        <p>عرضه کننده انواع گیاهان دارویی، عرقیات سنتی، ادویه‌جات و محصولات سالم</p>
+    </header>
+
     <div class="container">
-        <div class="header">
-            <img src="https://i.ibb.co/VvzVb0Q/attari-logo.png" alt="لوگوی عطاری برگ سبز">
-            <h1>عطاری برگ سبز</h1>
-            <p>عرضه کننده انواع گیاهان دارویی و محصولات طبیعی</p>
+        <div id="category-view">
+            <div class="categories-grid">
+                <!-- کاشی‌ها در اینجا قرار می‌گیرند -->
+                <a href="#" class="category-tile" data-category="گیاهان-دارویی" style="background-image: url('https://images.pexels.com/photos/5966439/pexels-photo-5966439.jpeg?auto=compress&cs=tinysrgb&w=600');">
+                    <div class="tile-content">
+                        <i class="fa-solid fa-leaf"></i>
+                        <h2>گیاهان دارویی</h2>
+                    </div>
+                </a>
+                <a href="#" class="category-tile" data-category="عرقیات" style="background-image: url('https://images.pexels.com/photos/7939109/pexels-photo-7939109.jpeg?auto=compress&cs=tinysrgb&w=600');">
+                    <div class="tile-content">
+                        <i class="fa-solid fa-bottle-droplet"></i>
+                        <h2>عرقیات</h2>
+                    </div>
+                </a>
+                <a href="#" class="category-tile" data-category="ادویه-جات" style="background-image: url('https://images.pexels.com/photos/357756/pexels-photo-357756.jpeg?auto=compress&cs=tinysrgb&w=600');">
+                    <div class="tile-content">
+                        <i class="fa-solid fa-mortar-pestle"></i>
+                        <h2>ادویه‌جات</h2>
+                    </div>
+                </a>
+                <a href="#" class="category-tile" data-category="روغن-ها" style="background-image: url('https://images.pexels.com/photos/3378994/pexels-photo-3378994.jpeg?auto=compress&cs=tinysrgb&w=600');">
+                    <div class="tile-content">
+                        <i class="fa-solid fa-oil-well"></i>
+                        <h2>روغن‌ها</h2>
+                    </div>
+                </a>
+                <a href="#" class="category-tile" data-category="حبوبات-و-غلات" style="background-image: url('https://images.pexels.com/photos/10394783/pexels-photo-10394783.jpeg?auto=compress&cs=tinysrgb&w=600');">
+                    <div class="tile-content">
+                        <i class="fa-solid fa-seedling"></i>
+                        <h2>حبوبات و غلات</h2>
+                    </div>
+                </a>
+                <a href="#" class="category-tile" data-category="شوینده-و-بهداشتی" style="background-image: url('https://images.pexels.com/photos/4210611/pexels-photo-4210611.jpeg?auto=compress&cs=tinysrgb&w=600');">
+                    <div class="tile-content">
+                        <i class="fa-solid fa-soap"></i>
+                        <h2>شوینده و بهداشتی</h2>
+                    </div>
+                </a>
+                <a href="#" class="category-tile" data-category="محصولات-خوراکی" style="background-image: url('https://images.pexels.com/photos/2253643/pexels-photo-2253643.jpeg?auto=compress&cs=tinysrgb&w=600');">
+                    <div class="tile-content">
+                        <i class="fa-solid fa-jar"></i>
+                        <h2>محصولات خوراکی</h2>
+                    </div>
+                </a>
+                <a href="#" class="category-tile" data-category="متفرقه" style="background-image: url('https://images.pexels.com/photos/1775043/pexels-photo-1775043.jpeg?auto=compress&cs=tinysrgb&w=600');">
+                    <div class="tile-content">
+                        <i class="fa-solid fa-shapes"></i>
+                        <h2>متفرقه</h2>
+                    </div>
+                </a>
+            </div>
         </div>
 
-        <!-- بخش ۱: نمایش دسته‌بندی‌ها (صفحه اصلی) -->
-        <main id="categories-view">
-            <h2>دسته‌بندی محصولات</h2>
-            <div class="category-grid" id="category-grid">
-                <!-- کاشی‌های دسته‌بندی اینجا توسط جاوااسکریپت ساخته می‌شوند -->
-            </div>
-        </main>
-
-        <!-- بخش ۲: نمایش محصولات یک دسته (صفحه داخلی) -->
-        <main id="products-view">
-            <button class="back-button" id="back-to-categories">بازگشت به دسته‌بندی‌ها</button>
-            <h2 id="products-category-title"></h2>
-            <ul class="product-list" id="product-list">
-                <!-- لیست محصولات اینجا توسط جاوااسکریپت ساخته می‌شود -->
-            </ul>
-        </main>
+        <div id="product-view" class="product-section">
+            <button id="back-to-categories"><i class="fa-solid fa-arrow-right"></i> بازگشت به دسته‌بندی‌ها</button>
+            <h2 id="product-category-title"></h2>
+            <div id="loading">درحال بارگذاری محصولات...</div>
+            <div id="error" style="display: none;">خطا در دریافت اطلاعات. لطفا بعدا تلاش کنید.</div>
+            <ul id="product-list" class="product-list"></ul>
+        </div>
     </div>
 
-    <!-- نوار پایین صفحه برای سبد خرید و ارسال سفارش -->
-    <div class="cart-footer" id="cart-footer">
-        <span id="cart-summary"></span>
-        <button id="send-order-btn">ارسال سفارش در واتس‌اپ</button>
-    </div>
+    <a id="whatsapp-link" href="#" class="whatsapp-fab" target="_blank" rel="noopener noreferrer">
+        <i class="fab fa-whatsapp"></i>
+    </a>
 
     <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // --- تنظیمات اصلی ---
-        const whatsappNumber = "989918022066"; // شماره واتس‌اپ خود را اینجا وارد کنید (با کد کشور و بدون +)
+        document.addEventListener('DOMContentLoaded', function() {
+            // --- تنظیمات ---
+            const whatsappNumber = "989123456789"; // شماره واتس‌اپ خود را بدون + وارد کنید. مثال: 989120000000
+            // --- پایان تنظیمات ---
 
-        // --- عناصر DOM ---
-        const categoryGrid = document.getElementById('category-grid');
-        const productList = document.getElementById('product-list');
-        const categoriesView = document.getElementById('categories-view');
-        const productsView = document.getElementById('products-view');
-        const backButton = document.getElementById('back-to-categories');
-        const productsCategoryTitle = document.getElementById('products-category-title');
-        const cartFooter = document.getElementById('cart-footer');
-        const cartSummary = document.getElementById('cart-summary');
-        const sendOrderBtn = document.getElementById('send-order-btn');
-        
-        let allProductsData = {};
-        const cart = new Set();
-
-        // --- بارگذاری محصولات از فایل JSON ---
-        fetch('products.json')
-            .then(response => response.json())
-            .then(data => {
-                allProductsData = data;
-                showCategories();
-            })
-            .catch(error => {
-                console.error('خطا در بارگذاری محصولات:', error);
-                categoryGrid.innerHTML = '<p>متاسفانه در بارگذاری محصولات مشکلی پیش آمده است.</p>';
-            });
-
-        // --- نمایش صفحه دسته‌بندی‌ها ---
-        function showCategories() {
-            productsView.style.display = 'none';
-            categoriesView.style.display = 'block';
-            categoryGrid.innerHTML = ''; // Clear previous content
+            const categoryView = document.getElementById('category-view');
+            const productView = document.getElementById('product-view');
+            const productList = document.getElementById('product-list');
+            const categoryTitle = document.getElementById('product-category-title');
+            const backButton = document.getElementById('back-to-categories');
+            const loadingDiv = document.getElementById('loading');
+            const errorDiv = document.getElementById('error');
             
-            for (const categoryName in allProductsData) {
-                const tile = document.createElement('div');
-                tile.className = 'category-tile';
-                tile.textContent = categoryName;
-                tile.dataset.category = categoryName;
-                tile.addEventListener('click', () => showProductsForCategory(categoryName));
-                categoryGrid.appendChild(tile);
+            document.getElementById('whatsapp-link').href = `https://wa.me/${whatsappNumber}`;
+
+            let allProducts = [];
+
+            function showCategoryView() {
+                categoryView.style.display = 'block';
+                productView.style.display = 'none';
             }
-        }
 
-        // --- نمایش صفحه محصولات برای یک دسته خاص ---
-        function showProductsForCategory(categoryName) {
-            categoriesView.style.display = 'none';
-            productsView.style.display = 'block';
-            productList.innerHTML = ''; // Clear previous content
-            productsCategoryTitle.textContent = categoryName;
+            function showProductView() {
+                categoryView.style.display = 'none';
+                productView.style.display = 'block';
+            }
 
-            const products = allProductsData[categoryName];
-            products.forEach(product => {
-                const li = document.createElement('li');
-                li.className = 'product-item';
-                if (!product.inStock) {
-                    li.classList.add('out-of-stock');
+            function renderProducts(category, categoryName) {
+                productList.innerHTML = '';
+                categoryTitle.textContent = categoryName;
+
+                const filteredProducts = allProducts.filter(p => p.category === category);
+                
+                if (filteredProducts.length === 0) {
+                    productList.innerHTML = '<li class="product-item">محصولی در این دسته‌بندی یافت نشد.</li>';
+                    return;
                 }
 
-                const checkbox = document.createElement('input');
-                checkbox.type = 'checkbox';
-                checkbox.id = `product-${product.name}`;
-                checkbox.dataset.name = product.name;
-                checkbox.checked = cart.has(product.name);
-                checkbox.disabled = !product.inStock;
-                
-                const productInfo = document.createElement('div');
-                productInfo.className = 'product-info';
-                
-                const productName = document.createElement('span');
-                productName.className = 'product-name';
-                productName.textContent = product.name;
-                
-                const stockStatus = document.createElement('span');
-                stockStatus.className = 'stock-status';
-                if (product.inStock) {
-                    stockStatus.textContent = 'موجود';
-                    stockStatus.classList.add('in-stock');
-                } else {
-                    stockStatus.textContent = 'ناموجود';
-                    stockStatus.classList.add('out-of-stock');
-                }
-
-                productInfo.appendChild(productName);
-                productInfo.appendChild(stockStatus);
-                
-                li.appendChild(productInfo);
-                li.appendChild(checkbox);
-                
-                // Add click listener to the whole item for better UX
-                li.addEventListener('click', (e) => {
-                    if (e.target !== checkbox && product.inStock) {
-                        checkbox.checked = !checkbox.checked;
-                        // Manually trigger change event
-                        checkbox.dispatchEvent(new Event('change'));
-                    }
+                filteredProducts.forEach(product => {
+                    const statusClass = product.available ? 'status-available' : 'status-unavailable';
+                    const statusText = product.available ? 'موجود' : 'ناموجود';
+                    const listItem = document.createElement('li');
+                    listItem.className = 'product-item';
+                    listItem.innerHTML = `
+                        <span class="product-name">${product.name}</span>
+                        <span class="status-badge ${statusClass}">${statusText}</span>
+                    `;
+                    productList.appendChild(listItem);
                 });
-
-                checkbox.addEventListener('change', (e) => {
-                    if (e.target.checked) {
-                        cart.add(product.name);
-                    } else {
-                        cart.delete(product.name);
-                    }
-                    updateCartFooter();
-                });
-                
-                productList.appendChild(li);
-            });
-            window.scrollTo(0, 0); // Scroll to top
-        }
-
-        // --- رویداد دکمه بازگشت ---
-        backButton.addEventListener('click', showCategories);
-
-        // --- به‌روزرسانی نوار پایین صفحه (سبد خرید) ---
-        function updateCartFooter() {
-            if (cart.size > 0) {
-                cartFooter.style.display = 'flex';
-                cartSummary.textContent = `${cart.size} محصول در سبد خرید`;
-            } else {
-                cartFooter.style.display = 'none';
             }
-        }
 
-        // --- ارسال سفارش به واتس‌اپ ---
-        sendOrderBtn.addEventListener('click', () => {
-            if (cart.size === 0) return;
-
-            let message = "سلام، سفارش من:\n";
-            let count = 1;
-            cart.forEach(item => {
-                message += `${count}- ${item}\n`;
-                count++;
+            document.querySelectorAll('.category-tile').forEach(tile => {
+                tile.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const category = this.dataset.category;
+                    const categoryName = this.querySelector('h2').textContent;
+                    renderProducts(category, categoryName);
+                    showProductView();
+                });
             });
-            
-            message += "\nلطفاً برای هماهنگی و ارسال با من تماس بگیرید.";
-            const encodedMessage = encodeURIComponent(message);
-            const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
-            
-            window.open(whatsappURL, '_blank');
+
+            backButton.addEventListener('click', showCategoryView);
+
+            // Fetch products from JSON file
+            async function fetchProducts() {
+                try {
+                    const response = await fetch('products.json?v=' + new Date().getTime()); // Cache-busting
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    allProducts = await response.json();
+                    loadingDiv.style.display = 'none';
+                } catch (err) {
+                    loadingDiv.style.display = 'none';
+                    errorDiv.style.display = 'block';
+                    console.error('Fetch error:', err);
+                }
+            }
+
+            // Initial setup
+            showCategoryView();
+            fetchProducts();
         });
-    });
     </script>
+
 </body>
 </html>
