@@ -74,7 +74,6 @@
         
         .category-tile::before {
             content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-            /* گرادینت زیتونی تیره */
             background: linear-gradient(to top, rgba(60, 80, 30, 0.9) 0%, rgba(60, 80, 30, 0.15) 70%);
             z-index: 1; transition: background 0.3s ease;
         }
@@ -91,19 +90,17 @@
             transition: all 0.3s ease;
         }
 
-        /* تعریف انیمیشن‌ها */
         @keyframes swing { 20% { transform: rotate(15deg); } 40% { transform: rotate(-10deg); } 60% { transform: rotate(5deg); } 80% { transform: rotate(-5deg); } 100% { transform: rotate(0deg); } }
         @keyframes bounce-custom { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
         @keyframes pulse-custom { 0% { transform: scale(1); } 50% { transform: scale(1.2); } 100% { transform: scale(1); } }
         @keyframes shake-custom { 0% { transform: rotate(0); } 25% { transform: rotate(15deg); } 50% { transform: rotate(-15deg); } 75% { transform: rotate(5deg); } 100% { transform: rotate(0); } }
 
-        /* اختصاص انیمیشن هنگام هاور */
-        .category-tile:hover .fa-leaf { animation: swing 1s ease-in-out; } /* تاب خوردن برای گیاهان */
+        .category-tile:hover .fa-leaf { animation: swing 1s ease-in-out; } 
         .category-tile:hover .fa-bottle-droplet, 
-        .category-tile:hover .fa-oil-well { animation: bounce-custom 0.8s ease; } /* پریدن برای مایعات */
-        .category-tile:hover .fa-mortar-pestle { animation: shake-custom 0.8s ease; } /* تکان خوردن برای ادویه */
+        .category-tile:hover .fa-oil-well { animation: bounce-custom 0.8s ease; } 
+        .category-tile:hover .fa-mortar-pestle { animation: shake-custom 0.8s ease; } 
         .category-tile:hover .fa-wheat-awn, 
-        .category-tile:hover .fa-seedling { animation: pulse-custom 0.8s ease; } /* تپش برای دانه‌ها */
+        .category-tile:hover .fa-seedling { animation: pulse-custom 0.8s ease; } 
         .category-tile:hover .fa-pump-soap { animation: swing 1s ease; }
         .category-tile:hover .fa-jar { animation: bounce-custom 0.8s ease; }
         .category-tile:hover .fa-box-open { animation: pulse-custom 0.8s ease; }
@@ -134,16 +131,23 @@
         .product-name { font-weight: 600; font-size: 1.05rem; cursor: pointer; color: #444; }
         .product-checkbox { width: 24px; height: 24px; cursor: pointer; accent-color: var(--primary-color); border-radius: 6px; }
         
-        .quantity-input-container { display: none; align-items: center; justify-self: end; }
+        .quantity-input-container { display: none; align-items: center; justify-self: end; gap: 8px; }
         .product-item.selected .quantity-input-container { display: flex; animation: fadeIn 0.3s ease; }
         @keyframes fadeIn { from { opacity: 0; transform: translateX(-10px); } to { opacity: 1; transform: translateX(0); } }
         
         .quantity-input {
             width: 60px; padding: 8px; border: 2px solid #dce6c5; border-radius: 10px;
-            text-align: center; font-size: 1.1rem; font-weight: bold; color: var(--primary-color); margin-left: 8px;
+            text-align: center; font-size: 1.1rem; font-weight: bold; color: var(--primary-color);
         }
         .quantity-input:focus { outline: none; border-color: var(--primary-color); box-shadow: 0 0 0 3px rgba(107, 142, 35, 0.1); }
         .quantity-unit { font-size: 0.9rem; color: #888; min-width: 30px; }
+
+        /* دکمه حذف */
+        .delete-btn {
+            color: #e74c3c; cursor: pointer; font-size: 1.2rem; padding: 5px;
+            transition: transform 0.2s; display: flex; align-items: center; justify-content: center;
+        }
+        .delete-btn:hover { transform: scale(1.2); color: #c0392b; }
         
         .status-badge { padding: 5px 12px; border-radius: 15px; font-size: 0.85rem; font-weight: 600; }
         .status-unavailable { background-color: #fff5f5; color: #e03e2d; opacity: 0.7; }
@@ -151,7 +155,6 @@
         /* --- دکمه واتس‌اپ --- */
         .whatsapp-fab {
             position: fixed; bottom: 30px; left: 30px; 
-            /* گرادینت کمی زیتونی‌تر برای هماهنگی */
             background: linear-gradient(135deg, #4e9f3d, #128C7E);
             color: white; width: 65px; height: 65px; border-radius: 50%; display: flex;
             justify-content: center; align-items: center; font-size: 2.2rem;
@@ -187,7 +190,7 @@
             <input type="search" id="search-input" placeholder="جستجوی محصول (مثلا: پونه، زردچوبه)..." autocomplete="off">
         </div>
 
-        <!-- نمای دسته‌بندی‌ها با آیکون‌های متحرک -->
+        <!-- نمای دسته‌بندی‌ها -->
         <div id="category-view">
             <div class="categories-grid">
                 
@@ -327,6 +330,7 @@
                                        id="qty-${product.name}" value="${cartItem ? cartItem.quantity : '1'}"
                                        oninput="this.value = this.value.replace(/[^0-9]/g, '')">
                                 <span class="quantity-unit">${product.unit || 'عدد'}</span>
+                                <i class="fa-solid fa-trash-can delete-btn" title="حذف از سبد خرید"></i>
                             </div>
                         `;
                     } else {
@@ -354,6 +358,19 @@
                         listItem.classList.remove('selected');
                     }
                     updateCartAndButton();
+                }
+            });
+            
+            // دکمه حذف محصول
+            productList.addEventListener('click', function(e) {
+                if (e.target.classList.contains('delete-btn')) {
+                    const listItem = e.target.closest('.product-item');
+                    const checkbox = listItem.querySelector('.product-checkbox');
+                    if (checkbox) {
+                        checkbox.checked = false;
+                        listItem.classList.remove('selected');
+                        updateCartAndButton();
+                    }
                 }
             });
 
