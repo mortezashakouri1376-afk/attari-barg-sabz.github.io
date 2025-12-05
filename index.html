@@ -7,139 +7,170 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <style>
         :root {
-            --primary-color: #28a745; /* سبز سنجد */
-            --secondary-color: #f8f9fa;
-            --text-color: #333;
-            --border-radius: 12px;
-            --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            /* تم رنگی سبز زیتونی */
+            --primary-color: #6B8E23; /* سبز زیتونی اصلی */
+            --primary-hover: #55721c; /* زیتونی تیره‌تر برای هاور */
+            --light-bg: #f4f7f0;      /* پس‌زمینه خیلی روشن مایل به سبز */
+            --selected-bg: #eef5e0;   /* رنگ آیتم انتخاب شده */
+            --text-color: #444;
+            --border-radius: 15px;
+            --shadow: 0 8px 25px rgba(107, 142, 35, 0.15); /* سایه سبز ملایم */
         }
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
             margin: 0;
             padding: 0 0 100px 0;
-            background-color: #fdfdfd;
+            background-color: var(--light-bg);
             color: var(--text-color);
         }
 
+        /* --- هدر --- */
         .header {
             background-color: white; padding: 25px 20px; text-align: center;
-            border-bottom: 1px solid #eee; box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            border-bottom: 1px solid #e0e8d5; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
             position: sticky; top: 0; z-index: 100;
         }
-
         .header h1 { margin: 0; color: var(--primary-color); font-size: 2.2rem; font-weight: 800; letter-spacing: -1px; }
-        .header p { margin: 8px 0 0; color: #777; font-size: 0.95rem; }
+        .header p { margin: 8px 0 0; color: #889e75; font-size: 0.95rem; font-weight: 500; }
+
         .container { padding: 20px; max-width: 1200px; margin: 0 auto; }
         
-        /* --- استایل جستجو --- */
+        /* --- جستجو --- */
         .search-container { position: relative; margin-bottom: 30px; margin-top: 10px; }
         #search-input {
             width: 100%; padding: 16px 50px 16px 20px; font-size: 1.1rem;
-            border-radius: var(--border-radius); border: 1px solid #e0e0e0;
+            border-radius: var(--border-radius); border: 2px solid #e6ebd8;
             background-color: #fff; box-shadow: var(--shadow);
-            transition: all 0.3s ease;
+            transition: all 0.3s ease; color: #555;
         }
         #search-input:focus {
             outline: none; border-color: var(--primary-color);
-            box-shadow: 0 0 0 4px rgba(40, 167, 69, 0.15);
+            box-shadow: 0 0 0 4px rgba(107, 142, 35, 0.2);
         }
         .search-icon {
             position: absolute; right: 20px; top: 50%; transform: translateY(-50%);
-            color: #aaa; font-size: 1.2rem; pointer-events: none;
+            color: #aeb89c; font-size: 1.2rem; pointer-events: none;
         }
 
-        /* --- استایل دسته‌بندی‌ها با تصاویر جدید --- */
+        /* --- گرید دسته‌بندی --- */
         .categories-grid { 
             display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); 
             gap: 20px; padding-bottom: 20px; 
         }
-        /* تنظیم برای موبایل که دو ستونه دیده شود */
         @media (min-width: 480px) {
              .categories-grid { grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); }
         }
 
         .category-tile {
             position: relative; color: white; border-radius: var(--border-radius); overflow: hidden;
-            text-decoration: none; display: flex; flex-direction: column; justify-content: flex-end; /* متن پایین */
+            text-decoration: none; display: flex; flex-direction: column; justify-content: flex-end;
             align-items: center; height: 200px; padding: 20px; box-shadow: var(--shadow);
-            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); 
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
             background-size: cover; background-position: center; cursor: pointer;
+            border: 1px solid rgba(255,255,255,0.2);
         }
         
         .category-tile::before {
             content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-            background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.1) 60%);
+            /* گرادینت زیتونی تیره */
+            background: linear-gradient(to top, rgba(60, 80, 30, 0.9) 0%, rgba(60, 80, 30, 0.15) 70%);
             z-index: 1; transition: background 0.3s ease;
         }
 
-        .category-tile:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2); }
-        .category-tile:active { transform: scale(0.98); }
+        .category-tile:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(85, 114, 28, 0.3); }
+        .category-tile:hover::before { background: linear-gradient(to top, rgba(60, 80, 30, 0.95), rgba(60, 80, 30, 0.3)); }
 
         .tile-content { position: relative; z-index: 2; text-align: center; width: 100%; }
-        .tile-content i { font-size: 2.5rem; margin-bottom: 10px; display: block; opacity: 0.9; text-shadow: 0 2px 5px rgba(0,0,0,0.3); }
+        
+        /* --- انیمیشن آیکون‌ها --- */
+        .tile-content i { 
+            font-size: 2.8rem; margin-bottom: 15px; display: inline-block; 
+            opacity: 0.95; text-shadow: 0 4px 10px rgba(0,0,0,0.4);
+            transition: all 0.3s ease;
+        }
+
+        /* تعریف انیمیشن‌ها */
+        @keyframes swing { 20% { transform: rotate(15deg); } 40% { transform: rotate(-10deg); } 60% { transform: rotate(5deg); } 80% { transform: rotate(-5deg); } 100% { transform: rotate(0deg); } }
+        @keyframes bounce-custom { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
+        @keyframes pulse-custom { 0% { transform: scale(1); } 50% { transform: scale(1.2); } 100% { transform: scale(1); } }
+        @keyframes shake-custom { 0% { transform: rotate(0); } 25% { transform: rotate(15deg); } 50% { transform: rotate(-15deg); } 75% { transform: rotate(5deg); } 100% { transform: rotate(0); } }
+
+        /* اختصاص انیمیشن هنگام هاور */
+        .category-tile:hover .fa-leaf { animation: swing 1s ease-in-out; } /* تاب خوردن برای گیاهان */
+        .category-tile:hover .fa-bottle-droplet, 
+        .category-tile:hover .fa-oil-well { animation: bounce-custom 0.8s ease; } /* پریدن برای مایعات */
+        .category-tile:hover .fa-mortar-pestle { animation: shake-custom 0.8s ease; } /* تکان خوردن برای ادویه */
+        .category-tile:hover .fa-wheat-awn, 
+        .category-tile:hover .fa-seedling { animation: pulse-custom 0.8s ease; } /* تپش برای دانه‌ها */
+        .category-tile:hover .fa-pump-soap { animation: swing 1s ease; }
+        .category-tile:hover .fa-jar { animation: bounce-custom 0.8s ease; }
+        .category-tile:hover .fa-box-open { animation: pulse-custom 0.8s ease; }
+
         .tile-content h2 { margin: 0; font-size: 1.4rem; font-weight: 700; text-shadow: 0 2px 4px rgba(0,0,0,0.5); }
 
-        /* --- استایل لیست محصولات --- */
+        /* --- بخش محصولات --- */
         .product-section { display: none; margin-top: 20px; background-color: white; padding: 25px; border-radius: var(--border-radius); box-shadow: var(--shadow); }
         
         #back-to-categories { 
-            background-color: #f0f2f5; color: #333; border: none; padding: 12px 20px; 
+            background-color: #f0f2f5; color: #555; border: none; padding: 12px 20px; 
             border-radius: var(--border-radius); cursor: pointer; font-size: 1rem; font-weight: 600;
             margin-bottom: 20px; display: inline-flex; align-items: center; gap: 10px;
-            transition: background 0.2s;
+            transition: all 0.3s;
         }
-        #back-to-categories:hover { background-color: #e4e6eb; }
-        #back-to-categories i { transform: rotate(180deg); } /* فلش به سمت راست */
+        #back-to-categories:hover { background-color: #e0e6d5; color: var(--primary-color); }
+        #back-to-categories i { transform: rotate(180deg); }
 
         .product-list { list-style: none; padding: 0; margin: 0; }
         .product-item {
             display: grid; grid-template-columns: auto 1fr auto; align-items: center;
             gap: 15px; padding: 18px 10px; border-bottom: 1px solid #f1f1f1;
-            transition: background-color 0.2s;
+            transition: background-color 0.2s; border-radius: 8px;
         }
         .product-item:last-child { border-bottom: none; }
-        .product-item.selected { background-color: #f0f9f1; }
+        .product-item.selected { background-color: var(--selected-bg); border-right: 4px solid var(--primary-color); }
         
-        .product-name { font-weight: 500; font-size: 1.05rem; cursor: pointer; color: #444; }
-        .product-checkbox { width: 24px; height: 24px; cursor: pointer; accent-color: var(--primary-color); border-radius: 4px; }
+        .product-name { font-weight: 600; font-size: 1.05rem; cursor: pointer; color: #444; }
+        .product-checkbox { width: 24px; height: 24px; cursor: pointer; accent-color: var(--primary-color); border-radius: 6px; }
         
         .quantity-input-container { display: none; align-items: center; justify-self: end; }
         .product-item.selected .quantity-input-container { display: flex; animation: fadeIn 0.3s ease; }
         @keyframes fadeIn { from { opacity: 0; transform: translateX(-10px); } to { opacity: 1; transform: translateX(0); } }
         
         .quantity-input {
-            width: 60px; padding: 8px; border: 2px solid #eee; border-radius: 8px;
+            width: 60px; padding: 8px; border: 2px solid #dce6c5; border-radius: 10px;
             text-align: center; font-size: 1.1rem; font-weight: bold; color: var(--primary-color); margin-left: 8px;
         }
-        .quantity-input:focus { outline: none; border-color: var(--primary-color); }
+        .quantity-input:focus { outline: none; border-color: var(--primary-color); box-shadow: 0 0 0 3px rgba(107, 142, 35, 0.1); }
         .quantity-unit { font-size: 0.9rem; color: #888; min-width: 30px; }
         
         .status-badge { padding: 5px 12px; border-radius: 15px; font-size: 0.85rem; font-weight: 600; }
-        .status-unavailable { background-color: #fff5f5; color: #e03e2d; border: 1px solid #ffebeb; }
+        .status-unavailable { background-color: #fff5f5; color: #e03e2d; opacity: 0.7; }
 
         /* --- دکمه واتس‌اپ --- */
         .whatsapp-fab {
             position: fixed; bottom: 30px; left: 30px; 
-            background: linear-gradient(135deg, #25D366, #128C7E);
+            /* گرادینت کمی زیتونی‌تر برای هماهنگی */
+            background: linear-gradient(135deg, #4e9f3d, #128C7E);
             color: white; width: 65px; height: 65px; border-radius: 50%; display: flex;
             justify-content: center; align-items: center; font-size: 2.2rem;
-            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4); text-decoration: none;
-            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 10px 25px rgba(78, 159, 61, 0.4); text-decoration: none;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             cursor: pointer; transform: scale(0); z-index: 1000;
         }
         .whatsapp-fab.visible { transform: scale(1); }
-        .whatsapp-fab:hover { transform: scale(1.1); box-shadow: 0 15px 35px rgba(37, 211, 102, 0.5); }
+        .whatsapp-fab:hover { transform: scale(1.1) rotate(10deg); box-shadow: 0 15px 35px rgba(78, 159, 61, 0.5); }
 
         .cart-counter {
-            position: absolute; top: 0; right: 0; background-color: #ff3b30;
+            position: absolute; top: 0; right: 0; background-color: #ff6b6b;
             color: white; border-radius: 50%; width: 26px; height: 26px;
             font-size: 0.85rem; font-weight: bold; display: flex;
             justify-content: center; align-items: center;
             border: 2px solid white; box-shadow: 0 2px 5px rgba(0,0,0,0.2);
         }
 
-        #loading, #error { text-align: center; font-size: 1.1rem; padding: 50px 0; color: #888; }
+        #loading, #error { text-align: center; font-size: 1.1rem; padding: 50px 0; color: #889e75; }
     </style>
 </head>
 <body>
@@ -153,10 +184,10 @@
         <!-- کادر جستجو -->
         <div class="search-container">
             <i class="fa-solid fa-search search-icon"></i>
-            <input type="search" id="search-input" placeholder="جستجوی نام محصول (مثلا: آویشن)..." autocomplete="off">
+            <input type="search" id="search-input" placeholder="جستجوی محصول (مثلا: پونه، زردچوبه)..." autocomplete="off">
         </div>
 
-        <!-- نمای دسته‌بندی‌ها با تصاویر جدید -->
+        <!-- نمای دسته‌بندی‌ها با آیکون‌های متحرک -->
         <div id="category-view">
             <div class="categories-grid">
                 
@@ -199,8 +230,8 @@
         <div id="product-view" class="product-section">
             <button id="back-to-categories"><i class="fa-solid fa-arrow-right"></i> بازگشت به دسته‌بندی‌ها</button>
             <h2 id="product-category-title" style="margin-top: 0; margin-bottom: 20px; color: var(--primary-color);"></h2>
-            <div id="loading">درحال بارگذاری محصولات...</div>
-            <div id="error" style="display: none;">خطا در دریافت اطلاعات. لطفا بعدا تلاش کنید.</div>
+            <div id="loading">درحال بارگذاری...</div>
+            <div id="error" style="display: none;">خطا در ارتباط.</div>
             <ul id="product-list" class="product-list"></ul>
         </div>
     </div>
@@ -315,7 +346,6 @@
                     const listItem = e.target.closest('.product-item');
                     if (e.target.checked) {
                         listItem.classList.add('selected');
-                        // Focus on input automatically
                         setTimeout(() => {
                            const input = listItem.querySelector('.quantity-input');
                            if(input) input.focus(); 
