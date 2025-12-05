@@ -1,395 +1,1142 @@
-{
-  "عرقیات": [
+[
     {
-      "id": "ar-01",
-      "name": "گلاب",
-      "inStock": true
+        "name": "آبغوره",
+        "available": true,
+        "category": "محصولات-خوراکی"
     },
     {
-      "id": "ar-02",
-      "name": "عرق نعنا",
-      "inStock": true
+        "name": "آرد برنج",
+        "available": true,
+        "category": "محصولات-خوراکی"
     },
     {
-      "id": "ar-03",
-      "name": "عرق کاسنی",
-      "inStock": true
+        "name": "آرد جو",
+        "available": false,
+        "category": "محصولات-خوراکی"
     },
     {
-      "id": "ar-04",
-      "name": "عرق شاطره",
-      "inStock": true
+        "name": "آرد جو دوسر",
+        "available": false,
+        "category": "محصولات-خوراکی"
     },
     {
-      "id": "ar-05",
-      "name": "عرق بیدمشک",
-      "inStock": true
+        "name": "آرد جوانه گندم",
+        "available": false,
+        "category": "محصولات-خوراکی"
     },
     {
-      "id": "ar-06",
-      "name": "عرق بهارنارنج",
-      "inStock": true
+        "name": "آرد ذرت",
+        "available": false,
+        "category": "محصولات-خوراکی"
     },
     {
-      "id": "ar-07",
-      "name": "عرق آویشن",
-      "inStock": true
+        "name": "آرد سفید",
+        "available": false,
+        "category": "محصولات-خوراکی"
     },
     {
-      "id": "ar-08",
-      "name": "عرق رازیانه",
-      "inStock": true
+        "name": "آرد سوخاری",
+        "available": false,
+        "category": "محصولات-خوراکی"
     },
     {
-      "id": "ar-09",
-      "name": "عرق زنیان",
-      "inStock": true
+        "name": "آرد سهن",
+        "available": false,
+        "category": "محصولات-خوراکی"
     },
     {
-      "id": "ar-10",
-      "name": "عرق زیره",
-      "inStock": true
+        "name": "آرد گندم",
+        "available": false,
+        "category": "محصولات-خوراکی"
+    },
+    {
+        "name": "آرد نخودچی",
+        "available": false,
+        "category": "محصولات-خوراکی"
+    },
+    {
+        "name": "آویشن",
+        "available": true,
+        "category": "گیاهان-دارویی"
+    },
+    {
+        "name": "ادویه خورشتی",
+        "available": true,
+        "category": "ادویه-جات"
+    },
+    {
+        "name": "ادویه کاری",
+        "available": true,
+        "category": "ادویه-جات"
+    },
+    {
+        "name": "ادویه کباب",
+        "available": true,
+        "category": "ادویه-جات"
+    },
+    {
+        "name": "ادویه ماهی",
+        "available": true,
+        "category": "ادویه-جات"
+    },
+    {
+        "name": "ادویه مرغ",
+        "available": true,
+        "category": "ادویه-جات"
+    },
+    {
+        "name": "اسپند",
+        "available": true,
+        "category": "متفرقه"
+    },
+    {
+        "name": "استوقدوس",
+        "available": true,
+        "category": "گیاهان-دارویی"
+    },
+    {
+        "name": "افتیمون",
+        "available": true,
+        "category": "گیاهان-دارویی"
+    },
+    {
+        "name": "اکالیپتوس",
+        "available": false,
+        "category": "گیاهان-دارویی"
+    },
+    {
+        "name": "انجیر خشک",
+        "available": false,
+        "category": "محصولات-خوراکی"
+    },
+    {
+        "name": "انیسون",
+        "available": true,
+        "category": "گیاهان-دارویی"
+    },
+    {
+        "name": "باباآدم",
+        "available": true,
+        "category": "گیاهان-دارویی"
+    },
+    {
+        "name": "بابونه",
+        "available": true,
+        "category": "گیاهان-دارویی"
+    },
+    {
+        "name": "بادیان ستاره ای",
+        "available": true,
+        "category": "ادویه-جات"
+    },
+    {
+        "name": "بار هنگ",
+        "available": false,
+        "category": "گیاهان-دارویی"
+    },
+    {
+        "name": "برگ بو",
+        "available": true,
+        "category": "ادویه-جات"
+    },
+    {
+        "name": "برگ سنا",
+        "available": false,
+        "category": "گیاهان-دارویی"
+    },
+    {
+        "name": "برگ گردو",
+        "available": true,
+        "category": "گیاهان-دارویی"
+    },
+    {
+        "name": "برنجاسف",
+        "available": true,
+        "category": "گیاهان-دارویی"
+    },
+    {
+        "name": "بومادران",
+        "available": true,
+        "category": "گیاهان-دارویی"
+    },
+    {
+        "name": "بهار نارنج",
+        "available": true,
+        "category": "گیاهان-دارویی"
+    },
+    {
+        "name": "بهدانه",
+        "available": true,
+        "category": "گیاهان-دارویی"
+    },
+    {
+        "name": "پاپ کورن",
+        "available": true,
+        "category": "محصولات-خوراکی"
+    },
+    {
+        "name": "پاپریکا",
+        "available": true,
+        "category": "ادویه-جات"
+    },
+    {
+        "name": "پر سیاوش",
+        "available": true,
+        "category": "گیاهان-دارویی"
+    },
+    {
+        "name": "پشم گوسفندی",
+        "available": true,
+        "category": "متفرقه"
+    },
+    {
+        "name": "پودر پیاز",
+        "available": true,
+        "category": "ادویه-جات"
+    },
+    {
+        "name": "پودر جوانه گندم",
+        "available": false,
+        "category": "محصولات-خوراکی"
+    },
+    {
+        "name": "پودر خردل",
+        "available": true,
+        "category": "ادویه-جات"
+    },
+    {
+        "name": "پودر دارچین",
+        "available": true,
+        "category": "ادویه-جات"
+    },
+    {
+        "name": "پودر زنجبیل",
+        "available": true,
+        "category": "ادویه-جات"
+    },
+    {
+        "name": "پودر سیر",
+        "available": true,
+        "category": "ادویه-جات"
+    },
+    {
+        "name": "پودر فلفل سیاه",
+        "available": true,
+        "category": "ادویه-جات"
+    },
+    {
+        "name": "پودر قهوه ترک",
+        "available": false,
+        "category": "محصولات-خوراکی"
+    },
+    {
+        "name": "پودر قهوه فرانسه",
+        "available": true,
+        "category": "محصولات-خوراکی"
+    },
+    {
+        "name": "پودر کاکائو",
+        "available": false,
+        "category": "محصولات-خوراکی"
+    },
+    {
+        "name": "پودر لیمو",
+        "available": true,
+        "category": "ادویه-جات"
+    },
+    {
+        "name": "پولکی",
+        "available": true,
+        "category": "محصولات-خوراکی"
+    },
+    {
+        "name": "پونه",
+        "available": true,
+        "category": "گیاهان-دارویی"
+    },
+    {
+        "name": "پونه کوهی",
+        "available": true,
+        "category": "گیاهان-دارویی"
+    },
+    {
+        "name": "تخم بالنگو",
+        "available": true,
+        "category": "گیاهان-دارویی"
+    },
+    {
+        "name": "تخم خرفه",
+        "available": true,
+        "category": "گیاهان-دارویی"
+    },
+    {
+        "name": "تخم ریحان",
+        "available": true,
+        "category": "گیاهان-دارویی"
+    },
+    {
+        "name": "تخم شربتی",
+        "available": true,
+        "category": "گیاهان-دارویی"
+    },
+    {
+        "name": "تخم شوید",
+        "available": true,
+        "category": "گیاهان-دارویی"
+    },
+    {
+        "name": "تخم کتان",
+        "available": true,
+        "category": "گیاهان-دارویی"
+    },
+    {
+        "name": "تخم گشنیز",
+        "available": true,
+        "category": "گیاهان-دارویی"
+    },
+    {
+        "name": "ترنجبین",
+        "available": true,
+        "category": "گیاهان-دارویی"
+    },
+    {
+        "name": "جدوا",
+        "available": true,
+        "category": "گیاهان-دارویی"
+    },
+    {
+        "name": "جو",
+        "available": true,
+        "category": "حبوبات-و-غلات"
+    },
+    {
+        "name": "جو پرک",
+        "available": true,
+        "category": "حبوبات-و-غلات"
+    },
+    {
+        "name": "جودوسر پرک",
+        "available": true,
+        "category": "حبوبات-و-غلات"
+    },
+    {
+        "name": "جوهر لیمو",
+        "available": true,
+        "category": "متفرقه"
+    },
+    {
+        "name": "چای به",
+        "available": true,
+        "category": "گیاهان-دارویی"
+    },
+    {
+        "name": "چای ترش",
+        "available": true,
+        "category": "گیاهان-دارویی"
+    },
+    {
+        "name": "چای سبز",
+        "available": true,
+        "category": "گیاهان-دارویی"
+    },
+    {
+        "name": "چای سیاه",
+        "available": true,
+        "category": "گیاهان-دارویی"
+    },
+    {
+        "name": "چای کوهی",
+        "available": true,
+        "category": "گیاهان-دارویی"
+    },
+    {
+        "name": "چای ماسالا",
+        "available": true,
+        "category": "ادویه-جات"
+    },
+    {
+        "name": "چای مکه",
+        "available": true,
+        "category": "گیاهان-دارویی"
+    },
+    {
+        "name": "چوب دارچین",
+        "available": true,
+        "category": "ادویه-جات"
+    },
+    {
+        "name": "چهار تخم",
+        "available": true,
+        "category": "گیاهان-دارویی"
+    },
+    {
+        "name": "چهارگل",
+        "available": true,
+        "category": "گیاهان-دارویی"
+    },
+    {
+        "name": "چیپس خرما",
+        "available": true,
+        "category": "محصولات-خوراکی"
+    },
+    {
+        "name": "حنا",
+        "available": true,
+        "category": "شوینده-و-بهداشتی"
+    },
+    {
+        "name": "خاکشیر",
+        "available": true,
+        "category": "گیاهان-دارویی"
+    },
+    {
+        "name": "خردل",
+        "available": true,
+        "category": "ادویه-جات"
+    },
+    {
+        "name": "خرنوب",
+        "available": true,
+        "category": "گیاهان-دارویی"
+    },
+    {
+        "name": "خسرودار",
+        "available": true,
+        "category": "گیاهان-دارویی"
+    },
+    {
+        "name": "خولنجان",
+        "available": true,
+        "category": "گیاهان-دارویی"
+    },
+    {
+        "name": "دار فلفل",
+        "available": true,
+        "category": "ادویه-جات"
+    },
+    {
+        "name": "دارچین",
+        "available": true,
+        "category": "ادویه-جات"
+    },
+    {
+        "name": "دال عدس",
+        "available": true,
+        "category": "حبوبات-و-غلات"
+    },
+    {
+        "name": "دانه چیا",
+        "available": true,
+        "category": "گیاهان-دارویی"
+    },
+    {
+        "name": "دانه کنجد",
+        "available": false,
+        "category": "محصولات-خوراکی"
+    },
+    {
+        "name": "دانه گندم",
+        "available": true,
+        "category": "حبوبات-و-غلات"
+    },
+    {
+        "name": "دمنوش سرماخوردگی",
+        "available": true,
+        "category": "گیاهان-دارویی"
+    },
+    {
+        "name": "رازیانه",
+        "available": true,
+        "category": "گیاهان-دارویی"
+    },
+    {
+        "name": "رزماری",
+        "available": true,
+        "category": "گیاهان-دارویی"
+    },
+    {
+        "name": "رنگ حنا",
+        "available": true,
+        "category": "شوینده-و-بهداشتی"
+    },
+    {
+        "name": "روغن آرگان",
+        "available": true,
+        "category": "روغن-ها"
+    },
+    {
+        "name": "روغن بادام تلخ",
+        "available": true,
+        "category": "روغن-ها"
+    },
+    {
+        "name": "روغن بادام شیرین",
+        "available": true,
+        "category": "روغن-ها"
+    },
+    {
+        "name": "روغن بنفشه",
+        "available": true,
+        "category": "روغن-ها"
+    },
+    {
+        "name": "روغن خراطین",
+        "available": true,
+        "category": "روغن-ها"
+    },
+    {
+        "name": "روغن خشخاش",
+        "available": true,
+        "category": "روغن-ها"
+    },
+    {
+        "name": "روغن زیتون",
+        "available": true,
+        "category": "روغن-ها"
+    },
+    {
+        "name": "روغن سیاهدانه",
+        "available": true,
+        "category": "روغن-ها"
+    },
+    {
+        "name": "روغن شترمرغ",
+        "available": true,
+        "category": "روغن-ها"
+    },
+    {
+        "name": "روغن کرچک",
+        "available": true,
+        "category": "روغن-ها"
+    },
+    {
+        "name": "روغن کنجد",
+        "available": true,
+        "category": "روغن-ها"
+    },
+    {
+        "name": "روغن کوهان شتر",
+        "available": true,
+        "category": "روغن-ها"
+    },
+    {
+        "name": "روغن مار",
+        "available": true,
+        "category": "روغن-ها"
+    },
+    {
+        "name": "روغن مورچه",
+        "available": true,
+        "category": "روغن-ها"
+    },
+    {
+        "name": "روغن نارگیل",
+        "available": true,
+        "category": "روغن-ها"
+    },
+    {
+        "name": "روغن همیشه بهار",
+        "available": true,
+        "category": "روغن-ها"
+    },
+    {
+        "name": "ریشه زنبق",
+        "available": true,
+        "category": "گیاهان-دارویی"
+    },
+    {
+        "name": "ریشه شیرین بیان",
+        "available": true,
+        "category": "گیاهان-دارویی"
+    },
+    {
+        "name": "ریشه کاسنی",
+        "available": true,
+        "category": "گیاهان-دارویی"
+    },
+    {
+        "name": "ریوند چینی",
+        "available": true,
+        "category": "گیاهان-دارویی"
+    },
+    {
+        "name": "زردچوبه",
+        "available": true,
+        "category": "ادویه-جات"
+    },
+    {
+        "name": "زعفران",
+        "available": true,
+        "category": "ادویه-جات"
+    },
+    {
+        "name": "زنجبیل",
+        "available": true,
+        "category": "ادویه-جات"
+    },
+    {
+        "name": "زنیان",
+        "available": true,
+        "category": "گیاهان-دارویی"
+    },
+    {
+        "name": "زوفا",
+        "available": true,
+        "category": "گیاهان-دارویی"
+    },
+    {
+        "name": "زیره سبز",
+        "available": true,
+        "category": "ادویه-جات"
+    },
+    {
+        "name": "زیره سیاه",
+        "available": true,
+        "category": "ادویه-جات"
+    },
+    {
+        "name": "ژل رویال",
+        "available": false,
+        "category": "محصولات-خوراکی"
+    },
+    {
+        "name": "سبوس برنج",
+        "available": false,
+        "category": "محصولات-خوراکی"
+    },
+    {
+        "name": "سبوس گندم",
+        "available": false,
+        "category": "محصولات-خوراکی"
+    },
+    {
+        "name": "سدر",
+        "available": true,
+        "category": "شوینده-و-بهداشتی"
+    },
+    {
+        "name": "سرکه سیب",
+        "available": false,
+        "category": "محصولات-خوراکی"
+    },
+    {
+        "name": "سرمه",
+        "available": true,
+        "category": "شوینده-و-بهداشتی"
+    },
+    {
+        "name": "سفید آب",
+        "available": true,
+        "category": "شوینده-و-بهداشتی"
+    },
+    {
+        "name": "سماق",
+        "available": true,
+        "category": "ادویه-جات"
+    },
+    {
+        "name": "سنجد",
+        "available": false,
+        "category": "محصولات-خوراکی"
+    },
+    {
+        "name": "سنگ نمک",
+        "available": true,
+        "category": "متفرقه"
+    },
+    {
+        "name": "سویق",
+        "available": false,
+        "category": "محصولات-خوراکی"
+    },
+    {
+        "name": "سیاهدانه",
+        "available": true,
+        "category": "گیاهان-دارویی"
+    },
+    {
+        "name": "سیر خشک",
+        "available": true,
+        "category": "ادویه-جات"
+    },
+    {
+        "name": "شاتره",
+        "available": true,
+        "category": "گیاهان-دارویی"
+    },
+    {
+        "name": "شامپو بدن",
+        "available": true,
+        "category": "شوینده-و-بهداشتی"
+    },
+    {
+        "name": "شامپو سر",
+        "available": true,
+        "category": "شوینده-و-بهداشتی"
+    },
+    {
+        "name": "شاه بلوط",
+        "available": false,
+        "category": "محصولات-خوراکی"
+    },
+    {
+        "name": "شکر تیغال",
+        "available": true,
+        "category": "گیاهان-دارویی"
+    },
+    {
+        "name": "شکر سرخ",
+        "available": false,
+        "category": "محصولات-خوراکی"
+    },
+    {
+        "name": "شکر قهوه ای",
+        "available": false,
+        "category": "محصولات-خوراکی"
+    },
+    {
+        "name": "شنبلیله",
+        "available": true,
+        "category": "گیاهان-دارویی"
+    },
+    {
+        "name": "شوید",
+        "available": true,
+        "category": "گیاهان-دارویی"
+    },
+    {
+        "name": "شیر خشت",
+        "available": true,
+        "category": "گیاهان-دارویی"
+    },
+    {
+        "name": "شیره انگور",
+        "available": false,
+        "category": "محصولات-خوراکی"
+    },
+    {
+        "name": "شیره توت",
+        "available": false,
+        "category": "محصولات-خوراکی"
+    },
+    {
+        "name": "شیره خرما",
+        "available": false,
+        "category": "محصولات-خوراکی"
+    },
+    {
+        "name": "صابون",
+        "available": true,
+        "category": "شوینده-و-بهداشتی"
+    },
+    {
+        "name": "صابون ابرو",
+        "available": true,
+        "category": "شوینده-و-بهداشتی"
+    },
+    {
+        "name": "صابون تریاک",
+        "available": true,
+        "category": "شوینده-و-بهداشتی"
+    },
+    {
+        "name": "صابون زردچوبه",
+        "available": true,
+        "category": "شوینده-و-بهداشتی"
+    },
+    {
+        "name": "صابون زغال",
+        "available": true,
+        "category": "شوینده-و-بهداشتی"
+    },
+    {
+        "name": "صابون سفید آب",
+        "available": true,
+        "category": "شوینده-و-بهداشتی"
+    },
+    {
+        "name": "صابون کوسه",
+        "available": true,
+        "category": "شوینده-و-بهداشتی"
+    },
+    {
+        "name": "صمغ عربی",
+        "available": true,
+        "category": "متفرقه"
+    },
+    {
+        "name": "عرق آلوئه ورا",
+        "available": true,
+        "category": "عرقیات"
+    },
+    {
+        "name": "عرق آویشن",
+        "available": true,
+        "category": "عرقیات"
+    },
+    {
+        "name": "عرق اترج",
+        "available": true,
+        "category": "عرقیات"
+    },
+    {
+        "name": "عرق اسطوخودوس",
+        "available": true,
+        "category": "عرقیات"
+    },
+    {
+        "name": "عرق بابونه",
+        "available": true,
+        "category": "عرقیات"
+    },
+    {
+        "name": "عرق بادرنجبویه",
+        "available": true,
+        "category": "عرقیات"
+    },
+    {
+        "name": "عرق بید",
+        "available": true,
+        "category": "عرقیات"
+    },
+    {
+        "name": "عرق بیدمشک",
+        "available": true,
+        "category": "عرقیات"
+    },
+    {
+        "name": "عرق پونه",
+        "available": true,
+        "category": "عرقیات"
+    },
+    {
+        "name": "عرق خارخاسک",
+        "available": true,
+        "category": "عرقیات"
+    },
+    {
+        "name": "عرق خارشتر",
+        "available": true,
+        "category": "عرقیات"
+    },
+    {
+        "name": "عرق رازیانه",
+        "available": false,
+        "category": "عرقیات"
+    },
+    {
+        "name": "عرق زنیان",
+        "available": true,
+        "category": "عرقیات"
+    },
+    {
+        "name": "عرق زیره",
+        "available": true,
+        "category": "عرقیات"
+    },
+    {
+        "name": "عرق سنبل الطیب",
+        "available": true,
+        "category": "عرقیات"
+    },
+    {
+        "name": "عرق شاتره",
+        "available": true,
+        "category": "عرقیات"
+    },
+    {
+        "name": "عرق شنبلیله",
+        "available": true,
+        "category": "عرقیات"
+    },
+    {
+        "name": "عرق شوید",
+        "available": true,
+        "category": "عرقیات"
+    },
+    {
+        "name": "عرق شیرین بیان",
+        "available": false,
+        "category": "عرقیات"
+    },
+    {
+        "name": "عرق کاسنی",
+        "available": true,
+        "category": "عرقیات"
+    },
+    {
+        "name": "عرق کیالک",
+        "available": true,
+        "category": "عرقیات"
+    },
+    {
+        "name": "عرق گزنه",
+        "available": true,
+        "category": "عرقیات"
+    },
+    {
+        "name": "عرق گشنیز",
+        "available": true,
+        "category": "عرقیات"
+    },
+    {
+        "name": "عرق گلاب",
+        "available": true,
+        "category": "عرقیات"
+    },
+    {
+        "name": "عرق مرزه",
+        "available": true,
+        "category": "عرقیات"
+    },
+    {
+        "name": "عرق نعنا",
+        "available": true,
+        "category": "عرقیات"
+    },
+    {
+        "name": "عرق هل",
+        "available": true,
+        "category": "عرقیات"
+    },
+    {
+        "name": "عرق یونجه",
+        "available": false,
+        "category": "عرقیات"
+    },
+    {
+        "name": "عسل",
+        "available": false,
+        "category": "محصولات-خوراکی"
+    },
+    {
+        "name": "عناب",
+        "available": true,
+        "category": "گیاهان-دارویی"
+    },
+    {
+        "name": "عود",
+        "available": true,
+        "category": "متفرقه"
+    },
+    {
+        "name": "غنچه گل محمدی",
+        "available": true,
+        "category": "گیاهان-دارویی"
+    },
+    {
+        "name": "فلفل سیاه",
+        "available": true,
+        "category": "ادویه-جات"
+    },
+    {
+        "name": "فلفل قرمز",
+        "available": true,
+        "category": "ادویه-جات"
+    },
+    {
+        "name": "فندق",
+        "available": false,
+        "category": "محصولات-خوراکی"
+    },
+    {
+        "name": "فیبر",
+        "available": true,
+        "category": "محصولات-خوراکی"
+    },
+    {
+        "name": "کاچی",
+        "available": true,
+        "category": "محصولات-خوراکی"
+    },
+    {
+        "name": "کاسنی",
+        "available": true,
+        "category": "گیاهان-دارویی"
+    },
+    {
+        "name": "کاکائو",
+        "available": true,
+        "category": "محصولات-خوراکی"
+    },
+    {
+        "name": "کاکوتی",
+        "available": true,
+        "category": "گیاهان-دارویی"
+    },
+    {
+        "name": "کتیرا",
+        "available": true,
+        "category": "گیاهان-دارویی"
+    },
+    {
+        "name": "کنجد",
+        "available": true,
+        "category": "محصولات-خوراکی"
+    },
+    {
+        "name": "کندر",
+        "available": true,
+        "category": "گیاهان-دارویی"
+    },
+    {
+        "name": "گزنه",
+        "available": true,
+        "category": "گیاهان-دارویی"
+    },
+    {
+        "name": "گل بابونه",
+        "available": true,
+        "category": "گیاهان-دارویی"
+    },
+    {
+        "name": "گل بنفشه",
+        "available": true,
+        "category": "گیاهان-دارویی"
+    },
+    {
+        "name": "گل پنیرک",
+        "available": true,
+        "category": "گیاهان-دارویی"
+    },
+    {
+        "name": "گل ختمی",
+        "available": true,
+        "category": "گیاهان-دارویی"
+    },
+    {
+        "name": "گل زوفا",
+        "available": true,
+        "category": "گیاهان-دارویی"
+    },
+    {
+        "name": "گل گاو زبان",
+        "available": true,
+        "category": "گیاهان-دارویی"
+    },
+    {
+        "name": "گل محمدی",
+        "available": true,
+        "category": "گیاهان-دارویی"
+    },
+    {
+        "name": "گلرنگ",
+        "available": true,
+        "category": "ادویه-جات"
+    },
+    {
+        "name": "گندم",
+        "available": true,
+        "category": "حبوبات-و-غلات"
+    },
+    {
+        "name": "لپه",
+        "available": true,
+        "category": "حبوبات-و-غلات"
+    },
+    {
+        "name": "لوبیا چیتی",
+        "available": true,
+        "category": "حبوبات-و-غلات"
+    },
+    {
+        "name": "لوبیا سفید",
+        "available": true,
+        "category": "حبوبات-و-غلات"
+    },
+    {
+        "name": "لوبیا قرمز",
+        "available": true,
+        "category": "حبوبات-و-غلات"
+    },
+    {
+        "name": "لیمو خشک",
+        "available": true,
+        "category": "ادویه-جات"
+    },
+    {
+        "name": "ماریانا",
+        "available": true,
+        "category": "گیاهان-دارویی"
+    },
+    {
+        "name": "ماش",
+        "available": true,
+        "category": "حبوبات-و-غلات"
+    },
+    {
+        "name": "مرزنجوش",
+        "available": true,
+        "category": "گیاهان-دارویی"
+    },
+    {
+        "name": "مروارید",
+        "available": true,
+        "category": "گیاهان-دارویی"
+    },
+    {
+        "name": "مریم گلی",
+        "available": true,
+        "category": "گیاهان-دارویی"
+    },
+    {
+        "name": "مورد",
+        "available": true,
+        "category": "گیاهان-دارویی"
+    },
+    {
+        "name": "موسیر",
+        "available": true,
+        "category": "ادویه-جات"
+    },
+    {
+        "name": "موم",
+        "available": true,
+        "category": "متفرقه"
+    },
+    {
+        "name": "میخک",
+        "available": true,
+        "category": "ادویه-جات"
+    },
+    {
+        "name": "نعنا خشک",
+        "available": true,
+        "category": "گیاهان-دارویی"
+    },
+    {
+        "name": "نمک",
+        "available": true,
+        "category": "ادویه-جات"
+    },
+    {
+        "name": "نمک دریا",
+        "available": true,
+        "category": "ادویه-جات"
+    },
+    {
+        "name": "هفت تخم",
+        "available": true,
+        "category": "گیاهان-دارویی"
+    },
+    {
+        "name": "هل",
+        "available": true,
+        "category": "ادویه-جات"
+    },
+    {
+        "name": "هلیله زرد",
+        "available": true,
+        "category": "گیاهان-دارویی"
+    },
+    {
+        "name": "هلیله سیاه",
+        "available": true,
+        "category": "گیاهان-دارویی"
+    },
+    {
+        "name": "یونجه",
+        "available": true,
+        "category": "گیاهان-دارویی"
     }
-  ],
-  "ادویه‌جات": [
-    {
-      "id": "ad-01",
-      "name": "زردچوبه",
-      "inStock": true
-    },
-    {
-      "id": "ad-02",
-      "name": "فلفل سیاه",
-      "inStock": true
-    },
-    {
-      "id": "ad-03",
-      "name": "فلفل قرمز",
-      "inStock": true
-    },
-    {
-      "id": "ad-04",
-      "name": "دارچین",
-      "inStock": true
-    },
-    {
-      "id": "ad-05",
-      "name": "زنجبیل",
-      "inStock": true
-    },
-    {
-      "id": "ad-06",
-      "name": "پودر سیر",
-      "inStock": true
-    },
-    {
-      "id": "ad-07",
-      "name": "پودر پیاز",
-      "inStock": true
-    },
-    {
-      "id": "ad-08",
-      "name": "پاپریکا",
-      "inStock": true
-    },
-    {
-      "id": "ad-09",
-      "name": "آویشن",
-      "inStock": true
-    },
-    {
-      "id": "ad-10",
-      "name": "کاری",
-      "inStock": true
-    },
-    {
-      "id": "ad-11",
-      "name": "سماق",
-      "inStock": true
-    },
-    {
-      "id": "ad-12",
-      "name": "هل",
-      "inStock": true
-    },
-    {
-      "id": "ad-13",
-      "name": "میخک",
-      "inStock": true
-    },
-    {
-      "id": "ad-14",
-      "name": "جوز هندی",
-      "inStock": true
-    },
-    {
-      "id": "ad-15",
-      "name": "زعفران",
-      "inStock": true
-    }
-  ],
-  "گیاهان دارویی": [
-    {
-      "id": "gi-01",
-      "name": "بابونه",
-      "inStock": true
-    },
-    {
-      "id": "gi-02",
-      "name": "گل گاو زبان",
-      "inStock": true
-    },
-    {
-      "id": "gi-03",
-      "name": "سنبل الطیب",
-      "inStock": true
-    },
-    {
-      "id": "gi-04",
-      "name": "اسطوخودوس",
-      "inStock": true
-    },
-    {
-      "id": "gi-05",
-      "name": "به لیمو",
-      "inStock": true
-    },
-    {
-      "id": "gi-06",
-      "name": "چای ترش",
-      "inStock": true
-    },
-    {
-      "id": "gi-07",
-      "name": "چای سبز",
-      "inStock": true
-    },
-    {
-      "id": "gi-08",
-      "name": "چای کوهی",
-      "inStock": true
-    },
-    {
-      "id": "gi-09",
-      "name": "خاکشیر",
-      "inStock": true
-    },
-    {
-      "id": "gi-10",
-      "name": "تخم شربتی",
-      "inStock": true
-    },
-    {
-      "id": "gi-11",
-      "name": "چای لبو",
-      "inStock": true
-    },
-    {
-      "id": "gi-12",
-      "name": "کندر",
-      "inStock": true
-    },
-    {
-      "id": "gi-13",
-      "name": "صمغ عربی",
-      "inStock": true
-    }
-  ],
-  "روغن‌های گیاهی": [
-    {
-      "id": "ro-01",
-      "name": "روغن زیتون",
-      "inStock": true
-    },
-    {
-      "id": "ro-02",
-      "name": "روغن کنجد",
-      "inStock": true
-    },
-    {
-      "id": "ro-03",
-      "name": "روغن نارگیل",
-      "inStock": true
-    },
-    {
-      "id": "ro-04",
-      "name": "روغن سیاهدانه",
-      "inStock": true
-    },
-    {
-      "id": "ro-05",
-      "name": "روغن بنفشه",
-      "inStock": true
-    },
-    {
-      "id": "ro-06",
-      "name": "روغن کرچک",
-      "inStock": true
-    },
-    {
-      "id": "ro-07",
-      "name": "روغن بادام تلخ",
-      "inStock": true
-    },
-    {
-      "id": "ro-08",
-      "name": "روغن بادام شیرین",
-      "inStock": true
-    }
-  ],
-  "حبوبات و غلات": [
-    {
-      "id": "ho-01",
-      "name": "نخود",
-      "inStock": true
-    },
-    {
-      "id": "ho-02",
-      "name": "لوبیا",
-      "inStock": true
-    },
-    {
-      "id": "ho-03",
-      "name": "عدس",
-      "inStock": true
-    },
-    {
-      "id": "ho-04",
-      "name": "جو پرک",
-      "inStock": true
-    },
-    {
-      "id": "ho-05",
-      "name": "کینوا",
-      "inStock": true
-    },
-    {
-      "id": "ho-06",
-      "name": "دانه چیا",
-      "inStock": true
-    }
-  ],
-  "شیرین‌کننده‌ها": [
-    {
-      "id": "sh-01",
-      "name": "عسل",
-      "inStock": true
-    },
-    {
-      "id": "sh-02",
-      "name": "شیره انگور",
-      "inStock": true
-    },
-    {
-      "id": "sh-03",
-      "name": "شیره خرما",
-      "inStock": true
-    },
-    {
-      "id": "sh-04",
-      "name": "شیره توت",
-      "inStock": true
-    },
-    {
-      "id": "sh-05",
-      "name": "نبات",
-      "inStock": true
-    },
-    {
-      "id": "sh-06",
-      "name": "شکر قهوه‌ای",
-      "inStock": true
-    }
-  ],
-  "محصولات بهداشتی و آرایشی سنتی": [
-    {
-      "id": "be-01",
-      "name": "سفیدآب",
-      "inStock": true
-    },
-    {
-      "id": "be-02",
-      "name": "سرمه",
-      "inStock": true
-    },
-    {
-      "id": "be-03",
-      "name": "حنا",
-      "inStock": true
-    },
-    {
-      "id": "be-04",
-      "name": "صابون زیتون",
-      "inStock": true
-    },
-    {
-      "id": "be-05",
-      "name": "صابون مراغه",
-      "inStock": true
-    }
-  ],
-  "آجیل و خشکبار": [
-    {
-      "id": "kh-01",
-      "name": "بادام",
-      "inStock": true
-    },
-    {
-      "id": "kh-02",
-      "name": "گردو",
-      "inStock": true
-    },
-    {
-      "id": "kh-03",
-      "name": "پسته",
-      "inStock": true
-    },
-    {
-      "id": "kh-04",
-      "name": "فندق",
-      "inStock": true
-    },
-    {
-      "id": "kh-05",
-      "name": "انجیر خشک",
-      "inStock": true
-    },
-    {
-      "id": "kh-06",
-      "name": "کشمش",
-      "inStock": true
-    },
-    {
-      "id": "kh-07",
-      "name": "توت خشک",
-      "inStock": true
-    },
-    {
-      "id": "kh-08",
-      "name": "برگه زردآلو",
-      "inStock": true
-    }
-  ],
-  "سرکه‌ها و آبغوره‌ها": [
-    {
-      "id": "se-01",
-      "name": "سرکه سیب",
-      "inStock": false
-    },
-    {
-      "id": "se-02",
-      "name": "سرکه انگور",
-      "inStock": false
-    },
-    {
-      "id": "se-03",
-      "name": "آبغوره",
-      "inStock": true
-    },
-    {
-      "id": "se-04",
-      "name": "آبلیمو",
-      "inStock": true
-    }
-  ]
-}
+]
