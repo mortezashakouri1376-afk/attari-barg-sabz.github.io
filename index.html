@@ -7,14 +7,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <style>
         :root {
-            /* تم رنگی سبز زیتونی */
+            /* تم اصلی */
             --primary-color: #6B8E23; 
-            --primary-hover: #55721c; 
-            --light-bg: #f4f7f0;      
+            --light-bg: #f8f9fa;      
             --selected-bg: #eef5e0;   
             --text-color: #444;
-            --border-radius: 15px;
-            --shadow: 0 8px 25px rgba(107, 142, 35, 0.15); 
+            --border-radius: 16px;
+            --shadow: 0 10px 30px rgba(0,0,0,0.08); 
         }
 
         body {
@@ -28,12 +27,12 @@
         /* --- هدر --- */
         .header {
             background-color: white; padding: 25px 20px; text-align: center;
-            border-bottom: 1px solid #e0e8d5; 
-            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            border-bottom: 1px solid #eaeaea; 
+            box-shadow: 0 2px 10px rgba(0,0,0,0.02);
             position: sticky; top: 0; z-index: 100;
         }
-        .header h1 { margin: 0; color: var(--primary-color); font-size: 2.2rem; font-weight: 800; letter-spacing: -1px; }
-        .header p { margin: 8px 0 0; color: #889e75; font-size: 0.95rem; font-weight: 500; }
+        .header h1 { margin: 0; color: var(--primary-color); font-size: 2.2rem; font-weight: 900; letter-spacing: -1px; }
+        .header p { margin: 8px 0 0; color: #999; font-size: 0.9rem; }
 
         .container { padding: 20px; max-width: 1200px; margin: 0 auto; }
         
@@ -41,55 +40,64 @@
         .search-container { position: relative; margin-bottom: 30px; margin-top: 10px; }
         #search-input {
             width: 100%; padding: 16px 50px 16px 20px; font-size: 1.1rem;
-            border-radius: var(--border-radius); border: 2px solid #e6ebd8;
-            background-color: #fff; box-shadow: var(--shadow);
+            border-radius: var(--border-radius); border: 2px solid #eee;
+            background-color: #fff; box-shadow: 0 4px 15px rgba(0,0,0,0.03);
             transition: all 0.3s ease; color: #555;
         }
         #search-input:focus {
             outline: none; border-color: var(--primary-color);
-            box-shadow: 0 0 0 4px rgba(107, 142, 35, 0.2);
+            box-shadow: 0 0 0 4px rgba(107, 142, 35, 0.15);
         }
         .search-icon {
             position: absolute; right: 20px; top: 50%; transform: translateY(-50%);
-            color: #aeb89c; font-size: 1.2rem; pointer-events: none;
+            color: #ccc; font-size: 1.2rem; pointer-events: none;
         }
 
         /* --- گرید دسته‌بندی --- */
         .categories-grid { 
-            display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); 
-            gap: 20px; padding-bottom: 20px; 
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); 
+            gap: 15px; padding-bottom: 20px; 
         }
         @media (min-width: 480px) {
-             .categories-grid { grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); }
+             .categories-grid { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 25px; }
         }
 
         .category-tile {
             position: relative; color: white; border-radius: var(--border-radius); overflow: hidden;
-            text-decoration: none; display: flex; flex-direction: column; justify-content: flex-end;
-            align-items: center; height: 200px; padding: 20px; box-shadow: var(--shadow);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
-            background-size: cover; background-position: center; cursor: pointer;
-            border: 1px solid rgba(255,255,255,0.2);
-            /* رنگ پیش‌فرض اگر عکس لود نشود */
-            background-color: #8fa855; 
+            text-decoration: none; display: flex; flex-direction: column; justify-content: center;
+            align-items: center; height: 180px; padding: 20px; 
+            box-shadow: var(--shadow);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); 
+            cursor: pointer;
+            border: 1px solid rgba(255,255,255,0.1);
         }
         
+        /* استایل گرادینت‌ها برای دسته‌های مختلف */
+        .cat-herbs { background: linear-gradient(135deg, #56ab2f 0%, #a8e063 100%); } /* سبز */
+        .cat-spices { background: linear-gradient(135deg, #ff512f 0%, #dd2476 100%); } /* قرمز آتشین */
+        .cat-liquids { background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); } /* آبی یخی */
+        .cat-oils { background: linear-gradient(135deg, #f09819 0%, #edde5d 100%); } /* طلایی */
+        .cat-grains { background: linear-gradient(135deg, #C04848 0%, #480048 100%); } /* زرشکی قهوه ای */
+        .cat-hygiene { background: linear-gradient(135deg, #cc2b5e 0%, #753a88 100%); } /* بنفش */
+        .cat-food { background: linear-gradient(135deg, #FF8008 0%, #FFC837 100%); } /* نارنجی */
+        .cat-misc { background: linear-gradient(135deg, #606c88 0%, #3f4c6b 100%); } /* طوسی سرمه ای */
+
+        /* پترن نقطه‌ای روی گرادینت برای زیبایی بیشتر */
         .category-tile::before {
             content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-            /* گرادینت تیره‌تر برای خوانایی بهتر متن روی عکس */
-            background: linear-gradient(to top, rgba(50, 70, 20, 0.9) 0%, rgba(50, 70, 20, 0.2) 60%);
-            z-index: 1; transition: background 0.3s ease;
+            background-image: radial-gradient(rgba(255, 255, 255, 0.15) 1px, transparent 1px);
+            background-size: 20px 20px; opacity: 0.6; pointer-events: none;
         }
 
-        .category-tile:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(85, 114, 28, 0.3); }
-        .category-tile:hover::before { background: linear-gradient(to top, rgba(60, 80, 30, 0.95), rgba(60, 80, 30, 0.3)); }
+        .category-tile:hover { transform: translateY(-5px) scale(1.02); box-shadow: 0 15px 35px rgba(0,0,0,0.15); }
 
         .tile-content { position: relative; z-index: 2; text-align: center; width: 100%; }
         
         /* --- انیمیشن آیکون‌ها --- */
         .tile-content i { 
-            font-size: 2.8rem; margin-bottom: 15px; display: inline-block; 
-            opacity: 0.95; text-shadow: 0 4px 10px rgba(0,0,0,0.4);
+            font-size: 3.5rem; margin-bottom: 15px; display: inline-block; 
+            color: rgba(255,255,255,0.95);
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.2));
             transition: all 0.3s ease;
         }
 
@@ -108,68 +116,70 @@
         .category-tile:hover .fa-jar { animation: bounce-custom 0.8s ease; }
         .category-tile:hover .fa-box-open { animation: pulse-custom 0.8s ease; }
 
-        .tile-content h2 { margin: 0; font-size: 1.4rem; font-weight: 700; text-shadow: 0 2px 4px rgba(0,0,0,0.5); }
+        .tile-content h2 { margin: 0; font-size: 1.3rem; font-weight: 700; text-shadow: 0 2px 4px rgba(0,0,0,0.2); letter-spacing: -0.5px; }
 
         /* --- بخش محصولات --- */
         .product-section { display: none; margin-top: 20px; background-color: white; padding: 25px; border-radius: var(--border-radius); box-shadow: var(--shadow); }
         
         #back-to-categories { 
             background-color: #f0f2f5; color: #555; border: none; padding: 12px 20px; 
-            border-radius: var(--border-radius); cursor: pointer; font-size: 1rem; font-weight: 600;
-            margin-bottom: 20px; display: inline-flex; align-items: center; gap: 10px;
-            transition: all 0.3s;
+            border-radius: 12px; cursor: pointer; font-size: 0.95rem; font-weight: 700;
+            margin-bottom: 25px; display: inline-flex; align-items: center; gap: 10px;
+            transition: all 0.2s;
         }
-        #back-to-categories:hover { background-color: #e0e6d5; color: var(--primary-color); }
+        #back-to-categories:hover { background-color: #e2e6ea; color: var(--primary-color); }
         #back-to-categories i { transform: rotate(180deg); }
 
         .product-list { list-style: none; padding: 0; margin: 0; }
         .product-item {
             display: grid; grid-template-columns: auto 1fr auto; align-items: center;
-            gap: 15px; padding: 18px 10px; border-bottom: 1px solid #f1f1f1;
+            gap: 15px; padding: 18px 10px; border-bottom: 1px solid #f4f4f4;
             transition: background-color 0.2s; border-radius: 8px;
         }
         .product-item:last-child { border-bottom: none; }
         .product-item.selected { background-color: var(--selected-bg); border-right: 4px solid var(--primary-color); }
         
-        .product-name { font-weight: 600; font-size: 1.05rem; cursor: pointer; color: #444; }
-        .product-checkbox { width: 24px; height: 24px; cursor: pointer; accent-color: var(--primary-color); border-radius: 6px; }
+        .product-name { font-weight: 600; font-size: 1.05rem; cursor: pointer; color: #333; }
+        .product-checkbox { width: 22px; height: 22px; cursor: pointer; accent-color: var(--primary-color); border-radius: 6px; }
         
-        .quantity-input-container { display: none; align-items: center; justify-self: end; gap: 8px; }
+        .quantity-input-container { display: none; align-items: center; justify-self: end; gap: 10px; }
         .product-item.selected .quantity-input-container { display: flex; animation: fadeIn 0.3s ease; }
         @keyframes fadeIn { from { opacity: 0; transform: translateX(-10px); } to { opacity: 1; transform: translateX(0); } }
         
         .quantity-input {
-            width: 60px; padding: 8px; border: 2px solid #dce6c5; border-radius: 10px;
+            width: 60px; padding: 6px; border: 2px solid #dce6c5; border-radius: 8px;
             text-align: center; font-size: 1.1rem; font-weight: bold; color: var(--primary-color);
         }
-        .quantity-input:focus { outline: none; border-color: var(--primary-color); box-shadow: 0 0 0 3px rgba(107, 142, 35, 0.1); }
-        .quantity-unit { font-size: 0.9rem; color: #888; min-width: 30px; }
+        .quantity-input:focus { outline: none; border-color: var(--primary-color); }
+        .quantity-unit { font-size: 0.85rem; color: #888; min-width: 30px; }
 
         .delete-btn {
-            color: #e74c3c; cursor: pointer; font-size: 1.2rem; padding: 5px;
-            transition: transform 0.2s; display: flex; align-items: center; justify-content: center;
+            color: #ff4757; cursor: pointer; font-size: 1.1rem; padding: 8px;
+            background: #ffeef0; border-radius: 50%; width: 30px; height: 30px;
+            display: flex; align-items: center; justify-content: center;
+            transition: all 0.2s;
         }
-        .delete-btn:hover { transform: scale(1.2); color: #c0392b; }
+        .delete-btn:hover { transform: scale(1.1); background: #ff4757; color: white; }
 
         .status-badge { padding: 5px 12px; border-radius: 15px; font-size: 0.85rem; font-weight: 600; }
-        .status-unavailable { background-color: #fff5f5; color: #e03e2d; opacity: 0.7; }
+        .status-unavailable { background-color: #fff0f0; color: #e03e2d; }
 
         /* --- دکمه واتس‌اپ --- */
         .whatsapp-fab {
             position: fixed; bottom: 30px; left: 30px; 
-            background: linear-gradient(135deg, #4e9f3d, #128C7E);
+            background: linear-gradient(135deg, #25D366, #128C7E);
             color: white; width: 65px; height: 65px; border-radius: 50%; display: flex;
             justify-content: center; align-items: center; font-size: 2.2rem;
-            box-shadow: 0 10px 25px rgba(78, 159, 61, 0.4); text-decoration: none;
+            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4); text-decoration: none;
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             cursor: pointer; transform: scale(0); z-index: 1000;
         }
         .whatsapp-fab.visible { transform: scale(1); }
-        .whatsapp-fab:hover { transform: scale(1.1) rotate(10deg); box-shadow: 0 15px 35px rgba(78, 159, 61, 0.5); }
+        .whatsapp-fab:hover { transform: scale(1.1) rotate(10deg); box-shadow: 0 15px 35px rgba(37, 211, 102, 0.5); }
 
         .cart-counter {
-            position: absolute; top: 0; right: 0; background-color: #ff6b6b;
-            color: white; border-radius: 50%; width: 26px; height: 26px;
+            position: absolute; top: -5px; right: -5px; background-color: #ff4757;
+            color: white; border-radius: 50%; width: 28px; height: 28px;
             font-size: 0.85rem; font-weight: bold; display: flex;
             justify-content: center; align-items: center;
             border: 2px solid white; box-shadow: 0 2px 5px rgba(0,0,0,0.2);
@@ -189,42 +199,42 @@
         <!-- کادر جستجو -->
         <div class="search-container">
             <i class="fa-solid fa-search search-icon"></i>
-            <input type="search" id="search-input" placeholder="جستجوی محصول (مثلا: پونه، زردچوبه)..." autocomplete="off">
+            <input type="search" id="search-input" placeholder="جستجو (مثلا: آویشن، نعنا)..." autocomplete="off">
         </div>
 
-        <!-- نمای دسته‌بندی‌ها (لینک‌های جدید Wikimedia) -->
+        <!-- نمای دسته‌بندی‌ها (با رنگ‌های گرادینت) -->
         <div id="category-view">
             <div class="categories-grid">
                 
-                <a href="#" class="category-tile" data-category="گیاهان-دارویی" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Herbes_sechees_marche.jpg/640px-Herbes_sechees_marche.jpg');">
+                <a href="#" class="category-tile cat-herbs" data-category="گیاهان-دارویی">
                     <div class="tile-content"><i class="fa-solid fa-leaf"></i><h2>گیاهان دارویی</h2></div>
                 </a>
 
-                <a href="#" class="category-tile" data-category="ادویه-جات" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Various_spices.jpg/640px-Various_spices.jpg');">
+                <a href="#" class="category-tile cat-spices" data-category="ادویه-جات">
                     <div class="tile-content"><i class="fa-solid fa-mortar-pestle"></i><h2>ادویه‌جات</h2></div>
                 </a>
 
-                <a href="#" class="category-tile" data-category="عرقیات" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Rose_water.jpg/640px-Rose_water.jpg');">
+                <a href="#" class="category-tile cat-liquids" data-category="عرقیات">
                     <div class="tile-content"><i class="fa-solid fa-bottle-droplet"></i><h2>عرقیات</h2></div>
                 </a>
 
-                <a href="#" class="category-tile" data-category="روغن-ها" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Oliven%C3%B6l_im_Glas.jpg/640px-Oliven%C3%B6l_im_Glas.jpg');">
+                <a href="#" class="category-tile cat-oils" data-category="روغن-ها">
                     <div class="tile-content"><i class="fa-solid fa-oil-well"></i><h2>روغن‌ها</h2></div>
                 </a>
 
-                <a href="#" class="category-tile" data-category="حبوبات-و-غلات" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Major_food_groups_-_grains_and_starches.jpg/640px-Major_food_groups_-_grains_and_starches.jpg');">
+                <a href="#" class="category-tile cat-grains" data-category="حبوبات-و-غلات">
                     <div class="tile-content"><i class="fa-solid fa-wheat-awn"></i><h2>حبوبات و غلات</h2></div>
                 </a>
 
-                <a href="#" class="category-tile" data-category="شوینده-و-بهداشتی" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Savon_Marseille_Lavande.jpg/640px-Savon_Marseille_Lavande.jpg');">
+                <a href="#" class="category-tile cat-hygiene" data-category="شوینده-و-بهداشتی">
                     <div class="tile-content"><i class="fa-solid fa-pump-soap"></i><h2>بهداشتی</h2></div>
                 </a>
 
-                <a href="#" class="category-tile" data-category="محصولات-خوراکی" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/Pickled_vegetables_2.jpg/640px-Pickled_vegetables_2.jpg');">
+                <a href="#" class="category-tile cat-food" data-category="محصولات-خوراکی">
                     <div class="tile-content"><i class="fa-solid fa-jar"></i><h2>خوراکی</h2></div>
                 </a>
 
-                <a href="#" class="category-tile" data-category="متفرقه" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Patara_fruits_and_vegetables.JPG/640px-Patara_fruits_and_vegetables.JPG');">
+                <a href="#" class="category-tile cat-misc" data-category="متفرقه">
                     <div class="tile-content"><i class="fa-solid fa-box-open"></i><h2>سایر محصولات</h2></div>
                 </a>
 
@@ -233,10 +243,10 @@
 
         <!-- نمای لیست محصولات -->
         <div id="product-view" class="product-section">
-            <button id="back-to-categories"><i class="fa-solid fa-arrow-right"></i> بازگشت به دسته‌بندی‌ها</button>
+            <button id="back-to-categories"><i class="fa-solid fa-arrow-right"></i> بازگشت</button>
             <h2 id="product-category-title" style="margin-top: 0; margin-bottom: 20px; color: var(--primary-color);"></h2>
-            <div id="loading">درحال بارگذاری...</div>
-            <div id="error" style="display: none;">خطا در ارتباط.</div>
+            <div id="loading">درحال بارگذاری محصولات...</div>
+            <div id="error" style="display: none;">خطا در بارگذاری محصولات.</div>
             <ul id="product-list" class="product-list"></ul>
         </div>
     </div>
@@ -332,7 +342,7 @@
                                        id="qty-${product.name}" value="${cartItem ? cartItem.quantity : '1'}"
                                        oninput="this.value = this.value.replace(/[^0-9]/g, '')">
                                 <span class="quantity-unit">${product.unit || 'عدد'}</span>
-                                <i class="fa-solid fa-trash-can delete-btn" title="حذف از سبد خرید"></i>
+                                <i class="fa-solid fa-trash-can delete-btn" title="حذف"></i>
                             </div>
                         `;
                     } else {
@@ -362,11 +372,11 @@
                     updateCartAndButton();
                 }
             });
-            
-            // دکمه حذف محصول
+
             productList.addEventListener('click', function(e) {
-                if (e.target.classList.contains('delete-btn')) {
-                    const listItem = e.target.closest('.product-item');
+                if (e.target.classList.contains('delete-btn') || e.target.parentElement.classList.contains('delete-btn')) {
+                    const btn = e.target.classList.contains('delete-btn') ? e.target : e.target.parentElement;
+                    const listItem = btn.closest('.product-item');
                     const checkbox = listItem.querySelector('.product-checkbox');
                     if (checkbox) {
                         checkbox.checked = false;
