@@ -529,20 +529,54 @@
         const menuOverlay = document.getElementById('menuOverlay');
         const favoritesListEl = document.getElementById('favoritesList');
 
+        // لیست کامل محصولات برای پر شدن تمام دسته‌ها
         let allProducts = [
+            // --- گیاهان دارویی ---
             {name:"آویشن", category:"گیاهان-دارویی", unit:"گرم", available:true, desc:"ضد سرفه، تقویت سیستم ایمنی", nature:"گرم و خشک"},
             {name:"گل‌گاوزبان", category:"گیاهان-دارویی", unit:"گرم", available:true, desc:"آرامبخش، مقوی قلب و اعصاب", nature:"گرم"},
-            {name:"زردچوبه", category:"ادویه-جات", unit:"گرم", available:true, desc:"ضد التهاب قوی، آنتی اکسیدان", nature:"گرم و خشک"},
-            {name:"فلفل سیاه", category:"ادویه-جات", unit:"گرم", available:true, desc:"افزایش متابولیسم، طعم دهنده", nature:"گرم و خشک"},
-            {name:"گلاب", category:"عرقیات", unit:"لیتر", available:true, desc:"نشاط آور، مفید برای پوست", nature:"معتدل"},
-            {name:"عرق نعنا", category:"عرقیات", unit:"لیتر", available:true, desc:"ضد نفخ، مقوی معده", nature:"گرم"},
-            {name:"روغن زیتون", category:"روغن-ها", unit:"لیتر", available:true, desc:"سلامت قلب، کاهش کلسترول", nature:"گرم"},
-            {name:"عسل طبیعی", category:"خوراکی", unit:"کیلو", available:true, desc:"اکسیر جوانی، ضد باکتری", nature:"گرم"},
             {name:"اسطوخودوس", category:"گیاهان-دارویی", unit:"گرم", available:true, desc:"آرامبخش، مفید برای سردرد و میگرن", nature:"گرم و خشک"},
             {name:"پونه", category:"گیاهان-دارویی", unit:"گرم", available:true, desc:"ضد عفونی کننده، مفید برای سرماخوردگی", nature:"گرم و خشک"},
             {name:"زنیان", category:"گیاهان-دارویی", unit:"گرم", available:true, desc:"ضد نفخ قوی، هضم کننده غذا", nature:"گرم و خشک"},
             {name:"سنبل‌الطیب", category:"گیاهان-دارویی", unit:"گرم", available:true, desc:"آرامبخش قوی، خواب آور", nature:"گرم و خشک"},
-            {name:"چای کوهی", category:"گیاهان-دارویی", unit:"گرم", available:true, desc:"نشاط آور، ضد افسردگی", nature:"گرم و خشک"}
+            {name:"چای کوهی", category:"گیاهان-دارویی", unit:"گرم", available:true, desc:"نشاط آور، ضد افسردگی", nature:"گرم و خشک"},
+            {name:"بابونه", category:"گیاهان-دارویی", unit:"گرم", available:true, desc:"ضد التهاب، آرامبخش معده", nature:"گرم و خشک"},
+            {name:"ختمی", category:"گیاهان-دارویی", unit:"گرم", available:true, desc:"نرم کننده گلو، ضد سرفه", nature:"سرد و تر"},
+            {name:"خاکشیر", category:"گیاهان-دارویی", unit:"گرم", available:true, desc:"رفع تشنگی، پاکسازی کبد", nature:"سرد و تر"},
+
+            // --- ادویه‌جات ---
+            {name:"زردچوبه", category:"ادویه-جات", unit:"گرم", available:true, desc:"ضد التهاب قوی، آنتی اکسیدان", nature:"گرم و خشک"},
+            {name:"فلفل سیاه", category:"ادویه-جات", unit:"گرم", available:true, desc:"افزایش متابولیسم، طعم دهنده", nature:"گرم و خشک"},
+            {name:"دارچین", category:"ادویه-جات", unit:"گرم", available:true, desc:"کاهش قند خون، گرم کننده", nature:"گرم و خشک"},
+            {name:"زنجبیل", category:"ادویه-جات", unit:"گرم", available:true, desc:"ضد تهوع، تقویت معده", nature:"گرم و خشک"},
+            {name:"هل", category:"ادویه-جات", unit:"گرم", available:true, desc:"خوشبو کننده دهان، مقوی معده", nature:"گرم و خشک"},
+            {name:"زعفران", category:"ادویه-جات", unit:"مثقال", available:true, desc:"نشاط آور، طلای سرخ", nature:"گرم و خشک"},
+            {name:"سماق", category:"ادویه-جات", unit:"گرم", available:true, desc:"تصفیه کننده خون، چاشنی کباب", nature:"سرد و خشک"},
+            {name:"زیره سیاه", category:"ادویه-جات", unit:"گرم", available:true, desc:"ضد نفخ، لاغر کننده", nature:"گرم و خشک"},
+            {name:"زیره سبز", category:"ادویه-جات", unit:"گرم", available:true, desc:"هضم کننده غذا", nature:"گرم و خشک"},
+            {name:"پودر سیر", category:"ادویه-جات", unit:"گرم", available:true, desc:"کاهش فشار خون، ضد عفونی کننده", nature:"گرم و خشک"},
+
+            // --- عرقیات ---
+            {name:"گلاب", category:"عرقیات", unit:"لیتر", available:true, desc:"نشاط آور، مفید برای پوست", nature:"معتدل"},
+            {name:"عرق نعنا", category:"عرقیات", unit:"لیتر", available:true, desc:"ضد نفخ، مقوی معده", nature:"گرم"},
+            {name:"عرق کاسنی", category:"عرقیات", unit:"لیتر", available:true, desc:"تصفیه کبد، ضد جوش", nature:"سرد"},
+            {name:"عرق بیدمشک", category:"عرقیات", unit:"لیتر", available:true, desc:"آرامبخش، تقویت قلب", nature:"سرد و تر"},
+            {name:"عرق بهارنارنج", category:"عرقیات", unit:"لیتر", available:true, desc:"خواب آور، آرامش اعصاب", nature:"گرم و خشک"},
+            {name:"عرق شاتره", category:"عرقیات", unit:"لیتر", available:true, desc:"تصفیه خون، شفاف کننده پوست", nature:"سرد"},
+            {name:"عرق خارشتر", category:"عرقیات", unit:"لیتر", available:true, desc:"دفع سنگ کلیه", nature:"سرد"},
+
+            // --- روغن‌ها ---
+            {name:"روغن زیتون", category:"روغن-ها", unit:"لیتر", available:true, desc:"سلامت قلب، کاهش کلسترول", nature:"گرم"},
+            {name:"روغن کنجد", category:"روغن-ها", unit:"لیتر", available:true, desc:"مقاوم به حرارت، سلامت مو", nature:"گرم و تر"},
+            {name:"روغن بادام شیرین", category:"روغن-ها", unit:"شیشه", available:true, desc:"نرم کننده پوست، رفع خشکی", nature:"معتدل"},
+            {name:"روغن سیاهدانه", category:"روغن-ها", unit:"شیشه", available:true, desc:"ضد درد مفاصل، تقویت مو", nature:"گرم و خشک"},
+            {name:"روغن نارگیل", category:"روغن-ها", unit:"شیشه", available:true, desc:"مرطوب کننده قوی", nature:"گرم و خشک"},
+            {name:"روغن آرگان", category:"روغن-ها", unit:"شیشه", available:true, desc:"اکسیر جوانی پوست و مو", nature:"معتدل"},
+
+            // --- سایر (برای پر کردن دسته‌های احتمالی دیگر) ---
+            {name:"عسل طبیعی", category:"خوراکی", unit:"کیلو", available:true, desc:"اکسیر جوانی، ضد باکتری", nature:"گرم"},
+            {name:"شیره انگور", category:"خوراکی", unit:"کیلو", available:true, desc:"خونساز قوی، انرژی زا", nature:"گرم و تر"},
+            {name:"گردو", category:"خشکبار", unit:"کیلو", available:true, desc:"غذای مغز، امگا 3", nature:"گرم و خشک"},
+            {name:"صابون دست‌ساز", category:"بهداشتی", unit:"عدد", available:true, desc:"ارگانیک و طبیعی", nature:"-"}
         ];
         
         let shoppingCart = [];
