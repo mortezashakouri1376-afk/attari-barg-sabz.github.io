@@ -223,6 +223,7 @@
         .wheel { width: 100%; height: 100%; border-radius: 50%; border: 10px solid #fff; box-shadow: 0 0 20px rgba(0,0,0,0.2); background: conic-gradient(#ff6b6b 0 60deg, #4ecdc4 60deg 120deg, #ffe66d 120deg 180deg, #ff9f43 180deg 240deg, #54a0ff 240deg 300deg, #5f27cd 300deg 360deg); transition: transform 4s cubic-bezier(0.17, 0.67, 0.83, 0.67); }
         .wheel-pointer { position: absolute; top: -10px; left: 50%; transform: translateX(-50%); width: 0; height: 0; border-left: 15px solid transparent; border-right: 15px solid transparent; border-top: 25px solid #333; z-index: 10; }
         .spin-btn { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 60px; height: 60px; background: white; border-radius: 50%; border: none; font-family: 'Lalezar'; font-size: 1.2rem; cursor: pointer; box-shadow: 0 0 10px rgba(0,0,0,0.2); z-index: 5; }
+        .spin-btn:disabled { background: #ccc; cursor: not-allowed; color: #555; }
 
         .tayeb-card { background: #fdfefe; border-right: 4px solid var(--primary-color); padding: 15px; border-radius: 10px; margin-bottom: 15px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
         .tayeb-card h3 { margin: 0 0 10px 0; font-family: 'Lalezar'; color: var(--dark-green); display: flex; align-items: center; gap: 10px; }
@@ -284,7 +285,7 @@
             <div class="nav-item" onclick="navigate('remedy'); toggleMenu()">
                 <i class="fa-solid fa-user-doctor"></i> مشاور هوشمند
             </div>
-            <div class="nav-item" onclick="navigate('wheel'); toggleMenu()">
+            <div class="nav-item" onclick="navigate('wheel'); checkSpinStatus(); toggleMenu()">
                 <i class="fa-solid fa-dharmachakra"></i> گردونه شانس
             </div>
             <div class="nav-item" onclick="navigate('tayeb'); toggleMenu()">
@@ -302,7 +303,7 @@
         </button>
 
         <div style="text-align:center; font-size:0.8rem; color:rgba(255,255,255,0.4); padding:20px;">
-            Senjed Store v3.9 (Restored Logic)
+            Senjed Store v4.0 (Smart Wheel)
         </div>
     </div>
 
@@ -385,6 +386,7 @@
         <div id="wheel-view" class="inner-section">
             <button class="back-btn" onclick="history.back()"><i class="fa-solid fa-arrow-right"></i> بازگشت</button>
             <h2 style="text-align:center; font-family:'Lalezar'; color:#EE5A24;">گردونه شانس سنجد</h2>
+            <p style="text-align:center; font-size:0.9rem; color:#666;">فقط یکبار شانس خود را امتحان کنید!</p>
             <div class="wheel-container">
                 <div class="wheel-pointer"></div>
                 <div class="wheel" id="lucky-wheel"></div>
@@ -420,8 +422,8 @@
     <script>
         const whatsappNumber = "989918022066";
         let allProducts = [];
-        let mixedProducts = []; // اضافه شده برای منطق فایل متنی
-        let mixCounter = 1; // اضافه شده برای نامگذاری میکس‌ها
+        let mixedProducts = []; 
+        let mixCounter = 1; 
 
         const productList = document.getElementById('product-list');
         const searchInput = document.getElementById('search-input');
@@ -464,6 +466,7 @@
             updateFavoritesMenu();
             renderAilmentButtons();
             updateCartAndButton();
+            checkSpinStatus(); // بررسی وضعیت گردونه در شروع
         }
 
         function normalizeText(text) {
@@ -687,15 +690,59 @@
             });
         });
 
+        // --- UPDATED LUCKY WHEEL LOGIC (Business Friendly + One Time Use) ---
+        window.checkSpinStatus = function() {
+            if(localStorage.getItem('senjed_wheel_used_v2')) {
+                const btn = document.querySelector('.spin-btn');
+                if(btn) {
+                    btn.disabled = true;
+                    btn.innerText = "اتمام شانس";
+                    btn.style.background = "#ccc";
+                }
+            }
+        };
+
         window.spinWheel = function() {
+            // 1. بررسی آیا قبلا استفاده کرده؟
+            if(localStorage.getItem('senjed_wheel_used_v2')) {
+                alert('شما قبلاً شانس خود را امتحان کرده‌اید!');
+                return;
+            }
+
             const wheel = document.getElementById('lucky-wheel');
             const btn = document.querySelector('.spin-btn');
-            btn.disabled = true;
-            const deg = Math.floor(2000 + Math.random() * 3000);
-            wheel.style.transform = `rotate(${deg}deg)`;
+            btn.disabled = true; // غیرفعال سازی آنی دکمه
+
+            // 2. منطق تجاری (وزن دهی احتمالات)
+            // 70% پوچ | 25% تخفیف کم (5درصد) | 5% تخفیف زیاد (10درصد)
+            const rand = Math.random() * 100;
+            let targetDeg = 0;
+            let message = "";
+            const baseSpins = 3600; // 10 دور کامل برای هیجان
+
+            if (rand < 70) {
+                // باخت (هدف گیری بخش قرمز/آبی/زرد) - مثلا زاویه 30
+                targetDeg = baseSpins + 30; 
+                message = "متاسفانه برنده نشدید. ممنون از همراهی شما!";
+            } else if (rand < 95) {
+                // برد کوچک (5% تخفیف) - مثلا زاویه 90 (سبزآبی)
+                targetDeg = baseSpins + 90;
+                message = "تبریک! برنده کد تخفیف 5 درصدی شدید.\nکد: OFF5";
+            } else {
+                // برد بزرگ (10% تخفیف) - مثلا زاویه 330 (بنفش)
+                targetDeg = baseSpins + 330;
+                message = "شگفت‌انگیز! برنده کد تخفیف 10 درصدی شدید.\nکد: OFF10";
+            }
+
+            // 3. انیمیشن چرخش
+            wheel.style.transform = `rotate(${targetDeg}deg)`;
+
+            // 4. نمایش نتیجه و ذخیره وضعیت
             setTimeout(() => {
-                alert('تبریک! کد تخفیف: SENJED10');
-                btn.disabled = false;
+                alert(message);
+                localStorage.setItem('senjed_wheel_used_v2', 'true'); // ذخیره در حافظه گوشی
+                btn.innerText = "اتمام شانس";
+                btn.style.background = "#ccc";
             }, 4000);
         };
 
