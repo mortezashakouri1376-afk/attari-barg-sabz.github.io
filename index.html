@@ -459,10 +459,11 @@
                 });
             });
 
-            // جستجو
+            // جستجو (اصلاح شده)
             searchInput.addEventListener('input', () => {
                 const term = searchInput.value.trim().toLowerCase();
                 if (term) {
+                    categoryView.style.display = 'none'; // <--- این خط اضافه شد (باگ فیکس)
                     document.querySelectorAll('.inner-section').forEach(el => el.style.display = 'none');
                     document.getElementById('product-view').style.display = 'block';
                     renderProductList(allProducts.filter(p => p.name.toLowerCase().includes(term)), `نتایج: «${term}»`);
