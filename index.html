@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>فروشگاه سنجد</title>
     
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#6B8E23">
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Lalezar&family=Vazirmatn:wght@300;400;700&display=swap" rel="stylesheet">
 
@@ -36,7 +39,8 @@
             padding: 40px 20px 70px 20px;
             border-radius: 0 0 40px 40px;
             text-align: center; overflow: hidden;
-            box-shadow: 0 10px 25px rgba(45, 66, 11, 0.3); z-index: 10;
+            box-shadow: 0 10px 25px rgba(45, 66, 11, 0.3); 
+            z-index: 10; /* پایین تر از منو */
         }
         .header-bg-icon {
             position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
@@ -45,27 +49,19 @@
         .header h1 {
             font-family: 'Lalezar', cursive; margin: 0; font-size: 3.5rem; color: #fff;
             text-shadow: 0 4px 15px rgba(0,0,0,0.3); position: relative; z-index: 2;
-            animation: fadeInDown 1s ease-out;
         }
         .header p {
             font-weight: 300; margin: 5px 0 0; 
             color: rgba(255, 255, 255, 0.85); font-size: 1rem; position: relative; z-index: 2;
-            animation: fadeInUp 1s ease-out 0.3s backwards;
         }
         
         .menu-toggle-btn {
             position: absolute; top: 20px; right: 20px;
             background: none; border: none; color: white;
-            font-size: 1.8rem; cursor: pointer; z-index: 20; padding: 5px;
+            font-size: 1.8rem; cursor: pointer; z-index: 20; padding: 10px;
         }
 
-        button:focus, input:focus, .product-item:focus-within {
-            outline: none;
-            box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.3);
-        }
-
-        @keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        button:focus, input:focus { outline: none; }
 
         .container { padding: 0 20px 20px; max-width: 1200px; margin: 0 auto; }
         .search-container { position: relative; margin-top: -35px; margin-bottom: 35px; z-index: 20; }
@@ -75,42 +71,63 @@
             background-color: #fff; box-shadow: 0 10px 25px rgba(0,0,0,0.1);
             color: #555; box-sizing: border-box;
         }
-        #search-input:focus { box-shadow: 0 15px 30px rgba(107, 142, 35, 0.25); }
         .search-icon { position: absolute; right: 25px; top: 50%; transform: translateY(-50%); color: var(--primary-color); font-size: 1.3rem; pointer-events: none; }
 
-        /* منوی جانبی */
+        /* --- منوی جانبی (فیکس شده) --- */
         .side-menu-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.3); z-index: 998;
-            opacity: 0; visibility: hidden; transition: all 0.3s ease;
-            backdrop-filter: blur(3px);
-        }
-        .side-menu {
-            position: fixed; top: 0; right: -320px;
-            width: 280px; height: 100%;
-            background: rgba(20, 30, 10, 0.95); backdrop-filter: blur(15px);
-            z-index: 999; box-shadow: -5px 0 20px rgba(0,0,0,0.2);
-            padding: 20px; display: flex; flex-direction: column; color: white;
-            visibility: hidden; 
-            transition: right 0.4s cubic-bezier(0.19,1,0.22,1), visibility 0s linear 0.4s;
-        }
-        .side-menu.active { 
-            right: 0; visibility: visible;
-            transition: right 0.4s cubic-bezier(0.19,1,0.22,1), visibility 0s linear 0s;
+            background: rgba(0,0,0,0.5); 
+            z-index: 9998; /* بسیار بالا */
+            opacity: 0; visibility: hidden; 
+            transition: all 0.3s ease;
+            backdrop-filter: blur(4px);
         }
         .side-menu-overlay.active { opacity: 1; visibility: visible; }
 
+        .side-menu {
+            position: fixed; top: 0; right: 0;
+            width: 280px; height: 100vh;
+            background: #1a2610; /* رنگ پس‌زمینه تیره ثابت */
+            z-index: 9999; /* بالاتر از همه چیز */
+            display: flex; flex-direction: column; 
+            box-shadow: -5px 0 30px rgba(0,0,0,0.5);
+            transform: translateX(100%); /* خارج از کادر به سمت راست */
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow-y: auto;
+        }
+        .side-menu.active { 
+            transform: translateX(0); /* ورود به کادر */
+        }
+
         .side-menu-header {
+            padding: 25px 20px;
             display: flex; justify-content: space-between; align-items: center;
-            padding-bottom: 15px; border-bottom: 1px solid rgba(255,255,255,0.1); margin-bottom: 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            background: rgba(0,0,0,0.2);
         }
-        .close-menu-btn { background: none; border: none; color: white; font-size: 1.5rem; cursor: pointer; }
-        .fav-list-container { overflow-y: auto; flex-grow: 1; max-height: 60vh; }
-        .fav-item {
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.05);
+        .close-menu-btn { 
+            background: none; border: none; color: #fff; font-size: 2rem; cursor: pointer; padding: 0 10px;
         }
-        .fav-item i { color: #ff4757; cursor: pointer; padding: 5px; }
+
+        /* استایل آیتم‌های منو */
+        .nav-links { padding: 10px 0; display: flex; flex-direction: column; }
+        .nav-item {
+            display: flex; align-items: center; padding: 18px 25px;
+            color: #fff !important; text-decoration: none;
+            transition: background 0.2s; font-size: 1.1rem;
+            border-bottom: 1px solid rgba(255,255,255,0.03);
+        }
+        .nav-item i { margin-left: 15px; width: 25px; text-align: center; color: var(--gold-color); font-size: 1.2rem; }
+        .nav-item:hover { background: rgba(255,255,255,0.1); }
+        
+        .install-pwa-btn {
+            margin: 20px; padding: 15px; 
+            background: linear-gradient(to right, #6B8E23, #4e6e13);
+            color: white; border: none; border-radius: 12px; cursor: pointer;
+            font-family: 'Vazirmatn'; font-weight: bold; font-size: 1rem;
+            display: flex; justify-content: center; align-items: center; gap: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
 
         /* --- کاشی‌ها --- */
         .categories-grid { 
@@ -125,7 +142,6 @@
             transition: transform 0.3s cubic-bezier(0.25,0.8,0.25,1); cursor: pointer;
         }
         .category-tile:active { transform: scale(0.95); }
-        .category-tile:hover { transform: translateY(-5px); }
 
         .cat-special { background: linear-gradient(135deg,#0f2027 0%,#203a43 50%,#2c5364 100%); border:1px solid rgba(255,255,255,0.1); }
         .cat-mixer { background: linear-gradient(135deg,#8E2DE2 0%,#4A00E0 100%); box-shadow:0 10px 20px rgba(74,0,224,0.3); }
@@ -154,46 +170,74 @@
         .product-item {
             display:grid; grid-template-columns:auto auto 1fr auto; gap:10px;
             align-items:center; padding:15px 10px; border-bottom:1px solid #f4f4f4;
-            transition:background-color 0.2s; border-radius:12px; margin-bottom:5px;
+            border-radius:12px; margin-bottom:5px;
         }
         .product-item.selected { background-color:var(--selected-bg); border:1px solid var(--primary-color); }
         .product-checkbox { width:24px; height:24px; accent-color:var(--primary-color); }
         
         .star-btn {
             background:none; border:none; cursor:pointer; font-size:1.2rem; color:#ccc;
-            transition:all 0.3s ease; padding:5px;
+            padding:5px;
         }
-        .star-btn.active { color:var(--gold-color); animation: starPop 0.3s cubic-bezier(0.175,0.885,0.32,1.275); }
-        @keyframes starPop { 0% { transform: scale(1); } 50% { transform: scale(1.5); } 100% { transform: scale(1); } }
+        .star-btn.active { color:var(--gold-color); }
 
         .quantity-input-container { display:none; align-items:center; gap:10px; }
         .product-item.selected .quantity-input-container { display:flex; }
-        .quantity-input { width:50px; padding:5px; border:2px solid #dce6c5; border-radius:10px; text-align:center; font-weight:bold; color:var(--primary-color); }
+        .quantity-input { width:50px; padding:5px; border:2px solid #dce6c5; border-radius:10px; text-align:center; }
         .delete-btn { color:#ff4757; background:#ffeef0; border-radius:10px; width:32px; height:32px; display:flex; align-items:center; justify-content:center; cursor:pointer; }
 
-        .special-form { display:flex; flex-direction:column; gap:20px; }
-        .form-control { width:100%; padding:15px; border:2px solid #eee; border-radius:15px; font-size:1rem; box-sizing:border-box; }
-        .btn-submit-special { background:linear-gradient(135deg,#203a43,#2c5364); color:white; padding:15px; border:none; border-radius:15px; font-size:1.1rem; width:100%; cursor:pointer; }
+        /* --- استایل گردونه شانس --- */
+        .wheel-container { text-align:center; position: relative; overflow: hidden; padding: 20px 0; }
+        .wheel-pointer {
+            position: absolute; top: 20px; left: 50%; transform: translateX(-50%);
+            width: 0; height: 0; border-left: 20px solid transparent; border-right: 20px solid transparent;
+            border-top: 40px solid #ff4757; z-index: 10; filter: drop-shadow(0 4px 2px rgba(0,0,0,0.3));
+        }
+        .wheel {
+            width: 300px; height: 300px; border-radius: 50%; border: 10px solid #fff;
+            box-shadow: 0 0 20px rgba(0,0,0,0.2); margin: 40px auto;
+            background: conic-gradient(
+                #FF6B6B 0deg 60deg, 
+                #4ECDC4 60deg 120deg, 
+                #FFE66D 120deg 180deg, 
+                #FF9F43 180deg 240deg, 
+                #54A0FF 240deg 300deg, 
+                #5F27CD 300deg 360deg
+            );
+            transition: transform 4s cubic-bezier(0.17, 0.67, 0.12, 0.99);
+            position: relative;
+        }
+        .spin-btn {
+            background: linear-gradient(to right, #FF9F43, #EE5A24); color: white; border: none;
+            padding: 15px 40px; border-radius: 50px; font-size: 1.5rem; font-family: 'Lalezar';
+            cursor: pointer; box-shadow: 0 10px 20px rgba(238, 90, 36, 0.3);
+        }
+        .spin-btn:disabled { background: #ccc; cursor: not-allowed; box-shadow: none; }
+
+        /* --- استایل زندگی طیب --- */
+        .tayeb-card {
+            background: #f9fbf7; border: 1px solid #e1e8d5; border-radius: 15px;
+            padding: 20px; margin-bottom: 15px; position: relative;
+        }
+        .tayeb-card h3 { color: var(--dark-green); margin-top: 0; display:flex; align-items:center; gap:10px; }
+        .tayeb-card p { color: #666; line-height: 1.8; text-align: justify; }
 
         /* --- میکسر --- */
         .mixer-wrapper { display:flex; flex-direction:column; align-items:center; gap:20px; }
         .size-selector { display:flex; background:#eee; padding:5px; border-radius:50px; width:100%; max-width:350px; margin-bottom:10px; }
-        .size-btn { flex:1; border:none; background:transparent; padding:10px; border-radius:40px; cursor:pointer; font-family:'Lalezar'; font-size:1rem; color:#666; transition:all 0.3s ease; }
-        .size-btn.active { background:#fff; color:#8E2DE2; box-shadow:0 2px 10px rgba(0,0,0,0.1); transform:scale(1.05); }
+        .size-btn { flex:1; border:none; background:transparent; padding:10px; border-radius:40px; cursor:pointer; font-family:'Lalezar'; font-size:1rem; color:#666; }
+        .size-btn.active { background:#fff; color:#8E2DE2; box-shadow:0 2px 10px rgba(0,0,0,0.1); }
 
         .supplements-shelf {
             display:grid; grid-template-columns:repeat(5,1fr); gap:8px;
-            background:#8B5E3C; padding:15px 10px 25px 10px; border-radius:15px; width:100%; position:relative;
-            box-shadow:inset 0 10px 20px rgba(0,0,0,0.4),0 5px 15px rgba(0,0,0,0.2);
+            background:#8B5E3C; padding:15px 10px 25px 10px; border-radius:15px; width:100%;
             border-bottom:8px solid #5D3A1A;
         }
         .supplement-jar {
             background:linear-gradient(to right,rgba(255,255,255,0.8),rgba(255,255,255,0.5));
             border-radius:5px; height:55px; display:flex; flex-direction:column; align-items:center;
-            cursor:grab; position:relative; box-shadow:0 5px 5px rgba(0,0,0,0.2);
-            transition:transform 0.1s;
+            cursor:grab;
         }
-        .supplement-jar:active { transform:scale(0.9); cursor:grabbing; }
         .jar-lid { width:70%; height:6px; background:#333; margin-top:-3px; border-radius:2px; }
         .jar-body { width:100%; height:100%; border-radius:5px; display:flex; align-items:center; justify-content:center; }
         .jar-body span { font-size:0.6rem; font-weight:bold; color:rgba(0,0,0,0.6); writing-mode:vertical-rl; transform:rotate(180deg); }
@@ -203,33 +247,10 @@
         .flask-glass {
             position:relative; width:100%; height:100%; background:rgba(255,255,255,0.1);
             border:4px solid rgba(255,255,255,0.6); border-top:none; border-radius:0 0 20px 20px;
-            clip-path:polygon(20% 0,80% 0,100% 100%,0% 100%); overflow:hidden; z-index:2; backdrop-filter:blur(2px);
-            box-shadow:inset 0 -10px 20px rgba(255,255,255,0.3),0 10px 20px rgba(0,0,0,0.1);
+            clip-path:polygon(20% 0,80% 0,100% 100%,0% 100%); overflow:hidden; backdrop-filter:blur(2px);
         }
-        .flask-neck {
-            position:absolute; top:-35px; left:50%; transform:translateX(-50%); width:50px; height:40px;
-            background:rgba(255,255,255,0.1); border:4px solid rgba(255,255,255,0.6); border-bottom:none; border-radius:5px 5px 0 0; z-index:1;
-        }
-        .powder-layer { width:100%; transition:height 0.4s cubic-bezier(0.4,2,0.55,0.44); border-top:1px solid rgba(255,255,255,0.2); }
-        .particle { position:absolute; top:0; width:6px; height:6px; border-radius:50%; animation: fall 0.6s linear forwards; z-index:5; pointer-events:none; }
-        @keyframes fall { 0% { transform: translateY(0) scale(1); opacity:1; } 100% { transform: translateY(150px) scale(0.5); opacity:0; } }
-        .flask-stats {
-            position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
-            font-size:1.8rem; font-weight:bold; color:#333; text-shadow:0 0 10px rgba(255,255,255,0.8);
-            z-index:10; pointer-events:none; font-family:'Lalezar', cursive;
-            background:rgba(255,255,255,0.6); padding:5px 15px; border-radius:20px;
-        }
-        .completed-mixes { width:100%; border-top:2px dashed #ddd; padding-top:15px; margin-top:15px; }
-        .mix-item { background:white; padding:10px; border-radius:12px; margin-bottom:8px; display:flex; justify-content:space-between; align-items:center; box-shadow:0 2px 5px rgba(0,0,0,0.05); }
-        .delete-mix-btn { color:red; background:#ffeeee; border:none; padding:5px 10px; border-radius:8px; cursor:pointer; }
+        .powder-layer { width:100%; transition:height 0.4s; border-top:1px solid rgba(255,255,255,0.2); }
         
-        .drag-ghost {
-            position:fixed; pointer-events:none; z-index:9999; width:50px; height:50px;
-            opacity:0.9; border-radius:50%; box-shadow:0 10px 20px rgba(0,0,0,0.3);
-            display:none; align-items:center; justify-content:center; font-size:20px;
-            color:white; font-weight:bold; border:2px solid white;
-        }
-
         .whatsapp-fab {
             position:fixed; bottom:25px; left:25px; 
             background:linear-gradient(135deg,#25D366,#128C7E); color:white; width:65px; height:65px; border-radius:50%;
@@ -242,28 +263,65 @@
             position:absolute; top:0; right:0; background-color:#ff4757; color:white; border-radius:50%;
             width:24px; height:24px; font-size:0.8rem; font-weight:bold; display:flex; justify-content:center; align-items:center; border:2px solid white;
         }
-        #loading { text-align:center; padding:40px; color:#888; }
+
+        .special-form { display:flex; flex-direction:column; gap:20px; }
+        .form-control { width:100%; padding:15px; border:2px solid #eee; border-radius:15px; font-size:1rem; box-sizing:border-box; }
+        .btn-submit-special { background:linear-gradient(135deg,#203a43,#2c5364); color:white; padding:15px; border:none; border-radius:15px; font-size:1.1rem; width:100%; cursor:pointer; }
+        
+        /* Ghost element for drag and drop */
+        .drag-ghost {
+            position:fixed; pointer-events:none; z-index:9999; width:50px; height:50px;
+            border-radius:50%; display:none; align-items:center; justify-content:center;
+            color:white; border:2px solid white;
+        }
     </style>
 </head>
 <body>
 
     <header class="header">
-        <button class="menu-toggle-btn" aria-label="باز کردن منو" onclick="toggleMenu()"><i class="fa-solid fa-bars"></i></button>
+        <button class="menu-toggle-btn" aria-label="باز کردن منو" onclick="toggleMenu()">
+            <i class="fa-solid fa-bars"></i>
+        </button>
         <i class="fa-solid fa-leaf header-bg-icon"></i>
         <h1>فروشگاه سنجد</h1>
         <p>طبیعت را به خانه خود بیاورید</p>
     </header>
 
     <div class="side-menu-overlay" id="menuOverlay" onclick="toggleMenu()"></div>
+    
+    <!-- منوی جانبی: تمام آیتم‌ها به صورت هاردکد شده اینجا هستند -->
     <div class="side-menu" id="sideMenu">
         <div class="side-menu-header">
-            <h3 style="margin:0; font-family:'Lalezar'; font-size:1.5rem; color:var(--gold-color)">علاقه‌مندی‌ها</h3>
+            <h3 style="margin:0; font-family:'Lalezar'; font-size:1.5rem; color:var(--gold-color)">منوی اصلی</h3>
             <button class="close-menu-btn" aria-label="بستن منو" onclick="toggleMenu()">×</button>
         </div>
-        <div class="fav-list-container" id="favoritesList">
-            <div style="text-align:center; color:rgba(255,255,255,0.6); margin-top:20px; font-size:0.9rem;">لیست خالی است</div>
+
+        <div class="nav-links">
+            <a href="#" class="nav-item" onclick="showCategoryView(); toggleMenu()">
+                <i class="fa-solid fa-house"></i> خانه
+            </a>
+            <a href="#" class="nav-item" onclick="showSection('wheel-view'); toggleMenu()">
+                <i class="fa-solid fa-dharmachakra"></i> گردونه شانس
+            </a>
+            <a href="#" class="nav-item" onclick="showSection('tayeb-view'); toggleMenu()">
+                <i class="fa-solid fa-heart-pulse"></i> زندگی طیب
+            </a>
         </div>
-        <div style="text-align:center; font-size:0.8rem; color:rgba(255,255,255,0.4); padding-top:10px;">Senjed Store v2.1 (Hybrid)</div>
+
+        <div style="border-top:1px solid rgba(255,255,255,0.1); margin:10px 20px;"></div>
+        <div style="padding: 0 20px; margin-bottom: 10px; color: var(--gold-color); font-size: 0.9rem;">علاقه‌مندی‌ها</div>
+        
+        <div id="favoritesList" style="padding: 0 20px; flex-grow: 1; overflow-y: auto;">
+            <!-- علاقه‌مندی‌ها اینجا قرار می‌گیرند -->
+        </div>
+
+        <button id="install-btn" class="install-pwa-btn">
+            <i class="fa-solid fa-download"></i> نصب اپلیکیشن
+        </button>
+
+        <div style="text-align:center; font-size:0.8rem; color:rgba(255,255,255,0.4); padding:20px;">
+            Senjed Store v3.1 (Fixed)
+        </div>
     </div>
 
     <div class="container">
@@ -280,7 +338,6 @@
                 <div class="category-tile cat-mixer" onclick="initMixer(); showSection('mixer-view')">
                     <div class="tile-content"><i class="fa-solid fa-flask"></i><h2>میکس مکمل (دلخواه)</h2></div>
                 </div>
-                <!-- همه دسته‌های نسخه قدیمی -->
                 <div class="category-tile cat-herbs" data-category="گیاهان-دارویی"><div class="tile-content"><i class="fa-solid fa-leaf"></i><h2>گیاهان دارویی</h2></div></div>
                 <div class="category-tile cat-spices" data-category="ادویه-جات"><div class="tile-content"><i class="fa-solid fa-mortar-pestle"></i><h2>ادویه‌جات</h2></div></div>
                 <div class="category-tile cat-liquids" data-category="عرقیات"><div class="tile-content"><i class="fa-solid fa-bottle-droplet"></i><h2>عرقیات</h2></div></div>
@@ -292,6 +349,7 @@
             </div>
         </div>
 
+        <!-- Product List View -->
         <div id="product-view" class="inner-section">
             <button class="back-btn" onclick="showCategoryView()"><i class="fa-solid fa-arrow-right"></i> بازگشت</button>
             <h2 id="product-category-title" style="color:var(--primary-color); font-family:'Lalezar';"></h2>
@@ -299,6 +357,7 @@
             <ul id="product-list" class="product-list"></ul>
         </div>
 
+        <!-- Special Request View -->
         <div id="special-request-view" class="inner-section">
             <button class="back-btn" onclick="showCategoryView()"><i class="fa-solid fa-arrow-right"></i> بازگشت</button>
             <h2 style="font-family:'Lalezar'; color:#203a43;">سفارش محصول کمیاب</h2>
@@ -309,36 +368,63 @@
             </div>
         </div>
 
+        <!-- Mixer View -->
         <div id="mixer-view" class="inner-section" style="background:#fff9fc;">
             <button class="back-btn" onclick="showCategoryView()"><i class="fa-solid fa-arrow-right"></i> بازگشت</button>
-            
             <div class="mixer-wrapper">
                 <h2 style="font-family:'Lalezar'; color:#8E2DE2; margin:0;">آزمایشگاه مکمل</h2>
-                
                 <div class="size-selector">
                     <button class="size-btn" onclick="setMixerSize(500,50,this)">نیم کیلو</button>
                     <button class="size-btn active" onclick="setMixerSize(1000,100,this)">یک کیلو</button>
                     <button class="size-btn" onclick="setMixerSize(5000,250,this)">پنج کیلو</button>
                 </div>
-
                 <div class="supplements-shelf" id="shelf"></div>
-
                 <div class="mixing-area">
                     <div class="flask-container" id="flask-target">
-                        <div class="flask-neck"></div>
+                        <div class="flask-neck" style="position:absolute; top:-35px; left:50%; transform:translateX(-50%); width:50px; height:40px; background:rgba(255,255,255,0.1); border:4px solid rgba(255,255,255,0.6); border-bottom:none; border-radius:5px 5px 0 0; z-index:1;"></div>
                         <div class="flask-glass" id="flask-content"></div>
-                        <div class="flask-stats"><span id="current-weight">0</span>g</div>
+                        <div id="current-weight" style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); font-family:'Lalezar'; font-size:1.5rem; z-index:10; background:rgba(255,255,255,0.7); padding:2px 10px; border-radius:10px;">0</div>
                     </div>
                 </div>
-
-                <div class="completed-mixes">
-                    <h4 style="margin:0 0 10px 0; color:#555;">ترکیب‌های آماده ارسال:</h4>
-                    <div id="mix-list">
-                        <small style="color:#999; display:block; text-align:center;">هنوز ترکیبی نساخته‌اید.</small>
-                    </div>
-                </div>
+                <div id="mix-list" style="width:100%; margin-top:10px;"></div>
             </div>
         </div>
+
+        <!-- Wheel View (New) -->
+        <div id="wheel-view" class="inner-section">
+            <button class="back-btn" onclick="showCategoryView()"><i class="fa-solid fa-arrow-right"></i> بازگشت</button>
+            <h2 style="text-align:center; font-family:'Lalezar'; color:#EE5A24;">گردونه شانس سنجد</h2>
+            <p style="text-align:center; color:#666;">شانس خود را برای دریافت کد تخفیف امتحان کنید!</p>
+            <div class="wheel-container">
+                <div class="wheel-pointer"></div>
+                <div class="wheel" id="lucky-wheel"></div>
+                <button class="spin-btn" onclick="spinWheel()">بچرخان!</button>
+            </div>
+        </div>
+
+        <!-- Tayeb View (New) -->
+        <div id="tayeb-view" class="inner-section">
+            <button class="back-btn" onclick="showCategoryView()"><i class="fa-solid fa-arrow-right"></i> بازگشت</button>
+            <div style="text-align:center; margin-bottom:20px;">
+                <i class="fa-solid fa-leaf" style="font-size:3rem; color:var(--primary-color);"></i>
+                <h2 style="font-family:'Lalezar'; margin:10px 0; color:var(--dark-green);">زندگی طیب</h2>
+                <span style="color:#888;">سبک زندگی سالم با محصولات طبیعی</span>
+            </div>
+            
+            <div class="tayeb-card">
+                <h3><i class="fa-solid fa-apple-whole"></i> تغذیه سالم</h3>
+                <p>استفاده از مواد غذایی ارگانیک و دوری از مواد نگهدارنده، اولین قدم در مسیر زندگی طیب است. محصولات فروشگاه سنجد مستقیماً از دل طبیعت تهیه می‌شوند.</p>
+            </div>
+            <div class="tayeb-card">
+                <h3><i class="fa-solid fa-heart-pulse"></i> مزاج‌شناسی</h3>
+                <p>شناخت طبع و مزاج خود یکی از اصول طب سنتی است. با انتخاب درست مصلح‌ها (مثل استفاده از عسل در کنار سیاهدانه)، سلامتی خود را تضمین کنید.</p>
+            </div>
+            <div class="tayeb-card">
+                <h3><i class="fa-solid fa-mug-hot"></i> دمنوش‌های آرامش‌بخش</h3>
+                <p>جایگزین کردن چای سیاه با دمنوش‌های گیاهی مانند گل‌گاوزبان و بهارنارنج، تاثیر شگرفی بر کاهش استرس روزمره دارد.</p>
+            </div>
+        </div>
+
     </div>
 
     <div id="whatsapp-button" class="whatsapp-fab">
@@ -362,10 +448,9 @@
         const menuOverlay = document.getElementById('menuOverlay');
         const favoritesListEl = document.getElementById('favoritesList');
 
-        // متغیر محصولات - ابتدا خالی
         let allProducts = [];
-
-        // بکاپ محصولات (جدید - هماهنگ با لیست شما)
+        
+        // Backup products list
         const backupProducts = [
           {"name": "آرد برنج", "category": "حبوبات-و-غلات", "available": true, "unit": "گرم"},
           {"name": "آرد جو", "category": "حبوبات-و-غلات", "available": true, "unit": "گرم"},
@@ -538,22 +623,13 @@
           {"name": "هلیله", "category": "گیاهان-دارویی", "available": true, "unit": "گرم"}
         ];
 
-        // تلاش برای خواندن فایل products.json
         fetch('products.json')
             .then(response => {
-                if (!response.ok) throw new Error("File not found or CORS error");
+                if (!response.ok) throw new Error("Failed");
                 return response.json();
             })
-            .then(data => {
-                console.log("محصولات با موفقیت از فایل خارجی بارگذاری شدند.");
-                allProducts = data;
-            })
-            .catch(error => {
-                console.warn("خطا در بارگذاری فایل محصولات. استفاده از داده‌های پشتیبان.", error);
-                // اگر فایل جیسون نبود، از بکاپ استفاده کن تا برنامه خراب نشود
-                allProducts = backupProducts;
-            });
-
+            .then(data => allProducts = data)
+            .catch(() => allProducts = backupProducts);
 
         let shoppingCart = [];
         let mixedProducts = [];
@@ -600,10 +676,14 @@
             }
             favorites.forEach(name => {
                 const div = document.createElement('div');
-                div.className = 'fav-item';
+                div.style.display = 'flex';
+                div.style.justifyContent = 'space-between';
+                div.style.padding = '10px 0';
+                div.style.borderBottom = '1px solid rgba(255,255,255,0.05)';
+                div.style.color = 'white';
                 div.innerHTML = `
                     <span>${name}</span>
-                    <i class="fa-solid fa-trash" aria-label="حذف از علاقه‌مندی" onclick="toggleFavorite('${name}', event)"></i>
+                    <i class="fa-solid fa-trash" style="cursor:pointer; color:#ff4757;" onclick="toggleFavorite('${name}', event)"></i>
                 `;
                 favoritesListEl.appendChild(div);
             });
@@ -674,7 +754,7 @@
                         </div>
                     `;
                 } else {
-                    li.innerHTML = `<span class="product-name" style="text-decoration:line-through; color:#aaa;">${p.name}</span><span class="status-badge" style="background:#fff0f0; color:red;">ناموجود</span>`;
+                    li.innerHTML = `<span class="product-name" style="text-decoration:line-through; color:#aaa;">${p.name}</span><span class="status-badge" style="background:#fff0f0; color:red; padding:2px 5px; border-radius:5px; font-size:0.8rem;">ناموجود</span>`;
                 }
                 productList.appendChild(li);
             });
@@ -695,7 +775,7 @@
         
         productList.addEventListener('click', e=>{
             if (e.target.closest('.delete-btn')) {
-                if(!confirm('آیا مطمئن هستید که می‌خواهید این محصول را از سبد خرید حذف کنید؟')) return;
+                if(!confirm('حذف شود؟')) return;
                 const li = e.target.closest('.product-item');
                 const cb = li.querySelector('.product-checkbox');
                 cb.checked=false;
@@ -714,7 +794,6 @@
             });
         });
 
-        // جستجو
         let searchTimeout;
         searchInput.addEventListener('input', ()=>{
             clearTimeout(searchTimeout);
@@ -743,7 +822,7 @@
             const mix = shoppingCart.filter(i=>i.type==='mix');
             if(mix.length){
                 msg+="\n🧪 ترکیب‌های اختصاصی:\n";
-                mix.forEach(i=>msg+=`▪️ ${i.name} (${i.quantity} ظرف)\n   (وزن: ${i.weightLabel})\n   محتویات: ${i.details}\n`);
+                mix.forEach(i=>msg+=`▪️ ${i.name} (${i.quantity} عدد)\n   (وزن: ${i.weightLabel})\n   محتویات: ${i.details}\n`);
             }
             window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(msg)}`,'_blank');
         });
@@ -755,12 +834,47 @@
             window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(`درخواست خاص:\nمحصول: ${n}\nتوضیحات: ${d}`)}`,'_blank');
         }
 
+        // --- کد PWA (Install Prompt) ---
+        let deferredPrompt;
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            const installBtn = document.getElementById('install-btn');
+            // دکمه در CSS نمایش داده شده اما اینجا منطق کلیک اضافه می‌شود
+            
+            installBtn.addEventListener('click', () => {
+                if(deferredPrompt) {
+                    deferredPrompt.prompt();
+                    deferredPrompt.userChoice.then((choiceResult) => {
+                        deferredPrompt = null;
+                    });
+                } else {
+                    alert('نصب خودکار در دسترس نیست. لطفا از منوی مرورگر گزینه Add to Home Screen را بزنید.');
+                }
+            });
+        });
+
+        // --- کد گردونه شانس ---
+        window.spinWheel = function() {
+            const wheel = document.getElementById('lucky-wheel');
+            const btn = document.querySelector('.spin-btn');
+            btn.disabled = true;
+            
+            const deg = Math.floor(2000 + Math.random() * 3000);
+            wheel.style.transform = `rotate(${deg}deg)`;
+            
+            setTimeout(() => {
+                alert('تبریک! شما برنده کد تخفیف 10 درصدی شدید:\nCode: SENJED10');
+                btn.disabled = false;
+            }, 4000); 
+        };
+
         // --- کد میکسر ---
         let mixerConfig = { max:1000, step:100 }, currentFlaskWeight = 0, flaskIngredients = [], mixCounter = 1;
         const jarColors = ['#FF6B6B','#4ECDC4','#FFE66D','#FF9F43','#54A0FF','#5F27CD','#C4E538','#FDA7DF','#D980FA','#B53471','#009432','#F79F1F','#1B1464','#EA2027','#A3CB38','#12CBC4','#ED4C67','#B53471','#833471','#6F1E51'];
         
         window.setMixerSize = function(max,step,btn){
-            if(currentFlaskWeight>0 && !confirm("با تغییر سایز، محتویات فعلی ظرف خالی می‌شود. ادامه دهید؟")) return;
+            if(currentFlaskWeight>0 && !confirm("محتویات فعلی ظرف خالی می‌شود. ادامه دهید؟")) return;
             resetFlask();
             mixerConfig={max,step};
             document.querySelectorAll('.size-btn').forEach(b=>b.classList.remove('active'));
@@ -824,61 +938,39 @@
             layer.style.height=((mixerConfig.step/mixerConfig.max)*100)+'%';
             layer.style.backgroundColor=item.color;
             document.getElementById('flask-content').appendChild(layer);
-            createParticles(item.color);
             flaskIngredients.push(item.name);
             if(currentFlaskWeight>=mixerConfig.max) setTimeout(finishMixing,600);
-        }
-
-        function createParticles(color){
-            const flask=document.getElementById('flask-target');
-            for(let i=0;i<5;i++){
-                const p=document.createElement('div');
-                p.className='particle';
-                p.style.backgroundColor=color;
-                p.style.left=(40+Math.random()*20)+'%';
-                p.style.animationDuration=(0.5+Math.random()*0.5)+'s';
-                flask.appendChild(p);
-                setTimeout(()=>p.remove(),1000);
-            }
         }
 
         function finishMixing(){
             const mixId=Date.now(), counts={};
             flaskIngredients.forEach(x=>counts[x]= (counts[x]||0)+1);
             const details = Object.entries(counts).map(([k,v])=>`${k} (${v*mixerConfig.step}g)`).join('، ');
-            const weightLabel = mixerConfig.max>=1000?`${mixerConfig.max/1000} کیلوگرم`:`${mixerConfig.max} گرم`;
+            const weightLabel = mixerConfig.max>=1000?`${mixerConfig.max/1000} کیلو`:`${mixerConfig.max} گرم`;
             const mixName = `میکس اختصاصی ${mixCounter} (${weightLabel})`;
             const newMix = { id:mixId, name:mixName, quantity:1, unit:"عدد", weightLabel, type:"mix", details };
             mixedProducts.push(newMix);
             const list=document.getElementById('mix-list');
             if(mixCounter===1) list.innerHTML='';
             const row=document.createElement('div');
-            row.className='mix-item'; row.id=`mix-row-${mixId}`;
+            row.style.background='#fff'; row.style.padding='10px'; row.style.borderRadius='10px'; row.style.marginBottom='5px'; row.style.display='flex'; row.style.justifyContent='space-between'; row.style.alignItems='center';
+            row.id=`mix-row-${mixId}`;
             row.innerHTML=`
-                <div>
-                    <span style="font-weight:bold; display:block;">${mixName}</span>
-                    <span style="font-size:0.7rem; color:#777;">${details.substring(0,30)}...</span>
-                </div>
-                <button class="delete-mix-btn" aria-label="حذف ترکیب" onclick="removeMix(${mixId})">
-                    <i class="fa-solid fa-trash"></i>
-                </button>
+                <div><span style="font-weight:bold; display:block;">${mixName}</span><span style="font-size:0.7rem; color:#777;">${details.substring(0,30)}...</span></div>
+                <button onclick="removeMix(${mixId})" style="color:red; background:#ffeeee; border:none; padding:5px 10px; border-radius:8px;"><i class="fa-solid fa-trash"></i></button>
             `;
             list.appendChild(row);
             mixCounter++;
-            alert(`"${mixName}" ساخته شد و به سبد خرید اضافه گردید.`);
+            alert(`"${mixName}" به سبد اضافه شد.`);
             resetFlask();
             updateCartAndButton();
         }
 
         window.removeMix = function(id){
-            if(!confirm("این ترکیب حذف شود؟")) return;
+            if(!confirm("حذف شود؟")) return;
             mixedProducts = mixedProducts.filter(p=>p.id!==id);
             const row=document.getElementById(`mix-row-${id}`);
             if(row) row.remove();
-            if(mixedProducts.length===0){
-                document.getElementById('mix-list').innerHTML = '<small style="color:#999; display:block; text-align:center;">هنوز ترکیبی نساخته‌اید.</small>';
-                mixCounter=1;
-            }
             updateCartAndButton();
         }
     });
