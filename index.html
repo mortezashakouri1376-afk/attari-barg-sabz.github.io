@@ -537,7 +537,12 @@
             {name:"گلاب", category:"عرقیات", unit:"لیتر", available:true, desc:"نشاط آور، مفید برای پوست", nature:"معتدل"},
             {name:"عرق نعنا", category:"عرقیات", unit:"لیتر", available:true, desc:"ضد نفخ، مقوی معده", nature:"گرم"},
             {name:"روغن زیتون", category:"روغن-ها", unit:"لیتر", available:true, desc:"سلامت قلب، کاهش کلسترول", nature:"گرم"},
-            {name:"عسل طبیعی", category:"خوراکی", unit:"کیلو", available:true, desc:"اکسیر جوانی، ضد باکتری", nature:"گرم"}
+            {name:"عسل طبیعی", category:"خوراکی", unit:"کیلو", available:true, desc:"اکسیر جوانی، ضد باکتری", nature:"گرم"},
+            {name:"اسطوخودوس", category:"گیاهان-دارویی", unit:"گرم", available:true, desc:"آرامبخش، مفید برای سردرد و میگرن", nature:"گرم و خشک"},
+            {name:"پونه", category:"گیاهان-دارویی", unit:"گرم", available:true, desc:"ضد عفونی کننده، مفید برای سرماخوردگی", nature:"گرم و خشک"},
+            {name:"زنیان", category:"گیاهان-دارویی", unit:"گرم", available:true, desc:"ضد نفخ قوی، هضم کننده غذا", nature:"گرم و خشک"},
+            {name:"سنبل‌الطیب", category:"گیاهان-دارویی", unit:"گرم", available:true, desc:"آرامبخش قوی، خواب آور", nature:"گرم و خشک"},
+            {name:"چای کوهی", category:"گیاهان-دارویی", unit:"گرم", available:true, desc:"نشاط آور، ضد افسردگی", nature:"گرم و خشک"}
         ];
         
         let shoppingCart = [];
@@ -619,18 +624,16 @@
             closeModal('remedyModal');
             let query = "";
             if(type === 'سردرد') query = "اسطوخودوس"; 
-            else if(type === 'معده') query = "نعنا";
-            else if(type === 'اعصاب') query = "گل‌گاوزبان";
-            else if(type === 'سرماخوردگی') query = "آویشن";
+            else if(type === 'معده') query = "نعنا"; // شامل عرق نعنا هم میشه
+            else if(type === 'اعصاب') query = "سنبل";
+            else if(type === 'سرماخوردگی') query = "پونه";
             
             searchInput.value = query; // فقط برای نمایش
-            const results = allProducts.filter(p => 
-                (type==='سردرد' && (p.name.includes('اسطوخودوس') || p.name.includes('چای'))) ||
-                (type==='معده' && (p.name.includes('نعنا') || p.name.includes('زنیان'))) ||
-                (type==='اعصاب' && (p.name.includes('گل') || p.name.includes('سنبل'))) ||
-                (type==='سرماخوردگی' && (p.name.includes('آویشن') || p.name.includes('پونه')))
-            );
+            
+            const results = allProducts.filter(p => p.name.includes(query) || p.name.includes(type));
+            
             if(results.length === 0) {
+                 // اگر چیزی پیدا نشد، خود کلمه را سرچ کن
                  searchInput.value = type;
                  searchInput.dispatchEvent(new Event('input'));
             } else {
@@ -674,6 +677,11 @@
             productList.innerHTML='';
             categoryTitle.textContent=title;
             document.getElementById('loading').style.display='none';
+
+            if (products.length === 0) {
+                productList.innerHTML = '<div style="text-align:center; padding:40px; color:#999;"><i class="fa-solid fa-box-open" style="font-size:3rem; margin-bottom:15px; display:block;"></i>محصولی با این نام یافت نشد :(</div>';
+                return;
+            }
 
             products.forEach(p=>{
                 const li = document.createElement('li');
