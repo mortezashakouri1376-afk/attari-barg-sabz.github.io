@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>فروشگاه سنجد | نسخه هوشمند</title>
+    <title>فروشگاه سنجد | نسخه اصلاح نهایی</title>
 
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#6B8E23">
@@ -24,7 +24,7 @@
 
         body {
             font-family: 'Vazirmatn', sans-serif;
-            margin: 0; padding: 0 0 120px 0; /* Increased padding for keyboard space */
+            margin: 0; padding: 0 0 120px 0;
             background-color: var(--light-bg);
             color: var(--text-color);
             overflow-x: hidden;
@@ -92,7 +92,7 @@
             display: flex; align-items: center; padding: 15px 25px;
             color: rgba(255,255,255,0.8); text-decoration: none; font-size: 1.1rem;
             transition: 0.2s; border-right: 3px solid transparent;
-            cursor: pointer; /* اضافه شد برای رفتار دکمه */
+            cursor: pointer;
         }
         .nav-item:hover { background: rgba(255,255,255,0.05); color: white; }
         .nav-item i { margin-left: 15px; width: 25px; text-align: center; color: var(--gold-color); }
@@ -110,12 +110,11 @@
             position: relative; z-index: 20;
         }
 
-        /* --- جستجو (Sticky Fix) --- */
         .search-container {
-            position: sticky; top: 15px; /* چسبان شدن */
+            position: sticky; top: 15px;
             background: white; padding: 5px; border-radius: 20px;
             box-shadow: 0 8px 20px rgba(0,0,0,0.1); display: flex; align-items: center;
-            margin-bottom: 25px; z-index: 90; /* بالاتر از بقیه عناصر */
+            margin-bottom: 25px; z-index: 90;
         }
         .search-icon { color: #999; margin: 0 15px; font-size: 1.2rem; }
         #search-input {
@@ -123,7 +122,6 @@
             background: transparent;
         }
 
-        /* --- شبکه‌بندی --- */
         .categories-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; }
         .category-tile {
             background: white; border-radius: 25px; padding: 20px; height: 130px;
@@ -133,10 +131,9 @@
         }
         .category-tile:active { transform: scale(0.96); }
         
-        /* رنگ‌بندی کاشی‌ها */
         .cat-special { background: linear-gradient(135deg, #2c3e50, #3498db); }
         .cat-mixer { background: linear-gradient(135deg, #8E2DE2, #4A00E0); }
-        .cat-remedy { background: linear-gradient(135deg, #eb3349, #f45c43); } /* کاشی جدید درمان‌گر */
+        .cat-remedy { background: linear-gradient(135deg, #eb3349, #f45c43); }
         .cat-herbs { background: linear-gradient(135deg, #56ab2f, #a8e063); }
         .cat-spices { background: linear-gradient(135deg, #ff9966, #ff5e62); }
         .cat-liquids { background: linear-gradient(135deg, #4facfe, #00f2fe); }
@@ -150,7 +147,6 @@
         .tile-content i { font-size: 2.5rem; margin-bottom: 10px; color: #fff; filter: drop-shadow(0 4px 4px rgba(0,0,0,0.2)); }
         .tile-content h2 { font-family: 'Lalezar', cursive; margin:0; font-size:1.3rem; text-shadow:0 2px 5px rgba(0,0,0,0.2); color: #fff; }
 
-        /* --- بخش‌های داخلی --- */
         .inner-section { display: none; margin-top: 20px; background-color: white; padding:25px; border-radius:25px; box-shadow:var(--shadow); }
         .back-btn {
             background-color: #f0f2f5; color: #555; border:none; padding:10px 20px;
@@ -178,27 +174,28 @@
         .quantity-input { width:50px; padding:5px; border:2px solid #dce6c5; border-radius:10px; text-align:center; }
         .delete-btn { color:#ff4757; background:#ffeef0; border-radius:10px; width:32px; height:32px; display:flex; align-items:center; justify-content:center; cursor:pointer; }
 
-        /* --- بخش میکسر (اصلاح شده) --- */
+        /* --- استایل‌های بازگشته (قدیمی) میکسر --- */
         .mixer-wrapper { display:flex; flex-direction:column; align-items:center; gap:20px; user-select: none; }
-        .size-selector { display:flex; gap:10px; margin-bottom:10px; }
-        .size-btn { padding:8px 15px; border:1px solid #ddd; border-radius:20px; background:white; cursor:pointer; font-family:'Vazirmatn'; }
-        .size-btn.active { background:#8E2DE2; color:white; border-color:#8E2DE2; }
-        
-        .supplements-shelf { 
-            display:flex; gap:10px; overflow-x:auto; padding:10px 5px; width:100%; 
-            scrollbar-width: none; -ms-overflow-style: none; /* Hide scrollbar */
-        }
-        .supplements-shelf::-webkit-scrollbar { display:none; }
+        .size-selector { display:flex; background:#eee; padding:5px; border-radius:50px; width:100%; max-width:350px; margin-bottom:10px; }
+        .size-btn { flex:1; border:none; background:transparent; padding:10px; border-radius:40px; cursor:pointer; font-family:'Lalezar'; font-size:1rem; color:#666; }
+        .size-btn.active { background:#fff; color:#8E2DE2; box-shadow:0 2px 10px rgba(0,0,0,0.1); }
 
+        /* بازگشت به حالت گرید چوبی */
+        .supplements-shelf {
+            display:grid; grid-template-columns:repeat(5,1fr); gap:8px;
+            background:#8B5E3C; padding:15px 10px 25px 10px; border-radius:15px; width:100%;
+            border-bottom:8px solid #5D3A1A;
+            overflow: visible; /* حذف اسکرول */
+        }
         .supplement-jar {
-            min-width:70px; height:90px; background:#f8f9fa; border:2px solid #eee; border-radius:15px;
-            display:flex; flex-direction:column; align-items:center; justify-content:center;
-            cursor:grab; position:relative; touch-action: none; /* Critical for Drag Fix */
+            background:linear-gradient(to right,rgba(255,255,255,0.8),rgba(255,255,255,0.5));
+            border-radius:5px; height:55px; display:flex; flex-direction:column; align-items:center;
+            cursor:grab; position:relative; touch-action: none;
         }
         .supplement-jar:active { cursor:grabbing; }
-        .jar-lid { width:40px; height:10px; background:#ddd; border-radius:5px; margin-bottom:5px; }
-        .jar-body { width:50px; height:50px; border-radius:10px; opacity:0.8; box-shadow:inset 0 0 10px rgba(0,0,0,0.1); }
-        .jar-label { font-size:0.7rem; margin-top:5px; text-align:center; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; width:100%; }
+        .jar-lid { width:70%; height:6px; background:#333; margin-top:-3px; border-radius:2px; }
+        .jar-body { width:100%; height:100%; border-radius:5px; display:flex; align-items:center; justify-content:center; }
+        .jar-body span { font-size:0.6rem; font-weight:bold; color:rgba(0,0,0,0.6); writing-mode:vertical-rl; transform:rotate(180deg); }
 
         .mixing-area { position:relative; width:100%; height:260px; display:flex; justify-content:center; align-items:flex-end; }
         .flask-container { position:relative; width:160px; height:220px; display:flex; flex-direction:column-reverse; align-items:center; }
@@ -209,18 +206,15 @@
         }
         .powder-layer { width:100%; transition:height 0.4s; border-top:1px solid rgba(255,255,255,0.2); }
 
-        /* --- گردونه شانس --- */
         .wheel-container { position: relative; width: 300px; height: 300px; margin: 0 auto; }
         .wheel { width: 100%; height: 100%; border-radius: 50%; border: 10px solid #fff; box-shadow: 0 0 20px rgba(0,0,0,0.2); background: conic-gradient(#ff6b6b 0 60deg, #4ecdc4 60deg 120deg, #ffe66d 120deg 180deg, #ff9f43 180deg 240deg, #54a0ff 240deg 300deg, #5f27cd 300deg 360deg); transition: transform 4s cubic-bezier(0.17, 0.67, 0.83, 0.67); }
         .wheel-pointer { position: absolute; top: -10px; left: 50%; transform: translateX(-50%); width: 0; height: 0; border-left: 15px solid transparent; border-right: 15px solid transparent; border-top: 25px solid #333; z-index: 10; }
         .spin-btn { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 60px; height: 60px; background: white; border-radius: 50%; border: none; font-family: 'Lalezar'; font-size: 1.2rem; cursor: pointer; box-shadow: 0 0 10px rgba(0,0,0,0.2); z-index: 5; }
 
-        /* --- کارت‌های زندگی طیب --- */
         .tayeb-card { background: #fdfefe; border-right: 4px solid var(--primary-color); padding: 15px; border-radius: 10px; margin-bottom: 15px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
         .tayeb-card h3 { margin: 0 0 10px 0; font-family: 'Lalezar'; color: var(--dark-green); display: flex; align-items: center; gap: 10px; }
         .tayeb-card p { font-size: 0.95rem; line-height: 1.6; color: #666; margin: 0; }
 
-        /* --- دکمه‌های درمان‌گر --- */
         .remedy-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: 15px; }
         .remedy-btn { background: #fff5f5; border: 1px solid #fed7d7; color: #c53030; padding: 15px; border-radius: 12px; font-family: 'Vazirmatn'; font-weight: bold; cursor: pointer; transition: 0.2s; text-align: center; }
         .remedy-btn:hover, .remedy-btn.active { background: #c53030; color: white; transform: translateY(-2px); }
@@ -242,7 +236,6 @@
         .form-control { width:100%; padding:15px; border:2px solid #eee; border-radius:15px; font-size:1rem; box-sizing:border-box; font-family: 'Vazirmatn'; }
         .btn-submit-special { background:linear-gradient(135deg,#203a43,#2c5364); color:white; padding:15px; border:none; border-radius:15px; font-size:1.1rem; width:100%; cursor:pointer; font-family: 'Lalezar'; }
 
-        /* Ghost element for drag and drop */
         .drag-ghost {
             position:fixed; pointer-events:none; z-index:9999; width:50px; height:50px;
             border-radius:50%; display:none; align-items:center; justify-content:center;
@@ -263,7 +256,7 @@
 
     <div class="side-menu-overlay" id="menuOverlay" onclick="toggleMenu()"></div>
 
-    <!-- منوی جانبی -->
+    <!-- منوی جانبی (بدون تغییر در عملکرد، با ظاهری سالم) -->
     <div class="side-menu" id="sideMenu">
         <div class="side-menu-header">
             <h3 style="margin:0; font-family:'Lalezar'; font-size:1.5rem; color:var(--gold-color)">منوی اصلی</h3>
@@ -271,7 +264,6 @@
         </div>
 
         <div class="nav-links">
-            <!-- FIX: آیتم‌ها به جای تگ a به تگ div تبدیل شدند تا از رفرش صفحه جلوگیری شود -->
             <div class="nav-item" onclick="navigate('home'); toggleMenu()">
                 <i class="fa-solid fa-house"></i> خانه
             </div>
@@ -296,7 +288,7 @@
         </button>
 
         <div style="text-align:center; font-size:0.8rem; color:rgba(255,255,255,0.4); padding:20px;">
-            Senjed Store v3.7 (Menu Fixed)
+            Senjed Store v3.8 (Mixer Restored)
         </div>
     </div>
 
@@ -306,7 +298,6 @@
             <input type="search" id="search-input" placeholder="جستجو (نام محصول، بیماری...)" autocomplete="off">
         </div>
 
-        <!-- صفحه دسته‌بندی‌ها (خانه) -->
         <div id="category-view">
             <div class="categories-grid">
                 <div class="category-tile cat-special" onclick="navigate('special')">
@@ -318,7 +309,6 @@
                 <div class="category-tile cat-mixer" onclick="initMixer(); navigate('mixer')">
                     <div class="tile-content"><i class="fa-solid fa-flask"></i><h2>میکس مکمل (آزمایشگاه)</h2></div>
                 </div>
-                <!-- دسته‌بندی‌های عادی -->
                 <div class="category-tile cat-herbs" data-category="گیاهان-دارویی"><div class="tile-content"><i class="fa-solid fa-leaf"></i><h2>گیاهان دارویی</h2></div></div>
                 <div class="category-tile cat-spices" data-category="ادویه-جات"><div class="tile-content"><i class="fa-solid fa-mortar-pestle"></i><h2>ادویه‌جات</h2></div></div>
                 <div class="category-tile cat-liquids" data-category="عرقیات"><div class="tile-content"><i class="fa-solid fa-bottle-droplet"></i><h2>عرقیات</h2></div></div>
@@ -330,14 +320,12 @@
             </div>
         </div>
 
-        <!-- لیست محصولات -->
         <div id="product-view" class="inner-section">
             <button class="back-btn" onclick="history.back()"><i class="fa-solid fa-arrow-right"></i> بازگشت</button>
             <h2 id="category-title" style="font-family:'Lalezar'; color:#3A5210; margin-top:0;"></h2>
             <ul id="product-list" class="product-list"></ul>
         </div>
 
-        <!-- سفارش خاص -->
         <div id="special-request-view" class="inner-section">
             <button class="back-btn" onclick="history.back()"><i class="fa-solid fa-arrow-right"></i> بازگشت</button>
             <h2 style="font-family:'Lalezar'; color:#203a43;">سفارش محصول کمیاب</h2>
@@ -348,18 +336,19 @@
             </div>
         </div>
 
-        <!-- میکسر (آزمایشگاه) -->
+        <!-- میکسر با ظاهر قدیمی (درخواست کاربر) -->
         <div id="mixer-view" class="inner-section" style="background:#fff9fc;">
             <button class="back-btn" onclick="history.back()"><i class="fa-solid fa-arrow-right"></i> بازگشت</button>
             <div class="mixer-wrapper">
                 <h2 style="font-family:'Lalezar'; color:#8E2DE2; margin:0;">آزمایشگاه مکمل</h2>
-                <p style="font-size:0.8rem; color:#666;">شیشه‌ها را بکشید و داخل فلاسک رها کنید</p>
                 <div class="size-selector">
                     <button class="size-btn" onclick="setMixerSize(500,50,this)">نیم کیلو</button>
                     <button class="size-btn active" onclick="setMixerSize(1000,100,this)">یک کیلو</button>
                     <button class="size-btn" onclick="setMixerSize(5000,250,this)">پنج کیلو</button>
                 </div>
+                <!-- قفسه چوبی با گرید ۵ ستونه -->
                 <div class="supplements-shelf" id="shelf"></div>
+                
                 <div class="mixing-area">
                     <div class="flask-container" id="flask-target">
                         <div class="flask-neck" style="position:absolute; top:-35px; left:50%; transform:translateX(-50%); width:50px; height:40px; background:rgba(255,255,255,0.1); border:4px solid rgba(255,255,255,0.6); border-bottom:none; border-radius:5px 5px 0 0; z-index:1;"></div>
@@ -371,7 +360,6 @@
             </div>
         </div>
 
-        <!-- درمان‌یاب (مشاور هوشمند) -->
         <div id="remedy-view" class="inner-section">
             <button class="back-btn" onclick="history.back()"><i class="fa-solid fa-arrow-right"></i> بازگشت</button>
             <div style="text-align:center;">
@@ -379,12 +367,9 @@
                 <h2 style="font-family:'Lalezar'; color:#eb3349; margin:10px 0;">مشاور هوشمند سنجد</h2>
                 <p style="color:#666; font-size:0.9rem;">مشکل خود را انتخاب کنید تا بهترین محصولات را پیشنهاد دهیم:</p>
             </div>
-            <div id="ailment-grid" class="remedy-grid">
-                <!-- دکمه‌ها با جاوااسکریپت پر می‌شوند -->
-            </div>
+            <div id="ailment-grid" class="remedy-grid"></div>
         </div>
 
-        <!-- گردونه شانس -->
         <div id="wheel-view" class="inner-section">
             <button class="back-btn" onclick="history.back()"><i class="fa-solid fa-arrow-right"></i> بازگشت</button>
             <h2 style="text-align:center; font-family:'Lalezar'; color:#EE5A24;">گردونه شانس سنجد</h2>
@@ -396,7 +381,6 @@
             </div>
         </div>
 
-        <!-- زندگی طیب (سبک زندگی سالم) -->
         <div id="tayeb-view" class="inner-section">
             <button class="back-btn" onclick="history.back()"><i class="fa-solid fa-arrow-right"></i> بازگشت</button>
             <div style="text-align:center; margin-bottom:20px;">
@@ -428,8 +412,7 @@
     <div id="drag-ghost" class="drag-ghost"></div>
 
     <script>
-        // --- تنظیمات و متغیرها ---
-        const whatsappNumber = "9890000000"; // شماره واتس‌اپ خود را اینجا وارد کنید
+        const whatsappNumber = "9890000000";
         let allProducts = [];
         const backupProducts = [
             {id:1, name:"عسل کوهی", category:"خوراکی", unit:"کیلو"},
@@ -443,7 +426,6 @@
             {id:9, name:"خاکشیر", category:"گیاهان-دارویی", unit:"کیلو"}
         ];
 
-        // المان‌های DOM
         const productList = document.getElementById('product-list');
         const searchInput = document.getElementById('search-input');
         const whatsappBtn = document.getElementById('whatsapp-button');
@@ -453,7 +435,6 @@
         const sideMenu = document.getElementById('sideMenu');
         const menuOverlay = document.getElementById('menuOverlay');
 
-        // لیست بیماری‌ها برای درمان‌گر
         const ailments = [
             { name: 'سرماخوردگی', keywords: ['آویشن', 'پونه', 'عسل', 'نعنا', 'اکالیپتوس'] },
             { name: 'کبد چرب', keywords: ['کاسنی', 'شاتره', 'خارشتر', 'زردچوبه', 'سرکه'] },
@@ -472,52 +453,33 @@
             { name: 'درد مفاصل', keywords: ['سیاهدانه', 'زنجبیل', 'فلفل', 'شترمرغ', 'اسپند'] }
         ];
 
-        // بارگذاری داده‌ها
         fetch('products.json')
-            .then(response => {
-                if (!response.ok) throw new Error("Failed");
-                return response.json();
-            })
-            .then(data => {
-                allProducts = data;
-                initApp();
-            })
-            .catch(() => {
-                allProducts = backupProducts;
-                initApp();
-            });
+            .then(response => { if (!response.ok) throw new Error("Failed"); return response.json(); })
+            .then(data => { allProducts = data; initApp(); })
+            .catch(() => { allProducts = backupProducts; initApp(); });
 
-        // --- مدیریت سبد خرید (Persistent) ---
         let shoppingCart = JSON.parse(localStorage.getItem('senjedCart')) || [];
         let favorites = JSON.parse(localStorage.getItem('senjedFavorites')) || [];
 
         function initApp() {
             updateFavoritesMenu();
-            renderAilmentButtons(); // راه‌اندازی درمان‌گر
-            updateCartAndButton(); // بازیابی سبد خرید
+            renderAilmentButtons();
+            updateCartAndButton();
         }
 
         function normalizeText(text) {
-            // حذف اعراب و یکسان‌سازی ی و ک
-            return text.replace(/[\u064B-\u065F]/g, '')
-                       .replace(/ي/g, "ی")
-                       .replace(/ك/g, "ک")
-                       .trim().toLowerCase();
+            return text.replace(/[\u064B-\u065F]/g, '').replace(/ي/g, "ی").replace(/ك/g, "ک").trim().toLowerCase();
         }
 
-        // --- ناوبری هوشمند (History API) ---
         window.navigate = function(target, params = null) {
-            // پنهان کردن همه
             categoryView.style.display = 'none';
             document.querySelectorAll('.inner-section').forEach(el => el.style.display = 'none');
             
-            // نمایش هدف
             if (target === 'home') {
                 categoryView.style.display = 'block';
                 history.pushState({view: 'home'}, '', '#home');
             } else if (target === 'product-list') {
                 document.getElementById('product-view').style.display = 'block';
-                // Params contains products and title
             } else {
                 const sectionMap = {
                     'remedy': 'remedy-view',
@@ -535,24 +497,11 @@
         };
 
         window.onpopstate = function(event) {
-            if (sideMenu.classList.contains('active')) {
-                toggleMenu(); // اگر منو باز بود، فقط منو را ببند
-                return;
-            }
-            
-            // منطق بازگشت
-            if (!event.state || event.state.view === 'home') {
-                categoryView.style.display = 'block';
-                document.querySelectorAll('.inner-section').forEach(el => el.style.display = 'none');
-            } else {
-                // اگر می‌خواهید با بک زدن به عقب برگردد، همین کافیست.
-                // برای UX بهتر معمولا بک زدن به لیست برمی‌گردد
-                categoryView.style.display = 'block';
-                document.querySelectorAll('.inner-section').forEach(el => el.style.display = 'none');
-            }
+            if (sideMenu.classList.contains('active')) { toggleMenu(); return; }
+            categoryView.style.display = 'block';
+            document.querySelectorAll('.inner-section').forEach(el => el.style.display = 'none');
         };
 
-        // --- توابع اصلی ---
         function renderProductList(products, title) {
             const list = document.getElementById('product-list');
             document.getElementById('category-title').textContent = title;
@@ -582,14 +531,12 @@
                 list.appendChild(li);
             });
 
-            // نمایش دستی چون این تابع خارج از سیستم state است
             categoryView.style.display='none';
             document.querySelectorAll('.inner-section').forEach(el=>el.style.display='none');
             document.getElementById('product-view').style.display='block';
             history.pushState({view: 'products'}, '', '#products');
         }
 
-        // Event Delegation for Product List
         productList.addEventListener('change', e => {
             if (e.target.classList.contains('product-checkbox')) {
                 const li = e.target.closest('.product-item');
@@ -616,7 +563,6 @@
             if (e.target.classList.contains('quantity-input')) updateCartAndButton();
         });
 
-        // کلیک روی دسته‌ها
         document.querySelectorAll('.category-tile[data-category]').forEach(tile => {
             tile.addEventListener('click', function() {
                 const cat = this.dataset.category;
@@ -625,18 +571,13 @@
             });
         });
 
-        // --- جستجو ---
         let searchTimeout;
         searchInput.addEventListener('input', () => {
             clearTimeout(searchTimeout);
             searchTimeout = setTimeout(() => {
                 const term = normalizeText(searchInput.value);
                 if (term) {
-                    // جستجوی هوشمند در نام و دسته‌بندی
-                    const results = allProducts.filter(p => 
-                        normalizeText(p.name).includes(term) || 
-                        normalizeText(p.category).includes(term)
-                    );
+                    const results = allProducts.filter(p => normalizeText(p.name).includes(term) || normalizeText(p.category).includes(term));
                     renderProductList(results, `نتایج: «${searchInput.value}»`);
                 } else {
                     navigate('home');
@@ -644,7 +585,6 @@
             }, 300);
         });
 
-        // --- درمان‌گر هوشمند ---
         function renderAilmentButtons() {
             const grid = document.getElementById('ailment-grid');
             grid.innerHTML = '';
@@ -658,24 +598,16 @@
         }
 
         function suggestRemedies(ailment) {
-            // یافتن محصولات مرتبط با کلمات کلیدی بیماری
             const results = allProducts.filter(product => {
                 const prodName = normalizeText(product.name);
                 return ailment.keywords.some(key => prodName.includes(normalizeText(key)));
             });
-
-            if (results.length > 0) {
-                renderProductList(results, `پیشنهاد برای: ${ailment.name}`);
-            } else {
-                alert('متاسفانه محصولی برای این مورد یافت نشد.');
-            }
+            if (results.length > 0) renderProductList(results, `پیشنهاد برای: ${ailment.name}`);
+            else alert('متاسفانه محصولی برای این مورد یافت نشد.');
         }
 
-        // --- به‌روزرسانی سبد خرید و واتس‌اپ ---
         function updateCartAndButton() {
             shoppingCart = [];
-            
-            // جمع‌آوری محصولات استاندارد
             document.querySelectorAll('.product-item.selected').forEach(li => {
                 const name = li.querySelector('div > div:first-child').textContent;
                 const q = li.querySelector('.quantity-input').value;
@@ -683,39 +615,24 @@
                 if (q > 0) shoppingCart.push({ type: 'standard', name, quantity: q, unit });
             });
             
-            // اضافه کردن میکس‌های قبلی (اگر هستند)
-            // (در اینجا ساده‌سازی شده، برای حفظ میکس‌ها باید متغیر جداگانه داشت یا در لوکال استوریج مدیریت کرد)
-            // فعلا میکس‌ها فقط تا زمان رفرش در آرایه می‌مانند، برای پایداری کامل باید میکس‌ها را جدا ذخیره کرد
-            // اما چون درخواست "حفظ سبد" بود، ما کل shoppingCart را ذخیره میکنیم.
-            
-            // ذخیره در LocalStorage
             localStorage.setItem('senjedCart', JSON.stringify(shoppingCart));
 
             const count = shoppingCart.length;
             cartCounter.textContent = count;
             cartCounter.style.display = count > 0 ? 'flex' : 'none';
-            
-            if (count > 0) {
-                whatsappBtn.classList.add('visible');
-            } else {
-                whatsappBtn.classList.remove('visible');
-            }
+            count > 0 ? whatsappBtn.classList.add('visible') : whatsappBtn.classList.remove('visible');
         }
 
         whatsappBtn.addEventListener('click', () => {
             if (shoppingCart.length === 0) return;
             let msg = "سلام فروشگاه سنجد، سفارش من:\n\n";
             shoppingCart.forEach(i => {
-                if(i.type === 'standard') {
-                    msg += `▪️ ${i.name}: ${i.quantity} ${i.unit}\n`;
-                } else if (i.type === 'mix') {
-                    msg += `🧪 میکس ${i.weightLabel}:\n   ${i.details}\n`;
-                }
+                if(i.type === 'standard') msg += `▪️ ${i.name}: ${i.quantity} ${i.unit}\n`;
+                else if (i.type === 'mix') msg += `🧪 میکس ${i.weightLabel}:\n   ${i.details}\n`;
             });
             window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(msg)}`, '_blank');
         });
 
-        // --- منو و علاقه‌مندی‌ها ---
         window.toggleMenu = function() {
             sideMenu.classList.toggle('active');
             menuOverlay.classList.toggle('active');
@@ -728,12 +645,10 @@
             else favorites.splice(idx, 1);
             localStorage.setItem('senjedFavorites', JSON.stringify(favorites));
 
-            // آپدیت ظاهر دکمه
             const btn = document.querySelector(`.star-btn[data-fav-name="${productName}"]`);
             if (btn) {
                 btn.classList.toggle('active');
-                const icon = btn.querySelector('i');
-                icon.className = btn.classList.contains('active') ? 'fa-solid fa-star' : 'fa-regular fa-star';
+                btn.querySelector('i').className = btn.classList.contains('active') ? 'fa-solid fa-star' : 'fa-regular fa-star';
             }
             updateFavoritesMenu();
         };
@@ -752,7 +667,6 @@
             });
         }
 
-        // --- ارسال سفارش خاص ---
         window.sendSpecialRequest = function() {
             const n = document.getElementById('special-name').value;
             const d = document.getElementById('special-details').value;
@@ -760,7 +674,6 @@
             window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(`درخواست خاص:\nمحصول: ${n}\nتوضیحات: ${d}`)}`,'_blank');
         };
 
-        // --- PWA Installer ---
         let deferredPrompt;
         window.addEventListener('beforeinstallprompt', (e) => {
             e.preventDefault();
@@ -775,7 +688,6 @@
             });
         });
 
-        // --- گردونه شانس ---
         window.spinWheel = function() {
             const wheel = document.getElementById('lucky-wheel');
             const btn = document.querySelector('.spin-btn');
@@ -788,25 +700,23 @@
             }, 4000);
         };
 
-        // --- لاجیک میکسر (اصلاح شده برای اسکرول) ---
+        // --- بازگشت به لاجیک قدیمی میکسر (Supplement 1-20) ---
         let mixerConfig = { max:1000, step:100 }, currentFlaskWeight = 0, flaskIngredients = [];
-        const jarColors = ['#FF6B6B','#4ECDC4','#FFE66D','#FF9F43','#54A0FF','#5F27CD','#C4E538','#FDA7DF','#D980FA'];
+        // 20 رنگ اصلی برای مکمل‌ها (حالت قدیمی)
+        const jarColors = ['#FF6B6B','#4ECDC4','#FFE66D','#FF9F43','#54A0FF','#5F27CD','#C4E538','#FDA7DF','#D980FA','#B53471','#009432','#F79F1F','#1B1464','#EA2027','#A3CB38','#12CBC4','#ED4C67','#B53471','#833471','#6F1E51'];
 
         window.initMixer = function() {
             const shelf = document.getElementById('shelf');
             shelf.innerHTML = '';
             
-            // فقط محصولاتی که پودری هستند
-            const powders = allProducts.filter(p => p.category === 'آرد-و-پودر' || p.category === 'ادویه-جات' || p.category.includes('پودر'));
-            const displayItems = powders.length > 0 ? powders : allProducts.slice(0, 10); // فال‌بک
-
-            displayItems.forEach((p, i) => {
+            // تولید ۲۰ مکمل با نام‌های عمومی طبق درخواست
+            jarColors.forEach((color, i) => {
+                const name = `مکمل ${i + 1}`;
                 const jar = document.createElement('div');
                 jar.className = 'supplement-jar';
                 jar.innerHTML = `
                     <div class="jar-lid"></div>
-                    <div class="jar-body" style="background:${jarColors[i % jarColors.length]}"></div>
-                    <div class="jar-label">${p.name}</div>
+                    <div class="jar-body" style="background:${color}"><span style="color:#fff">${name}</span></div>
                 `;
                 
                 // --- Logic Drag & Drop Touch ---
@@ -816,17 +726,15 @@
 
                 jar.addEventListener('touchstart', (e) => {
                     isDragging = false; 
-                    // No e.preventDefault() here to allow scroll!
                     startX = e.touches[0].clientX;
                     startY = e.touches[0].clientY;
                     
-                    // تایمر برای تشخیص "نگه داشتن" برای درگ (نه اسکرول)
                     jar.dragTimer = setTimeout(() => {
                         isDragging = true;
-                        navigator.vibrate(50); // Haptic feedback
+                        navigator.vibrate(50);
                         ghost.style.display = 'flex';
-                        ghost.style.backgroundColor = jarColors[i % jarColors.length];
-                        ghost.textContent = p.name;
+                        ghost.style.backgroundColor = color;
+                        ghost.innerHTML = `<i class="fa-solid fa-cube"></i>`; // آیکون ساده مثل قبل
                         ghost.style.left = e.touches[0].clientX + 'px';
                         ghost.style.top = e.touches[0].clientY + 'px';
                     }, 200);
@@ -834,16 +742,13 @@
 
                 jar.addEventListener('touchmove', (e) => {
                     if (isDragging) {
-                        e.preventDefault(); // Stop scrolling NOW because we are dragging
+                        e.preventDefault();
                         ghost.style.left = e.touches[0].clientX + 'px';
                         ghost.style.top = e.touches[0].clientY + 'px';
                     } else {
-                        // If moved significantly before timer, cancel drag (it's a scroll)
                         const moveX = Math.abs(e.touches[0].clientX - startX);
                         const moveY = Math.abs(e.touches[0].clientY - startY);
-                        if (moveY > 10 || moveX > 10) {
-                            clearTimeout(jar.dragTimer);
-                        }
+                        if (moveY > 10 || moveX > 10) clearTimeout(jar.dragTimer);
                     }
                 }, { passive: false });
 
@@ -853,7 +758,7 @@
                         isDragging = false;
                         ghost.style.display = 'none';
                         const touch = e.changedTouches[0];
-                        checkDrop(touch.clientX, touch.clientY, p.name, jarColors[i % jarColors.length]);
+                        checkDrop(touch.clientX, touch.clientY, name, color);
                     }
                 });
 
@@ -869,7 +774,6 @@
                 currentFlaskWeight += mixerConfig.step;
                 flaskIngredients.push(name);
                 
-                // افزودن لایه بصری
                 const layer = document.createElement('div');
                 layer.className = 'powder-layer';
                 layer.style.background = color;
@@ -903,7 +807,6 @@
                 return;
             }
             
-            // شمارش مواد
             const counts = {};
             flaskIngredients.forEach(x => counts[x] = (counts[x] || 0) + 1);
             
@@ -919,7 +822,6 @@
         }
 
         window.addToCartMix = function() {
-            // ساختن اسم و توضیحات میکس
             const counts = {};
             flaskIngredients.forEach(x => counts[x] = (counts[x] || 0) + 1);
             let details = [];
@@ -940,7 +842,6 @@
             resetFlask();
             navigate('home');
         };
-
     </script>
 </body>
 </html>
