@@ -2,7 +2,7 @@
 <html lang="fa" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>فروشگاه سنجد</title>
     
     <!-- لینک آیکون‌ها -->
@@ -24,27 +24,26 @@
         }
 
         body {
-            font-family: 'Vazirmatn', sans-serif; /* فونت بدنه مدرن */
+            font-family: 'Vazirmatn', sans-serif;
             margin: 0;
             padding: 0 0 100px 0;
             background-color: var(--light-bg);
             color: var(--text-color);
             overflow-x: hidden;
+            -webkit-tap-highlight-color: transparent; /* حذف هایلایت آبی در موبایل */
         }
 
-        /* --- هدر لاکچری و متحرک --- */
+        /* --- هدر لاکچری --- */
         .header {
             position: relative;
             background: linear-gradient(135deg, #557C18 0%, #2d420b 100%);
-            padding: 40px 20px 70px 20px; /* فضای پایین بیشتر برای باکس جستجو */
+            padding: 40px 20px 70px 20px;
             border-radius: 0 0 40px 40px;
             text-align: center;
             overflow: hidden;
             box-shadow: 0 10px 25px rgba(45, 66, 11, 0.3);
             z-index: 10;
         }
-
-        /* المان‌های تزئینی پس‌زمینه هدر */
         .header::before, .header::after {
             content: ''; position: absolute; border-radius: 50%;
             background: rgba(255, 255, 255, 0.05);
@@ -56,42 +55,29 @@
         }
         .header::after {
             width: 150px; height: 150px; bottom: 20px; right: -30px;
-            background: rgba(255, 215, 0, 0.1); /* هاله طلایی */
+            background: rgba(255, 215, 0, 0.1);
             animation: floatOrb 8s ease-in-out infinite alternate-reverse;
         }
-
-        /* لوگو/آیکون بزرگ محو پشت متن */
         .header-bg-icon {
             position: absolute; top: 50%; left: 50%;
             transform: translate(-50%, -50%);
             font-size: 10rem; color: rgba(255,255,255,0.03);
             z-index: 0; pointer-events: none;
         }
-
-        /* متن عنوان هنری */
         .header h1 {
-            font-family: 'Lalezar', cursive; /* فونت هنری */
-            margin: 0; 
-            font-size: 3.5rem; 
-            color: #fff;
+            font-family: 'Lalezar', cursive;
+            margin: 0; font-size: 3.5rem; color: #fff;
             text-shadow: 0 4px 15px rgba(0,0,0,0.3);
-            position: relative; z-index: 2;
-            letter-spacing: 1px;
+            position: relative; z-index: 2; letter-spacing: 1px;
             animation: fadeInDown 1s ease-out;
         }
-
-        /* زیرعنوان */
         .header p {
-            font-family: 'Vazirmatn', sans-serif;
-            font-weight: 300;
-            margin: 5px 0 0; 
-            color: rgba(255, 255, 255, 0.85); 
-            font-size: 1rem;
-            position: relative; z-index: 2;
+            font-family: 'Vazirmatn', sans-serif; font-weight: 300;
+            margin: 5px 0 0; color: rgba(255, 255, 255, 0.85); 
+            font-size: 1rem; position: relative; z-index: 2;
             animation: fadeInUp 1s ease-out 0.3s backwards;
         }
 
-        /* انیمیشن‌ها */
         @keyframes floatOrb { 0% { transform: translate(0, 0); } 100% { transform: translate(20px, 30px); } }
         @keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
@@ -99,27 +85,17 @@
         /* --- کانتینر اصلی --- */
         .container { padding: 0 20px 20px; max-width: 1200px; margin: 0 auto; }
         
-        /* --- جستجو (استایل معلق) --- */
+        /* --- جستجو --- */
         .search-container { 
-            position: relative; 
-            margin-top: -35px; /* کشیدن به بالا روی هدر */
-            margin-bottom: 35px; 
-            z-index: 20; 
+            position: relative; margin-top: -35px; margin-bottom: 35px; z-index: 20; 
         }
         #search-input {
             width: 100%; padding: 18px 50px 18px 20px; font-size: 1.1rem;
-            font-family: 'Vazirmatn', sans-serif;
-            border-radius: 50px; /* کاملا گرد */
-            border: none;
-            background-color: #fff; 
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1); /* سایه عمیق */
-            transition: all 0.3s ease; color: #555;
-            box-sizing: border-box;
+            font-family: 'Vazirmatn', sans-serif; border-radius: 50px; border: none;
+            background-color: #fff; box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            transition: all 0.3s ease; color: #555; box-sizing: border-box;
         }
-        #search-input:focus {
-            outline: none; transform: translateY(-2px);
-            box-shadow: 0 15px 30px rgba(107, 142, 35, 0.25);
-        }
+        #search-input:focus { outline: none; transform: translateY(-2px); box-shadow: 0 15px 30px rgba(107, 142, 35, 0.25); }
         .search-icon {
             position: absolute; right: 25px; top: 50%; transform: translateY(-50%);
             color: var(--primary-color); font-size: 1.3rem; pointer-events: none;
@@ -143,7 +119,10 @@
             cursor: pointer;
         }
         
-        /* گرادینت‌ها */
+        /* رنگ‌بندی کاشی‌ها */
+        .cat-special { background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%); box-shadow: 0 10px 20px rgba(32, 58, 67, 0.3); border: 1px solid rgba(255,255,255,0.1); } /* کاشی سفارش خاص */
+        .cat-mixer { background: linear-gradient(135deg, #DA22FF 0%, #9733EE 100%); box-shadow: 0 10px 20px rgba(218, 34, 255, 0.3); } /* کاشی میکسر */
+        
         .cat-herbs { background: linear-gradient(135deg, #56ab2f 0%, #a8e063 100%); box-shadow: 0 10px 20px rgba(86, 171, 47, 0.3); }
         .cat-spices { background: linear-gradient(135deg, #ff512f 0%, #dd2476 100%); box-shadow: 0 10px 20px rgba(221, 36, 118, 0.3); }
         .cat-liquids { background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); box-shadow: 0 10px 20px rgba(79, 172, 254, 0.3); }
@@ -153,47 +132,26 @@
         .cat-food { background: linear-gradient(135deg, #FF8008 0%, #FFC837 100%); box-shadow: 0 10px 20px rgba(255, 128, 8, 0.3); }
         .cat-misc { background: linear-gradient(135deg, #6190E8 0%, #A7BFE8 100%); box-shadow: 0 10px 20px rgba(97, 144, 232, 0.3); }
 
-        .category-tile::before {
-            content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-            background: linear-gradient(to bottom, rgba(255,255,255,0.1), transparent);
-        }
-
+        .category-tile::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(to bottom, rgba(255,255,255,0.1), transparent); }
         .category-tile:hover { transform: translateY(-8px) scale(1.03); }
-
         .tile-content { position: relative; z-index: 2; text-align: center; width: 100%; }
+        .tile-content i { font-size: 3.2rem; margin-bottom: 10px; display: inline-block; color: #fff; filter: drop-shadow(0 4px 4px rgba(0,0,0,0.2)); transition: all 0.3s ease; }
+        .tile-content h2 { font-family: 'Lalezar', cursive; margin: 0; font-size: 1.5rem; text-shadow: 0 2px 5px rgba(0,0,0,0.2); letter-spacing: 0.5px; }
         
-        .tile-content i { 
-            font-size: 3.2rem; margin-bottom: 10px; display: inline-block; 
-            color: #fff; filter: drop-shadow(0 4px 4px rgba(0,0,0,0.2));
-            transition: all 0.3s ease;
-        }
-
-        /* فونت تیتر کاشی‌ها هم با لاله‌زار هماهنگ شد */
-        .tile-content h2 { 
-            font-family: 'Lalezar', cursive; 
-            margin: 0; font-size: 1.5rem; 
-            text-shadow: 0 2px 5px rgba(0,0,0,0.2); 
-            letter-spacing: 0.5px;
-        }
-
-        /* انیمیشن آیکون‌ها */
-        @keyframes swing { 20% { transform: rotate(15deg); } 40% { transform: rotate(-10deg); } 60% { transform: rotate(5deg); } 80% { transform: rotate(-5deg); } 100% { transform: rotate(0deg); } }
+        /* انیمیشن‌های کاشی */
         @keyframes bounce-c { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
-        
         .category-tile:hover i { animation: bounce-c 0.6s ease; }
-        .category-tile:hover .fa-leaf, .category-tile:hover .fa-pump-soap { animation: swing 1s ease-in-out; }
 
-        /* --- بخش محصولات --- */
-        .product-section { display: none; margin-top: 20px; background-color: white; padding: 25px; border-radius: 25px; box-shadow: var(--shadow); }
-        
-        #back-to-categories { 
+        /* --- بخش‌های داخلی (مشترک) --- */
+        .inner-section { display: none; margin-top: 20px; background-color: white; padding: 25px; border-radius: 25px; box-shadow: var(--shadow); }
+        .back-btn { 
             background-color: #f0f2f5; color: #555; border: none; padding: 12px 20px; 
             border-radius: 15px; cursor: pointer; font-size: 0.95rem; font-family: 'Vazirmatn', sans-serif; font-weight: 700;
-            margin-bottom: 25px; display: inline-flex; align-items: center; gap: 10px;
-            transition: all 0.2s;
+            margin-bottom: 25px; display: inline-flex; align-items: center; gap: 10px; transition: all 0.2s;
         }
-        #back-to-categories:hover { background-color: #e2e6ea; color: var(--primary-color); }
+        .back-btn:hover { background-color: #e2e6ea; color: var(--primary-color); }
 
+        /* --- لیست محصولات --- */
         .product-list { list-style: none; padding: 0; margin: 0; }
         .product-item {
             display: grid; grid-template-columns: auto 1fr auto; align-items: center;
@@ -201,31 +159,106 @@
             transition: background-color 0.2s; border-radius: 12px; margin-bottom: 5px;
         }
         .product-item.selected { background-color: var(--selected-bg); border: 1px solid var(--primary-color); }
-        
         .product-name { font-weight: 500; font-size: 1.1rem; cursor: pointer; color: #333; }
         .product-checkbox { width: 24px; height: 24px; cursor: pointer; accent-color: var(--primary-color); border-radius: 6px; }
-        
         .quantity-input-container { display: none; align-items: center; justify-self: end; gap: 10px; }
         .product-item.selected .quantity-input-container { display: flex; animation: fadeIn 0.3s ease; }
         @keyframes fadeIn { from { opacity: 0; transform: translateX(-10px); } to { opacity: 1; transform: translateX(0); } }
-        
-        .quantity-input {
-            width: 50px; padding: 5px; border: 2px solid #dce6c5; border-radius: 10px;
-            text-align: center; font-size: 1.1rem; font-weight: bold; color: var(--primary-color);
-            font-family: 'Vazirmatn', sans-serif;
-        }
+        .quantity-input { width: 50px; padding: 5px; border: 2px solid #dce6c5; border-radius: 10px; text-align: center; font-size: 1.1rem; font-weight: bold; color: var(--primary-color); font-family: 'Vazirmatn', sans-serif; }
         .quantity-input:focus { outline: none; border-color: var(--primary-color); }
-
-        .delete-btn {
-            color: #ff4757; cursor: pointer; font-size: 1rem;
-            background: #ffeef0; border-radius: 10px; width: 32px; height: 32px;
-            display: flex; align-items: center; justify-content: center;
-            transition: all 0.2s;
-        }
+        .delete-btn { color: #ff4757; cursor: pointer; font-size: 1rem; background: #ffeef0; border-radius: 10px; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; transition: all 0.2s; }
         .delete-btn:hover { background: #ff4757; color: white; }
-
         .status-badge { padding: 5px 12px; border-radius: 15px; font-size: 0.8rem; }
         .status-unavailable { background-color: #fff0f0; color: #e03e2d; }
+
+        /* --- استایل‌های بخش سفارش خاص --- */
+        .special-form { display: flex; flex-direction: column; gap: 20px; }
+        .form-group label { font-weight: bold; margin-bottom: 8px; display: block; color: var(--dark-green); }
+        .form-control {
+            width: 100%; padding: 15px; border: 2px solid #eee; border-radius: 15px;
+            font-family: 'Vazirmatn', sans-serif; font-size: 1rem; transition: border 0.3s; box-sizing: border-box;
+        }
+        .form-control:focus { outline: none; border-color: var(--primary-color); }
+        .btn-submit-special {
+            background: linear-gradient(135deg, #203a43, #2c5364); color: white; padding: 15px;
+            border: none; border-radius: 15px; font-size: 1.1rem; font-family: 'Lalezar', cursive;
+            cursor: pointer; box-shadow: 0 5px 15px rgba(32, 58, 67, 0.2); margin-top: 10px;
+        }
+        .btn-submit-special:hover { transform: translateY(-2px); }
+
+        /* --- استایل‌های بخش مکمل ارگانیک (گیمیفیکیشن) --- */
+        .mixer-container { display: flex; flex-direction: column; gap: 20px; align-items: center; }
+        
+        /* شلف مکمل‌ها */
+        .supplements-shelf {
+            display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px;
+            background: #8B4513; padding: 15px; border-radius: 10px;
+            width: 100%; box-sizing: border-box; box-shadow: inset 0 5px 10px rgba(0,0,0,0.3);
+        }
+        .supplement-jar {
+            background-color: rgba(255,255,255,0.9); border-radius: 8px;
+            height: 60px; display: flex; flex-direction: column; align-items: center; justify-content: center;
+            cursor: grab; user-select: none; position: relative; box-shadow: 0 3px 5px rgba(0,0,0,0.2);
+        }
+        .supplement-jar:active { cursor: grabbing; }
+        .jar-lid { width: 20px; height: 5px; background: #555; margin-bottom: 2px; }
+        .jar-body { width: 30px; height: 35px; border-radius: 5px; border: 1px solid #ccc; }
+        .jar-label { font-size: 0.6rem; margin-top: 2px; color: #333; text-align: center; white-space: nowrap; overflow: hidden; width: 100%; }
+
+        /* ظرف مخلوط (ارلن مایر) */
+        .mixing-area {
+            position: relative; width: 100%; height: 250px;
+            display: flex; justify-content: center; align-items: flex-end;
+            margin-top: 10px;
+        }
+        .flask-container {
+            position: relative; width: 140px; height: 200px;
+            display: flex; flex-direction: column-reverse; /* لایه‌ها از پایین پر شوند */
+            align-items: center;
+        }
+        .flask-glass {
+            position: relative; width: 100%; height: 100%;
+            background: rgba(255, 255, 255, 0.15);
+            border: 3px solid rgba(200, 200, 200, 0.5);
+            /* شکل ارلن مایر */
+            clip-path: polygon(25% 0, 75% 0, 100% 100%, 0% 100%);
+            overflow: hidden; /* برای برش لایه‌ها */
+            z-index: 2;
+            backdrop-filter: blur(2px);
+        }
+        .flask-neck {
+            position: absolute; top: -30px; left: 50%; transform: translateX(-50%);
+            width: 65px; height: 35px; background: rgba(255, 255, 255, 0.15);
+            border: 3px solid rgba(200, 200, 200, 0.5); border-bottom: none;
+            z-index: 1;
+        }
+        
+        /* لایه‌های پودر */
+        .powder-layer { width: 100%; transition: height 0.3s ease-out; }
+
+        /* متن وزن روی ظرف */
+        .flask-stats {
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            font-size: 1.5rem; font-weight: bold; color: #333; text-shadow: 0 0 5px white;
+            z-index: 10; pointer-events: none; font-family: 'Lalezar', cursive;
+        }
+
+        .completed-mixes {
+            margin-top: 20px; width: 100%; border-top: 1px dashed #ccc; padding-top: 10px;
+        }
+        .mix-item {
+            background: #f9f9f9; padding: 10px; border-radius: 10px; margin-bottom: 5px;
+            display: flex; justify-content: space-between; align-items: center; font-size: 0.9rem;
+        }
+
+        /* المان متحرک (Ghost) برای تاچ */
+        .drag-ghost {
+            position: fixed; pointer-events: none; z-index: 9999;
+            width: 50px; height: 50px; opacity: 0.8; border-radius: 50%;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2); display: none;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 20px; color: white; font-weight: bold;
+        }
 
         /* --- دکمه واتس‌اپ --- */
         .whatsapp-fab {
@@ -239,13 +272,11 @@
         }
         .whatsapp-fab.visible { transform: scale(1); }
         .whatsapp-fab:hover { transform: scale(1.1) rotate(10deg); box-shadow: 0 15px 35px rgba(37, 211, 102, 0.5); }
-
         .cart-counter {
             position: absolute; top: 0; right: 0; background-color: #ff4757;
             color: white; border-radius: 50%; width: 24px; height: 24px;
             font-size: 0.8rem; font-weight: bold; display: flex;
-            justify-content: center; align-items: center;
-            border: 2px solid white; box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            justify-content: center; align-items: center; border: 2px solid white;
         }
 
         #loading { text-align: center; padding: 40px; color: #888; }
@@ -254,15 +285,12 @@
 <body>
 
     <header class="header">
-        <!-- آیکون پس‌زمینه برای زیبایی -->
         <i class="fa-solid fa-leaf header-bg-icon"></i>
-        
         <h1>فروشگاه سنجد</h1>
         <p>طبیعت را به خانه خود بیاورید</p>
     </header>
 
     <div class="container">
-        <!-- کادر جستجو با استایل معلق -->
         <div class="search-container">
             <i class="fa-solid fa-search search-icon"></i>
             <input type="search" id="search-input" placeholder="جستجو (مثلا: آویشن)..." autocomplete="off">
@@ -272,66 +300,121 @@
         <div id="category-view">
             <div class="categories-grid">
                 
+                <!-- کاشی ۱: سفارش محصول خاص -->
+                <div class="category-tile cat-special" onclick="showSection('special-request-view')">
+                    <div class="tile-content"><i class="fa-solid fa-star"></i><h2>سفارش محصول خاص</h2></div>
+                </div>
+
+                <!-- کاشی ۲: مکمل ارگانیک (بازی) -->
+                <div class="category-tile cat-mixer" onclick="initMixer(); showSection('mixer-view')">
+                    <div class="tile-content"><i class="fa-solid fa-flask"></i><h2>میکس مکمل ارگانیک</h2></div>
+                </div>
+
                 <div class="category-tile cat-herbs" data-category="گیاهان-دارویی">
                     <div class="tile-content"><i class="fa-solid fa-leaf"></i><h2>گیاهان دارویی</h2></div>
                 </div>
-
                 <div class="category-tile cat-spices" data-category="ادویه-جات">
                     <div class="tile-content"><i class="fa-solid fa-mortar-pestle"></i><h2>ادویه‌جات</h2></div>
                 </div>
-
                 <div class="category-tile cat-liquids" data-category="عرقیات">
                     <div class="tile-content"><i class="fa-solid fa-bottle-droplet"></i><h2>عرقیات</h2></div>
                 </div>
-
                 <div class="category-tile cat-oils" data-category="روغن-ها">
                     <div class="tile-content"><i class="fa-solid fa-oil-well"></i><h2>روغن‌ها</h2></div>
                 </div>
-
                 <div class="category-tile cat-grains" data-category="حبوبات-و-غلات">
                     <div class="tile-content"><i class="fa-solid fa-wheat-awn"></i><h2>حبوبات</h2></div>
                 </div>
-
                 <div class="category-tile cat-hygiene" data-category="شوینده-و-بهداشتی">
                     <div class="tile-content"><i class="fa-solid fa-pump-soap"></i><h2>بهداشتی</h2></div>
                 </div>
-
                 <div class="category-tile cat-food" data-category="محصولات-خوراکی">
                     <div class="tile-content"><i class="fa-solid fa-jar"></i><h2>خوراکی</h2></div>
                 </div>
-
                 <div class="category-tile cat-misc" data-category="متفرقه">
                     <div class="tile-content"><i class="fa-solid fa-box-open"></i><h2>سایر</h2></div>
                 </div>
-
             </div>
         </div>
 
-        <!-- نمای لیست محصولات -->
-        <div id="product-view" class="product-section">
-            <button id="back-to-categories"><i class="fa-solid fa-arrow-right"></i> بازگشت به دسته‌ها</button>
+        <!-- نمای لیست محصولات استاندارد -->
+        <div id="product-view" class="inner-section">
+            <button class="back-btn" onclick="showCategoryView()"><i class="fa-solid fa-arrow-right"></i> بازگشت به دسته‌ها</button>
             <h2 id="product-category-title" style="margin-top: 0; color: var(--primary-color); font-family: 'Lalezar', cursive;"></h2>
             <div id="loading">درحال بارگذاری...</div>
-            <div id="error" style="display: none; text-align:center; color:red;">خطا در اتصال</div>
             <ul id="product-list" class="product-list"></ul>
         </div>
+
+        <!-- نمای سفارش خاص -->
+        <div id="special-request-view" class="inner-section">
+            <button class="back-btn" onclick="showCategoryView()"><i class="fa-solid fa-arrow-right"></i> بازگشت</button>
+            <h2 style="font-family: 'Lalezar'; color: #203a43;">سفارش محصول کمیاب</h2>
+            <p style="font-size: 0.9rem; color: #666;">نام محصول و مقدار مورد نیاز را وارد کنید تا مستقیماً به واتس‌اپ ما ارسال شود.</p>
+            
+            <div class="special-form">
+                <div class="form-group">
+                    <label>نام محصول:</label>
+                    <input type="text" id="special-name" class="form-control" placeholder="مثلاً: صمغ عربی اصل">
+                </div>
+                <div class="form-group">
+                    <label>توضیحات و مقدار (وزن):</label>
+                    <input type="text" id="special-details" class="form-control" placeholder="مثلاً: ۵۰۰ گرم، خالص باشد">
+                </div>
+                <button class="btn-submit-special" onclick="sendSpecialRequest()">
+                    <i class="fab fa-whatsapp"></i> ارسال به واتس‌اپ
+                </button>
+            </div>
+        </div>
+
+        <!-- نمای میکسر ارگانیک (بازی) -->
+        <div id="mixer-view" class="inner-section" style="background: #fff5f8;">
+            <button class="back-btn" onclick="showCategoryView()"><i class="fa-solid fa-arrow-right"></i> بازگشت</button>
+            <h2 style="font-family: 'Lalezar'; color: #9733EE; text-align: center;">آزمایشگاه ارگانیک</h2>
+            <p style="text-align: center; font-size: 0.85rem; color: #666;">مکمل‌ها را بکشید و در ظرف رها کنید تا ترکیب خود را بسازید.<br>(هر واحد = ۵۰ گرم)</p>
+            
+            <div class="mixer-container">
+                <!-- شلف مکمل‌ها -->
+                <div class="supplements-shelf" id="shelf"></div>
+
+                <!-- منطقه ترکیب -->
+                <div class="mixing-area">
+                    <div class="flask-container" id="flask-target">
+                        <div class="flask-neck"></div>
+                        <div class="flask-glass" id="flask-content">
+                            <!-- لایه‌ها اینجا اضافه می‌شوند -->
+                        </div>
+                        <div class="flask-stats"><span id="current-weight">0</span>g</div>
+                    </div>
+                </div>
+
+                <div class="completed-mixes">
+                    <h4 style="margin: 0 0 10px 0; color: #555;">ترکیب‌های تکمیل شده:</h4>
+                    <div id="mix-list">
+                        <small style="color: #999;">هنوز ترکیبی ساخته نشده.</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 
+    <!-- دکمه شناور نهایی -->
     <div id="whatsapp-button" class="whatsapp-fab">
         <i class="fab fa-whatsapp"></i>
         <span id="cart-counter" class="cart-counter"></span>
     </div>
 
+    <!-- گوست برای درگ در موبایل -->
+    <div id="drag-ghost" class="drag-ghost"></div>
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const whatsappNumber = "989918022066";
             
-            // Elements
+            // متغیرهای عمومی
             const categoryView = document.getElementById('category-view');
-            const productView = document.getElementById('product-view');
             const productList = document.getElementById('product-list');
             const categoryTitle = document.getElementById('product-category-title');
-            const backButton = document.getElementById('back-to-categories');
             const loadingDiv = document.getElementById('loading');
             const whatsappBtn = document.getElementById('whatsapp-button');
             const cartCounter = document.getElementById('cart-counter');
@@ -339,28 +422,36 @@
 
             let allProducts = [];
             let shoppingCart = []; 
+            let mixedProducts = []; // آرایه برای محصولات میکس شده
 
-            function showCategoryView() {
+            // --- مدیریت ویوها ---
+            window.showCategoryView = function() {
+                document.querySelectorAll('.inner-section').forEach(el => el.style.display = 'none');
                 categoryView.style.display = 'block';
-                productView.style.display = 'none';
                 window.scrollTo(0, 0);
             }
 
-            function showProductView() {
+            window.showSection = function(id) {
                 categoryView.style.display = 'none';
-                productView.style.display = 'block';
+                document.querySelectorAll('.inner-section').forEach(el => el.style.display = 'none');
+                document.getElementById(id).style.display = 'block';
                 window.scrollTo(0, 0);
             }
-            
+
+            // --- لاجیک محصولات استاندارد ---
             function updateCartAndButton() {
-                shoppingCart = [];
+                // محصولات استاندارد چک‌باکس دار
+                const standardItems = [];
                 document.querySelectorAll('.product-checkbox:checked').forEach(checkbox => {
                     const name = checkbox.dataset.name;
                     const unit = checkbox.dataset.unit;
                     const quantityInput = document.getElementById(`qty-${name}`);
                     const quantity = quantityInput.value || 1;
-                    shoppingCart.push({ name, quantity, unit });
+                    standardItems.push({ name, quantity, unit, type: 'standard' });
                 });
+
+                // ترکیب لیست استاندارد + میکس‌ها
+                shoppingCart = [...standardItems, ...mixedProducts];
 
                 if (shoppingCart.length > 0) {
                     whatsappBtn.classList.add('visible');
@@ -386,7 +477,8 @@
                     const listItem = document.createElement('li');
                     listItem.className = 'product-item';
                     
-                    const cartItem = shoppingCart.find(item => item.name === product.name);
+                    // چک می‌کنیم آیا در سبد خرید (بخش استاندارد) هست یا نه
+                    const cartItem = shoppingCart.find(item => item.name === product.name && item.type === 'standard');
                     const isSelected = !!cartItem;
                     if(isSelected) listItem.classList.add('selected');
 
@@ -416,7 +508,7 @@
                 });
             }
 
-            // Event Listeners
+            // Event Listeners محصولات
             productList.addEventListener('change', function(e) {
                 if (e.target.classList.contains('product-checkbox')) {
                     const listItem = e.target.closest('.product-item');
@@ -447,46 +539,259 @@
                 if(e.target.classList.contains('quantity-input')) updateCartAndButton();
             });
 
-            document.querySelectorAll('.category-tile').forEach(tile => {
+            document.querySelectorAll('.category-tile[data-category]').forEach(tile => {
                 tile.addEventListener('click', function() {
                     const category = this.dataset.category;
                     const categoryName = this.querySelector('h2').textContent;
                     const filteredProducts = allProducts.filter(p => p.category === category);
                     renderProductList(filteredProducts, categoryName);
-                    showProductView();
+                    showSection('product-view');
                 });
             });
 
             searchInput.addEventListener('input', () => {
                 const searchTerm = searchInput.value.trim().toLowerCase();
                 if (searchTerm) {
+                    document.querySelectorAll('.inner-section').forEach(el => el.style.display = 'none');
+                    document.getElementById('product-view').style.display = 'block';
                     const searchResults = allProducts.filter(p => p.name.toLowerCase().includes(searchTerm));
                     renderProductList(searchResults, `نتایج: «${searchTerm}»`);
-                    showProductView();
                 } else {
                     showCategoryView();
                 }
             });
 
-            backButton.addEventListener('click', () => {
-                showCategoryView();
-                searchInput.value = '';
-            });
-            
+            // --- لاجیک ارسال واتس‌اپ نهایی ---
             whatsappBtn.addEventListener('click', () => {
                 updateCartAndButton();
                 if (shoppingCart.length === 0) return;
+                
                 let message = "سلام فروشگاه سنجد، سفارش جدید:\n\n";
-                shoppingCart.forEach(item => {
-                    message += `▪️ ${item.name}: ${item.quantity} ${item.unit}\n`;
-                });
+                
+                // محصولات عادی
+                const standard = shoppingCart.filter(i => i.type === 'standard');
+                if(standard.length > 0) {
+                    message += "📦 محصولات:\n";
+                    standard.forEach(item => {
+                        message += `▪️ ${item.name}: ${item.quantity} ${item.unit}\n`;
+                    });
+                }
+
+                // محصولات میکس
+                const mixes = shoppingCart.filter(i => i.type === 'mix');
+                if(mixes.length > 0) {
+                    message += "\n🧪 ترکیب‌های ارگانیک:\n";
+                    mixes.forEach(item => {
+                        message += `▪️ ${item.name} (${item.quantity} ${item.unit})\n   محتویات: ${item.details}\n`;
+                    });
+                }
+
                 window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`, '_blank');
             });
 
+            // --- Fetch Data ---
             fetch('products.json?v=' + Date.now())
                 .then(res => res.json())
                 .then(data => { allProducts = data; loadingDiv.style.display = 'none'; })
-                .catch(err => { loadingDiv.innerHTML = 'خطا در بارگذاری'; console.error(err); });
+                .catch(err => { 
+                    loadingDiv.innerHTML = ''; 
+                    // دیتای نمونه در صورت خطا
+                    allProducts = [
+                        { name: "آویشن شیرازی", category: "گیاهان-دارویی", unit: "گرم", available: true },
+                        { name: "زردچوبه اعلاء", category: "ادویه-جات", unit: "گرم", available: true },
+                        { name: "گلاب دوآتیشه", category: "عرقیات", unit: "لیتر", available: true }
+                    ];
+                    console.log('Using sample data due to load error');
+                });
+
+
+            // ==========================================
+            // === لاجیک بخش سفارش محصول خاص ===
+            // ==========================================
+            window.sendSpecialRequest = function() {
+                const name = document.getElementById('special-name').value;
+                const details = document.getElementById('special-details').value;
+                
+                if(!name) { alert('لطفا نام محصول را وارد کنید'); return; }
+
+                const msg = `سلام، درخواست محصول خاص دارم:\n\n🏷 نام: ${name}\n📝 توضیحات/مقدار: ${details}`;
+                window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(msg)}`, '_blank');
+            }
+
+            // ==========================================
+            // === لاجیک بخش میکسر (Gamification) ===
+            // ==========================================
+            
+            let currentFlaskWeight = 0;
+            let flaskIngredients = []; // {name, color}
+            let mixCounter = 1;
+            
+            // رنگ‌های جذاب برای مکمل‌ها
+            const jarColors = [
+                '#FF6B6B', '#4ECDC4', '#FFE66D', '#FF9F43', '#54A0FF', 
+                '#5F27CD', '#C4E538', '#FDA7DF', '#D980FA', '#B53471',
+                '#009432', '#F79F1F', '#1B1464', '#EA2027', '#A3CB38',
+                '#12CBC4', '#ED4C67', '#B53471', '#833471', '#6F1E51'
+            ];
+
+            window.initMixer = function() {
+                const shelf = document.getElementById('shelf');
+                if(shelf.children.length > 0) return; // قبلا ساخته شده
+
+                for(let i=1; i<=20; i++) {
+                    const color = jarColors[(i-1) % jarColors.length];
+                    const div = document.createElement('div');
+                    div.className = 'supplement-jar';
+                    div.setAttribute('data-id', i);
+                    div.setAttribute('data-name', `مکمل ${i}`);
+                    div.setAttribute('data-color', color);
+                    
+                    div.innerHTML = `
+                        <div class="jar-lid"></div>
+                        <div class="jar-body" style="background:${color}"></div>
+                        <div class="jar-label">مکمل ${i}</div>
+                    `;
+                    
+                    // Mouse Events (Desktop)
+                    div.draggable = true;
+                    div.addEventListener('dragstart', handleDragStart);
+                    div.addEventListener('dragend', handleDragEnd);
+
+                    // Touch Events (Mobile) - Custom Implementation
+                    div.addEventListener('touchstart', handleTouchStart, {passive: false});
+                    div.addEventListener('touchmove', handleTouchMove, {passive: false});
+                    div.addEventListener('touchend', handleTouchEnd);
+
+                    shelf.appendChild(div);
+                }
+
+                // دراپ زون دسکتاپ
+                const flaskTarget = document.getElementById('flask-target');
+                flaskTarget.addEventListener('dragover', (e) => e.preventDefault());
+                flaskTarget.addEventListener('drop', handleDrop);
+            }
+
+            let draggedItemData = null;
+            const ghostEl = document.getElementById('drag-ghost');
+
+            // --- Desktop Drag & Drop ---
+            function handleDragStart(e) {
+                draggedItemData = {
+                    name: this.getAttribute('data-name'),
+                    color: this.getAttribute('data-color')
+                };
+            }
+            function handleDragEnd(e) { draggedItemData = null; }
+            function handleDrop(e) {
+                e.preventDefault();
+                if(draggedItemData) addIngredient(draggedItemData);
+            }
+
+            // --- Mobile Touch Drag & Drop ---
+            function handleTouchStart(e) {
+                e.preventDefault(); // جلوگیری از اسکرول
+                const touch = e.touches[0];
+                draggedItemData = {
+                    name: this.getAttribute('data-name'),
+                    color: this.getAttribute('data-color')
+                };
+                
+                // تنظیم ظاهر گوست
+                ghostEl.style.display = 'flex';
+                ghostEl.style.background = draggedItemData.color;
+                ghostEl.innerHTML = '<i class="fa-solid fa-cube"></i>';
+                moveGhost(touch.clientX, touch.clientY);
+            }
+
+            function handleTouchMove(e) {
+                e.preventDefault();
+                const touch = e.touches[0];
+                moveGhost(touch.clientX, touch.clientY);
+            }
+
+            function handleTouchEnd(e) {
+                ghostEl.style.display = 'none';
+                const touch = e.changedTouches[0];
+                
+                // بررسی برخورد با ظرف
+                const flask = document.getElementById('flask-target');
+                const rect = flask.getBoundingClientRect();
+                
+                if (touch.clientX >= rect.left && touch.clientX <= rect.right &&
+                    touch.clientY >= rect.top && touch.clientY <= rect.bottom) {
+                    if(draggedItemData) addIngredient(draggedItemData);
+                }
+                draggedItemData = null;
+            }
+
+            function moveGhost(x, y) {
+                ghostEl.style.left = (x - 25) + 'px';
+                ghostEl.style.top = (y - 25) + 'px';
+            }
+
+            // --- لاجیک اضافه کردن به ظرف ---
+            function addIngredient(item) {
+                if (currentFlaskWeight >= 1000) {
+                    alert("ظرف پر شده است! لطفاً ترکیب قبلی را نهایی کنید.");
+                    return;
+                }
+
+                // اضافه کردن وزن
+                currentFlaskWeight += 50;
+                document.getElementById('current-weight').textContent = currentFlaskWeight;
+
+                // اضافه کردن بصری لایه
+                const layer = document.createElement('div');
+                layer.className = 'powder-layer';
+                layer.style.height = '5%'; // هر 50 گرم = 5 درصد از 1000 گرم
+                layer.style.backgroundColor = item.color;
+                document.getElementById('flask-content').appendChild(layer);
+
+                // ذخیره دیتا
+                flaskIngredients.push(item.name);
+
+                // چک کردن پر شدن
+                if (currentFlaskWeight >= 1000) {
+                    setTimeout(finishMixing, 500);
+                }
+            }
+
+            function finishMixing() {
+                const mixName = `ترکیب اختصاصی شماره ${mixCounter}`;
+                // ساختن رشته جزئیات (خلاصه مواد)
+                const counts = {};
+                flaskIngredients.forEach(x => { counts[x] = (counts[x] || 0) + 1; });
+                let detailsStr = Object.entries(counts).map(([key, val]) => `${key} (${val*50}g)`).join('، ');
+
+                // اضافه به سبد
+                mixedProducts.push({
+                    name: mixName,
+                    quantity: 1, // یک ظرف
+                    unit: "کیلوگرم",
+                    type: "mix",
+                    details: detailsStr
+                });
+
+                // نمایش در لیست پایین میکسر
+                const list = document.getElementById('mix-list');
+                if(mixCounter === 1) list.innerHTML = ''; // پاک کردن متن پیش‌فرض
+                
+                const div = document.createElement('div');
+                div.className = 'mix-item';
+                div.innerHTML = `<span>${mixName}</span> <i class="fa-solid fa-check-circle" style="color:green;"></i>`;
+                list.appendChild(div);
+
+                // ریست کردن ظرف
+                mixCounter++;
+                currentFlaskWeight = 0;
+                flaskIngredients = [];
+                document.getElementById('flask-content').innerHTML = '';
+                document.getElementById('current-weight').textContent = '0';
+                
+                alert(`ظرف پر شد! "${mixName}" به سبد خرید شما اضافه شد.`);
+                updateCartAndButton();
+            }
+
         });
     </script>
 </body>
